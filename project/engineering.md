@@ -11,7 +11,8 @@ location / {
 } 
 ```
 
-2. [python+flask 配置https网站ssl安全认证](https://blog.csdn.net/dyingstraw/article/details/82698639)
+2. (1) [python+flask 配置https网站ssl安全认证](https://blog.csdn.net/dyingstraw/article/details/82698639)
+   (2) [Flask配置Cors跨域](https://www.cnblogs.com/anxminise/p/9814326.html)
 ```bash
  pip install pyOpenSSL
  ```

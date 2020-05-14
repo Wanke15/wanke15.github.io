@@ -35,7 +35,7 @@ app = Flask(__name__)
 app.run('0.0.0.0', debug=True, port=8001, ssl_context=('path_to_server.crt', 'path_to_server.key'))  
 ```
 
-3. [Flask+gunicorn怎么使用https？](https://stackoverflow.com/questions/7406805/running-gunicorn-on-https/14163851)
+3. [gunicorn怎么使用https？](https://stackoverflow.com/questions/7406805/running-gunicorn-on-https/14163851)
 ```bash
 gunicorn --certfile=server.crt --keyfile=server.key test:app
 ```

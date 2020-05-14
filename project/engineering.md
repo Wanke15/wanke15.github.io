@@ -12,6 +12,23 @@ location / {
 ```
 
 2. [python+flask 配置https网站ssl安全认证](https://blog.csdn.net/dyingstraw/article/details/82698639)
+```bash
+ pip install pyOpenSSL
+ ```
+ ```bash
+ # 生成私钥，按照提示填写内容
+openssl genrsa -des3 -out server.key 1024
+ 
+# 生成csr文件 ，按照提示填写内容
+openssl req -new -key server.key -out server.csr
+ 
+# Remove Passphrase from key
+cp server.key server.key.org 
+openssl rsa -in server.key.org -out server.key
+ 
+# 生成crt文件，有效期1年（365天）
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+ ```
 
 3. [Flask+gunicorn怎么使用https？](https://stackoverflow.com/questions/7406805/running-gunicorn-on-https/14163851)
 ```bash

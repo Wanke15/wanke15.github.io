@@ -29,7 +29,7 @@ openssl rsa -in server.key.org -out server.key
 # 生成crt文件，有效期1年（365天）
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
  ```
- ```bash
+ ```python
 from flask import Flask    
 app = Flask(__name__)    
 app.run('0.0.0.0', debug=True, port=8001, ssl_context=('path_to_server.crt', 'path_to_server.key'))  

@@ -29,6 +29,11 @@ openssl rsa -in server.key.org -out server.key
 # 生成crt文件，有效期1年（365天）
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
  ```
+ ```bash
+from flask import Flask    
+app = Flask(__name__)    
+app.run('0.0.0.0', debug=True, port=8001, ssl_context=('path_to_server.crt', 'path_to_server.key'))  
+```
 
 3. [Flask+gunicorn怎么使用https？](https://stackoverflow.com/questions/7406805/running-gunicorn-on-https/14163851)
 ```bash

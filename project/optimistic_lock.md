@@ -7,6 +7,7 @@
 ``` python
 import random
 import time
+import uuid
 from concurrent.futures.thread import ThreadPoolExecutor
 
 import MySQLdb
@@ -112,4 +113,4 @@ if __name__ == '__main__':
 
 ```
 
-<img height=436 width=272 src=./assets/optimistic_lock_1.png>
+<img height=436 width=272 src=./assets/optimistic_lock_1.png align="middle">

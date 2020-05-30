@@ -6,9 +6,7 @@
 在这里通过一个抢红包的场景来模拟乐观锁。悲观锁和Redis相关的尝试后续再补充
 ``` python
 import random
-import threading
 import time
-import uuid
 from concurrent.futures.thread import ThreadPoolExecutor
 
 import MySQLdb

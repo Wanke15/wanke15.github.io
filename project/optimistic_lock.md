@@ -15,7 +15,7 @@ import MySQLdb
 
 class MySQL:
     """
-    Postgres client.
+    MySQL client.
     """
 
     def __init__(self):

@@ -40,3 +40,14 @@ app.run('0.0.0.0', debug=True, port=8001, ssl_context=('path_to_server.crt', 'pa
 ```bash
 gunicorn --certfile=server.crt --keyfile=server.key test:app
 ```
+
+4. Dockerfile 时区修改
+```dockerfile
+FROM ubuntu:18.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt update && apt install tzdata -y
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```

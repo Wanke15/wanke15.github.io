@@ -62,6 +62,6 @@
    %timeit -n 10000 glove_index.knnQuery(data[word2id["hello"]], k=5+1)
    # 29.4 µs ± 1.05 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 
-   %timeit -n 100 glove_model.most_similar("hello", topn=5)
-   # 7.61 ms ± 211 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+   %timeit -n 10000 glove_model.most_similar("hello", topn=5)
+   # 7.55 ms ± 310 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
    ```

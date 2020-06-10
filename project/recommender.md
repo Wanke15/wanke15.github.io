@@ -48,3 +48,19 @@
  - （1）简单的方法可以利用word2vec算法训练物品的向量表示。数据清洗每个用户每个推荐session的点击序列，作为词向量模型训练中的"句子"，每个物品即为"单词"，从而构建物品的embedding
  - （2）类似BERT，通过完成某种预训练任务，每个物品的embedding作为中间产物来表征物品
  - （3）计算物品Embedding之间的相似度作为离线Embedding推荐的依据，可以直接用于线上类似"猜你喜欢"的推荐模块或者作为多路召回的一个源，提供给后续的rank或rerank模块
+ 
+#### 9. 向量召回近邻搜索
+ - （1）直接根据word2vec或GE构建完物品向量后，可以根据用户历史浏览物品或用户自身的向量表示进行向量召回。召回模块应该满足的一个特点是速度快，在内容池很大时，直接计算物品之间的余弦距离或欧氏距离开销较大，因此在工程实践中一般采用**近似近邻检索**来满足召回模块的时延要求。近似近邻检索的总结后边可以单独写一下，在这里记一下其相关的工具和利用nmslib和直接Word2vec精确计算的时间效率对比：
+    - [Non-metric space library (nmslib)](https://github.com/nmslib/nmslib)
+    - [Faiss libary by facebook](https://github.com/facebookresearch/faiss)
+    - [Annoy by Spotify](https://github.com/spotify/annoy)
+ - (2) 评测
+ <img src="https://github.com/erikbern/ann-benchmarks/raw/master/results/glove-100-angular.png">
+ - (3) Glove词向量实验对比
+   ```python
+   %timeit -n 10000 glove_index.knnQuery(data[word2id["hello"]], k=5+1)
+   # 29.4 µs ± 1.05 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+   %timeit -n 100 glove_model.most_similar("hello", topn=5)
+   # 7.61 ms ± 211 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+   ```

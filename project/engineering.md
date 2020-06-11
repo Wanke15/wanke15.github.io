@@ -51,3 +51,9 @@ RUN apt update && apt install tzdata -y
 RUN dpkg-reconfigure --frontend noninteractive tzdata
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```
+5. list dict 去重
+```python
+data_list = [{"a": "123", "b": "321"}, {"a": "123", "b": "321"}, {"b": "321", "a": "123"}]
+red_func = lambda x, y: x if y in x else x + [y]
+reduce(red_func, [[], ] + data_list)
+```

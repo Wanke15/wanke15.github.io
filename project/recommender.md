@@ -56,6 +56,7 @@
     - [Annoy by Spotify](https://github.com/spotify/annoy)
  - (2) 评测
  <img src="https://github.com/erikbern/ann-benchmarks/raw/master/results/glove-100-angular.png">
+ 
  - (3) Glove词向量实验对比
  
    ```python

@@ -1,5 +1,5 @@
 #### 1. Skip gram 跳字模型
- - (1) 核心思想：中心词预测所有背景词
+ - (1) 核心思想：中心词预测(生成)所有背景词
  <img src="http://zh.gluon.ai/_images/skip-gram.svg">
  
  - (2) 原始优化目标函数：

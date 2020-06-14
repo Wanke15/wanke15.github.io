@@ -64,7 +64,7 @@ reduce(red_func, [[], ] + data_list)
    - Flask 提供基础算法服务
    - Gunicorn 服务实例进程级别的负载
    - Supervisord 对于 Gunicorn 服务进程提供 daemon 管理
-   - Nginx 提供多主机负载
+   - Nginx 作为 gateway 提供负载、安全相关功能
   
  - (2) Kubernetes 资源管理
    - 基础服务镜像。应该具备自行管理中的1~3功能

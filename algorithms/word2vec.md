@@ -35,17 +35,17 @@
    
      假设同时含有正类样本和负类样本的事件P, N_1, \ldots, N_K相互独立，负采样将以上需要最大化的仅考虑正类样本的联合概率改写为
 
-   \prod_{t=1}^{T} \prod_{-m \leq j \leq m,\ j \neq 0} P(w^{(t+j)} \mid w^{(t)}),
+     \prod_{t=1}^{T} \prod_{-m \leq j \leq m,\ j \neq 0} P(w^{(t+j)} \mid w^{(t)}),
 
-   其中条件概率被近似表示为
+     其中条件概率被近似表示为
 
-   P(w^{(t+j)} \mid w^{(t)}) =P(D=1\mid w^{(t)}, w^{(t+j)})\prod_{k=1,\ w_k \sim P(w)}^K P(D=0\mid w^{(t)}, w_k).
+     P(w^{(t+j)} \mid w^{(t)}) =P(D=1\mid w^{(t)}, w^{(t+j)})\prod_{k=1,\ w_k \sim P(w)}^K P(D=0\mid w^{(t)}, w_k).
 
-   设文本序列中时间步t的词w^{(t)}在词典中的索引为i_t，噪声词w_k在词典中的索引为h_k。有关以上条件概率的对数损失为
+     设文本序列中时间步t的词w^{(t)}在词典中的索引为i_t，噪声词w_k在词典中的索引为h_k。有关以上条件概率的对数损失为
 
-   \begin{split}\begin{aligned} -\log P(w^{(t+j)} \mid w^{(t)}) =& -\log P(D=1\mid w^{(t)}, w^{(t+j)}) - \sum_{k=1,\ w_k \sim P(w)}^K \log P(D=0\mid w^{(t)}, w_k)\\ =&- \log\, \sigma\left(\boldsymbol{u}_{i_{t+j}}^\top \boldsymbol{v}_{i_t}\right) - \sum_{k=1,\ w_k \sim P(w)}^K \log\left(1-\sigma\left(\boldsymbol{u}_{h_k}^\top \boldsymbol{v}_{i_t}\right)\right)\\ =&- \log\, \sigma\left(\boldsymbol{u}_{i_{t+j}}^\top \boldsymbol{v}_{i_t}\right) - \sum_{k=1,\ w_k \sim P(w)}^K \log\sigma\left(-\boldsymbol{u}_{h_k}^\top \boldsymbol{v}_{i_t}\right). \end{aligned}\end{split}
+     \begin{split}\begin{aligned} -\log P(w^{(t+j)} \mid w^{(t)}) =& -\log P(D=1\mid w^{(t)}, w^{(t+j)}) - \sum_{k=1,\ w_k \sim P(w)}^K \log P(D=0\mid w^{(t)}, w_k)\\ =&- \log\, \sigma\left(\boldsymbol{u}_{i_{t+j}}^\top \boldsymbol{v}_{i_t}\right) - \sum_{k=1,\ w_k \sim P(w)}^K \log\left(1-\sigma\left(\boldsymbol{u}_{h_k}^\top \boldsymbol{v}_{i_t}\right)\right)\\ =&- \log\, \sigma\left(\boldsymbol{u}_{i_{t+j}}^\top \boldsymbol{v}_{i_t}\right) - \sum_{k=1,\ w_k \sim P(w)}^K \log\sigma\left(-\boldsymbol{u}_{h_k}^\top \boldsymbol{v}_{i_t}\right). \end{aligned}\end{split}
 
-   现在，训练中每一步的梯度计算开销不再与词典大小相关，而与K线性相关。当K取较小的常数时，负采样在每一步的梯度计算开销较小。
+     现在，训练中每一步的梯度计算开销不再与词典大小相关，而与K线性相关。当K取较小的常数时，负采样在每一步的梯度计算开销较小。
 
  - (4) 学习参考资料：
    - 贪心学院李文哲老师视频课程

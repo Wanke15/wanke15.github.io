@@ -57,3 +57,20 @@ data_list = [{"a": "123", "b": "321"}, {"a": "123", "b": "321"}, {"b": "321", "a
 red_func = lambda x, y: x if y in x else x + [y]
 reduce(red_func, [[], ] + data_list)
 ```
+
+6. 算法服务
+ 
+ - (1) 自行管理
+   - Flask 提供基础算法服务
+   - Gunicorn 服务实例进程级别的负载
+   - Supervisord 对于 Gunicorn 服务进程提供 daemon 管理
+   - Nginx 提供多主机负载
+  
+ - (2) Kubernetes 资源管理
+   - 基础服务镜像。应该具备自行管理中的1~3功能
+   - 服务配置yaml文件
+   
+ - (3) 常用微服务框架
+   - Python: Flask, Tornado, Twisted
+   - Java: Spring系列
+ 

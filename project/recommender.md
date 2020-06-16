@@ -60,9 +60,15 @@
  - (3) Glove词向量实验对比
  
    ```python
+   # 1. nmslib
    %timeit -n 10000 glove_index.knnQuery(data[word2id["hello"]], k=5+1)
    # 29.4 µs ± 1.05 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
-
+   
+   # 2. gensim word2vec
    %timeit -n 10000 glove_model.most_similar("hello", topn=5)
    # 7.55 ms ± 310 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+   
+   # 3. faiss-cpu
+   %timeit -n 100 glove_index.search(vecs[:1], 5+1)
+   # 18.7 ms ± 204 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
    ```

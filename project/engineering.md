@@ -88,3 +88,5 @@
     { "refresh_interval": "1s" } 
     ```
     因此在后续更新较大的ES索引时，可以采用上述的方法来做相关的优化
+    
+8. grok字段在线[测试](http://grokdebug.herokuapp.com/)

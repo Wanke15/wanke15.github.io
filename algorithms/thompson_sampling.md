@@ -27,4 +27,7 @@ plt.show()
 <table><tr>
 <td><img src=./assets/ts_1.png border=0></td>
 <td><img src=./assets/ts_2.png border=0></td>
+<td><img src=./assets/ts_3.png border=0></td>
+<td><img src=./assets/ts_4.png border=0></td>
+<td><img src=./assets/ts_5.png border=0></td>
 </tr></table>

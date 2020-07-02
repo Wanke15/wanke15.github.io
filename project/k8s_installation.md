@@ -35,8 +35,8 @@ for idx, line in enumerate(lines):
 2. Dashboard 安装
  - 下载镜像
  ```bash
- docker pull gcrxio/kubernetes-dashboard-amd64:v1.10.1
- docker tag gcrxio/kubernetes-dashboard-amd64:v1.10.1 k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
+ docker pull mirrorgooglecontainers/kubernetes-dashboard-amd64:v1.10.1
+ docker tag mirrorgooglecontainers/kubernetes-dashboard-amd64:v1.10.1 k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
 ```
 
  - 下载yaml配置文件，并修改镜像拉去方式

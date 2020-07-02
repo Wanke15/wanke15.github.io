@@ -58,3 +58,12 @@ for idx, line in enumerate(lines):
  
  - 访问[链接](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
  <img src=https://img2020.cnblogs.com/other/946674/202007/946674-20200702174145627-1851850994.png>
+
+3. 访问Dashboard可能存在的异常
+```bash
+Error from server (Forbidden): Forbidden (user=system:anonymous, verb=get, resource=nodes, subresource=proxy)
+```
+   解决:
+```bash
+kubectl create clusterrolebinding system:anonymous   --clusterrole=cluster-admin   --user=system:anonymous
+```

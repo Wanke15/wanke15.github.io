@@ -90,3 +90,8 @@
     因此在后续更新较大的ES索引时，可以采用上述的方法来做相关的优化
     
 8. grok字段在线[测试](http://grokdebug.herokuapp.com/)
+
+9. 优雅重启Gunicorn
+   ```bash
+   ps -ef | grep "gunicorn" | head -n 1 | awk '{print $2}' | xargs kill -HUP
+   ```

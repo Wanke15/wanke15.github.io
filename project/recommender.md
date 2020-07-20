@@ -72,3 +72,6 @@
    %timeit -n 100 glove_index.search(vecs[:1], 5+1)
    # 18.7 ms ± 204 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
    ```
+
+#### 9. 如何评价Embedding的效果
+目前信息流的数据是有各个业务类别属性的，可以将Embedding作为每个Item的特征表示，从而通过类别预测监督学习的准确率、召回率等指标来评估

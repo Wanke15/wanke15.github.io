@@ -95,3 +95,7 @@
    ```bash
    ps -ef | grep "gunicorn" | head -n 1 | awk '{print $2}' | xargs kill -HUP
    ```
+   
+10. Nginx健康检查
+   推荐服务暂时做了主从高可用，Nginx对分发的流量服务后端做健康检查[官方文档](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/)
+   

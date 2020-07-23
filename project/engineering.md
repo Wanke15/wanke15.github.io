@@ -12,6 +12,7 @@
     ```
 
 2. (1) [python+flask 配置https网站ssl安全认证](https://blog.csdn.net/dyingstraw/article/details/82698639)
+
    (2) [Flask配置Cors跨域](https://www.cnblogs.com/anxminise/p/9814326.html)
     ```bash
      pip install pyOpenSSL
@@ -131,7 +132,7 @@ class RedisUtil:
     def init(cls):
         if cls.sentinel_instance is None:
             sentinel_list = [("sentinel_ip1", "sentinel_port1"), ("sentinel_ip2", "sentinel_port2")]
-            cls.sentinel_instance = RedisSentinel(sentinel_list, password="your-password")
+            cls.sentinel_instance = RedisSentinel(sentinel_list, service_name="your-service-name", password="your-password")
 
     @classmethod
     def lpush(cls, key, values: list, ex=None):

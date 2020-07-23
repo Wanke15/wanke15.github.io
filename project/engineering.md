@@ -99,3 +99,49 @@
 10. Nginx健康检查
    推荐服务暂时做了主从高可用，Nginx对分发的流量服务后端做健康检查[官方文档](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-health-check/)
    
+11. Redis哨兵
+
+上周出现了一次推荐服务线上异常情况，看log是Redis无法写入。继续追发现是Redis读写都是直接连接了主节点，当天Redis集群发生了主从切换，导致主节点IP变更，从而失去写入数据的权限。
+后来改为哨兵模式，每次写入请求通过哨兵获取主节点，读取请求获取从节点，保证Redis读写服务的高可用。关于Redis Sentinel的一些原理和介绍可以看这篇[文章](https://baijiahao.baidu.com/s?id=1651062093310564248&wfr=spider&for=pc)，这里就不搬运了。代码：
+```python
+from redis.sentinel import Sentinel
+
+class RedisSentinel:
+    def __init__(self, sentinel_list, service_name, password):
+        self.sentinel = Sentinel(sentinel_list, password=password)
+        self.service_name = service_name
+
+    def get_master_or_slave_conn(self, conn_type="master"):
+        if conn_type == "master":
+            master = self.sentinel.master_for(
+                service_name=self.service_name)
+            return master
+        elif conn_type == "slave":
+            slave = self.sentinel.slave_for(
+                service_name=self.service_name)
+            return slave
+        else:
+            raise NameError('No conn_type found for: {}'.format(conn_type))
+            
+class RedisUtil:
+    sentinel_instance = None
+
+    @classmethod
+    def init(cls):
+        if cls.sentinel_instance is None:
+            sentinel_list = [("sentinel_ip1", "sentinel_port1"), ("sentinel_ip2", "sentinel_port2")]
+            cls.sentinel_instance = RedisSentinel(sentinel_list, password="your-password")
+
+    @classmethod
+    def lpush(cls, key, values: list, ex=None):
+        r = cls.sentinel_instance.get_master_or_slave_conn("master")
+        r.lpush(key, *values)
+        r.expire(key, ex)
+
+    @classmethod
+    def lrange(cls, key, start=0, end=-1):
+        r = cls.sentinel_instance.get_master_or_slave_conn("slave")
+        _res = r.lrange(key, start, end)
+        _res = [_.decode('utf-8') for _ in _res]
+        return _res 
+```

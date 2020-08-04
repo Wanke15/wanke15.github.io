@@ -8,7 +8,7 @@ create 之后依次为: 表名 -> 'feed_user_profile', 三个列族 -> 'basic', 
 ```sh
 put 'feed_user_profile', 'uhdiaoe8cbb00j-ijc_2020012', 'basic:age', '20'
 ```
-put 之后依次为： 表名 -> 'feed_user_profile', row_key -> 'uhdiaoe8cbb00j-ijc_2020012', basic列族下age字段设置为20
+put 之后依次为： 表名 -> 'feed_user_profile', row_key -> '00000000-595f-4b72-ffff-ffff8bf768fe_', basic列族下age字段设置为20
 
 3. Spark读写HBase
 ```java

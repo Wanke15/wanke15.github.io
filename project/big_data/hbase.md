@@ -14,14 +14,14 @@ put 之后依次为： 表名 -> 'feed_user_profile', row_key -> 'uhdiaoe8cbb00j
 ```java
 package com.feed.data
 
-import org.apache.hadoop.hbase.client.{HTable, Put}
+import org.apache.hadoop.hbase.client.{HTable,Put}
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable
 import org.apache.hadoop.hbase.mapred.TableOutputFormat
 import org.apache.hadoop.hbase.mapreduce.TableInputFormat
 import org.apache.hadoop.hbase.HBaseConfiguration
 import org.apache.hadoop.hbase.util.Bytes
 import org.apache.hadoop.mapred.JobConf
-import org.apache.log4j.{Level, Logger}
+import org.apache.log4j.{Level,Logger}
 import org.apache.spark.sql.SparkSession
 
 case class UserProfile(sex:String, age:Int)
@@ -49,7 +49,7 @@ object HbaseMain {
     val conf = HBaseConfiguration.create()
     conf.set("hbase.zookeeper.quorum",quorum)
     conf.set("hbase.zookeeper.property.clientPort",port)
-    conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
+    conf.set("spark.serializer", "org.apache.spark.serializer.KryoSerializer") // 用KryoSerializer优化spark的序列化
     conf.set(TableInputFormat.INPUT_TABLE, tableName)
 
     // HBase数据转成RDD
@@ -86,8 +86,6 @@ object HbaseMain {
     jobConf.setOutputFormat(classOf[TableOutputFormat])
     jobConf.set(TableOutputFormat.OUTPUT_TABLE, tableName)
     data.saveAsHadoopDataset(jobConf)
-
-    hBaseRDD.map(_.toString).take(3).foreach(println)
   }
 }
 ```

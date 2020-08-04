@@ -11,7 +11,7 @@ put 'feed_user_profile', 'uhdiaoe8cbb00j-ijc_2020012', 'basic:age', '20'
 put 之后依次为： 表名 -> 'feed_user_profile', row_key -> '00000000-595f-4b72-ffff-ffff8bf768fe_', basic列族下age字段设置为20
 
 3. Spark读写HBase
-```java
+```scala
 package com.feed.data
 
 import org.apache.hadoop.hbase.client.{HTable,Put}

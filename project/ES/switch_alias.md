@@ -79,3 +79,4 @@ try:
 except Exception as e:
     logger.error("Update error: {}!".format(e))
 ```
+Note: 虽然当数据更新失败，也就是try代码块发生问题的时候，已经把旧的索引删除掉了，虽然可以通过快照功能恢复，但这种情况对于线上在用的索引是并没有什么影响的，因此也就不麻烦去搞了。

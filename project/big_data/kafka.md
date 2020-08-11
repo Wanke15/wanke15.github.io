@@ -1,4 +1,4 @@
-1. Docker快速创建
+1. Docker快速创建 => docker-compose.yml
 ```yml
 version: '2'
 
@@ -24,6 +24,10 @@ services:
     depends_on:
       - zoo1
     container_name: kafka
+```
+```bash
+docker-compose up -d
+docker-compose down
 ```
 
 2. Producer

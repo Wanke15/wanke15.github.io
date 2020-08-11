@@ -33,3 +33,7 @@ RESTful和gRPC性能差异:
 %timeit adult = wide_and_deep_pb2.Adult(**demo_data1); stub.Predict(adult)
 8.94 ms ± 72.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 ```
+
+#### 2. Java gRPC服务端和客户端
+
+[链接]()https://www.cnblogs.com/junjiang3/p/9096895.html

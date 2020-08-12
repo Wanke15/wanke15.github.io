@@ -147,3 +147,7 @@ class RedisUtil:
         _res = [_.decode('utf-8') for _ in _res]
         return _res 
 ```
+
+12. Nginx对gRPC服务做负载均衡
+
+(官方Blog)[https://www.nginx.com/blog/nginx-1-13-10-grpc/]

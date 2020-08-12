@@ -137,12 +137,18 @@ object SparkStreamingKafka {
     )
 
     stream.foreachRDD(rdd => {
-        rdd.foreachPartition(p => {
-          println(p.mkString(", "))
+      val offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
+
+      rdd.foreachPartition(r => {
+        r.foreach(str => {
+          val parseData = JSON.parseObject(str.value.toString)
+          val gender = parseData.get("gender")
+          println(gender)
         })
-        val offsetRanges = rdd.asInstanceOf[HasOffsetRanges].offsetRanges
-        stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
       })
+
+      stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
+    })
 
     ssc.start()
     ssc.awaitTermination()

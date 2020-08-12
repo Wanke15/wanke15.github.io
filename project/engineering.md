@@ -150,4 +150,4 @@ class RedisUtil:
 
 12. Nginx对gRPC服务做负载均衡
 
-(官方Blog)[https://www.nginx.com/blog/nginx-1-13-10-grpc/]
+[官方Blog](https://www.nginx.com/blog/nginx-1-13-10-grpc/)

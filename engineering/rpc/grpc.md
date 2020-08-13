@@ -37,3 +37,7 @@ RESTful和gRPC性能差异:
 #### 2. Java gRPC服务端和客户端
 
 [链接](https://www.cnblogs.com/junjiang3/p/9096895.html)
+
+#### 3. gRPC 压测工具
+ - [ghz](https://github.com/bojand/ghz)
+ - [用 ghz 对 gRPC 服务进行压测](https://farer.org/2020/02/20/grpc-load-testing-with-ghz/)

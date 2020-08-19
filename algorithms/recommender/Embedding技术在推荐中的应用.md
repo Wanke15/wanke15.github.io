@@ -37,6 +37,8 @@
 - 及时加入新的房子向量
 
 #### 6. Embedding结果的评价
- - 离线
- - 在线
+ - 评估地理位置相似性是否被包含，对Embedding进行了 k 均值聚类 (k-means clustering)
+ - 评估数据业务类型特征相似性是否被包含。论文评估了不同类型的内容之间的平均余弦相似性 (cosine similarity) ，并确认相同类型的内容之间的余弦相似性远高于不同类型内容之间的相似性
  
+#### 7. 如何学习含有长期兴趣信息的Embedding
+ - 通过clicked session学习到的Embedding只包含短期偏好信息，不包含用户的长期偏好。所以为了学习有着用户长期偏好信息Embedding，Airbnb的方案是利用booking session数据。如果用户有过下单历史，说明其对该类型的数据可能更感兴趣。

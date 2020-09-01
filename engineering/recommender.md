@@ -75,3 +75,9 @@
 
 #### 9. 如何评价Embedding的效果
 目前信息流的数据是有各个业务类别属性的，可以将Embedding作为每个Item的特征表示，从而通过类别预测监督学习的准确率、召回率等指标来评估
+
+#### 10. Tensorflow wide and deep 模型推理速度优化
+
+Nvidia官方博文[Accelerating Wide & Deep Recommender Inference on GPUs](https://developer.nvidia.com/blog/accelerating-wide-deep-recommender-inference-on-gpus/)
+
+

@@ -1,0 +1,14 @@
+FROM nvidia/cuda:10.0-runtime-ubuntu18.04
+
+RUN apt-get update && apt-get install -y \
+  python3-pip \
+  vim \
+  git \
+  wget \
+&& rm -rf /var/lib/apt/lists/*
+
+COPY / /
+RUN  dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
+
+RUN pip3 install -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com --no-cache-dir tensorflow_gpu==1.14.0
+RUN pip3 install --no-cache-dir -f https://download.pytorch.org/whl/torch_stable.html torch==1.4.0+cu100 torchvision==0.5.0+cu100

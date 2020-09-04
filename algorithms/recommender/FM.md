@@ -11,3 +11,5 @@
    - [xLearn](https://xlearn-doc.readthedocs.io/en/latest/index.html)
 
      <img height=400 width=300 src=https://github.com/aksnzhy/xLearn/raw/master/img/code.png>
+
+4. 大佬关于FM模型的知乎链接 - [推荐系统召回四模型之：全能的FM模型](https://zhuanlan.zhihu.com/p/58160982)

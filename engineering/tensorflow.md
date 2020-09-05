@@ -9,7 +9,7 @@
 ```bash
 2020-09-05 09:34:32.442529: I tensorflow_serving/servables/tensorflow/saved_model_warmup.cc:105] No warmup data file found at /models/boston/1/assets.extra/tf_serving_warmup_requests
 ```
-也就是说，如果在模型目录的子目录***assets.extra***下创建一条接口所需的数据示例，那么tensorflow serving就会在加载模型后读取该数据做warmup。
+也就是说，如果在模型目录的子目录***assets.extra***下创建一条接口所需的数据示例***tf_serving_warmup_requests***，那么tensorflow serving就会在加载模型后读取该数据做warmup。
 那么，这条数据该怎么创建呢，直接上代码：
 ```python
 import tensorflow as tf

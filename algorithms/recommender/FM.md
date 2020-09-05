@@ -74,10 +74,14 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2,
                                                         random_state=27, stratify=data.target)
     fm.fit(X_train, y_train, epochs=1, batch_size=16, validation_data=(X_test, y_test))
-    fm.save_weights("./fm_keras.weights")
-
-    model = build_model(30)
-    model.load_weights('./fm_keras.weights')
-    out = model.predict(X_test)
-    print(out[:3])
+    
+    tf.keras.models.save_model(
+        fm,
+        './fm_keras_saved_model/1',
+        overwrite=True,
+        include_optimizer=True,
+        save_format=None,
+        signatures=None,
+        options=None
+    )
 ```

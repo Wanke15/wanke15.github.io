@@ -35,4 +35,4 @@ if __name__ == "__main__":
     
 ```
 这样创建之后，第一次接口请求的速度就变为了 5ms 左右，解决了线上请求的毛刺问题。
-美团技术团队有一篇[基于TensorFlow Serving的深度学习在线预估]()https://tech.meituan.com/2018/10/11/tfserving-improve.html的文章可以参考
+美团技术团队有一篇[基于TensorFlow Serving的深度学习在线预估](https://tech.meituan.com/2018/10/11/tfserving-improve.html)的文章可以参考

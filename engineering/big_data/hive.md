@@ -39,7 +39,9 @@ STORED AS PARQUET;
 ```
 - 添加字段
 ```sql
-alter table label_system_db.user_profile add columns (user_id string)
+alter table label_system_db.user_profile add columns (user_id string)；
+
+# alter table label_system_db.user_profile partition(partition_name='分区值') add columns (user_id string);
 ```
 - 修改字段
 ```sql

@@ -222,3 +222,11 @@ class KerasFM(BaseEstimator):
         y_preds = predict_batch(self.model,X,batch_size=batch_size)
         return y_preds
 ```
+
+#### 12. [汽车之家推荐系统排序算法迭代之路](https://www.infoq.cn/article/87gOLIaqWZW4moL0G9Ke)
+
+1. 模型演进。LR -> XGB(同阶段：XGB+LR) -> FM -> DeepFM(同阶段：WideAndDeep) -> Online DeepFM
+2. 样本生成。对于 Label 及特征的实时获取是通过每次请求的唯一标识 id 使用服务端 dump 的特征和客户端的 Label ( 曝光、点击 ) 进行 join 生成，这里要注意的是 Label 必须和当次请求的特征 join，如果特征数据在 Label 之后有更新，则会产生特征穿越的问题。
+3. 特征介绍。
+<img src="https://static001.infoq.cn/resource/image/2d/aa/2d3f840ecf63fd2aaf450b92cf5327aa.png">
+

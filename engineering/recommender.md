@@ -87,3 +87,4 @@ Nvidia官方博文[Accelerating Wide & Deep Recommender Inference on GPUs](https
 3. 特征介绍。
 <img src="https://static001.infoq.cn/resource/image/2d/aa/2d3f840ecf63fd2aaf450b92cf5327aa.png">
 
+#### 12. [爱奇艺个性化推荐排序实践](http://www.woshipm.com/pd/847004.html)

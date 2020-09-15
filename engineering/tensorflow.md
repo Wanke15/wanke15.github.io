@@ -36,3 +36,26 @@ if __name__ == "__main__":
 ```
 这样创建之后，第一次接口请求的速度就变为了 5ms 左右，解决了线上请求的毛刺问题。
 美团技术团队有一篇[基于TensorFlow Serving的深度学习在线预估](https://tech.meituan.com/2018/10/11/tfserving-improve.html)的文章有更多相关的优化可以参考
+
+3. tf2 crf 实现
+[tf2CRF](https://github.com/xuxingya/tf2crf)
+```python
+from tf2crf import CRF
+from tensorflow.keras.layers import Input, Embedding, Bidirectional, GRU, Dense
+from tensorflow.keras.models import Model
+
+inputs = Input(shape=(None,), dtype='int32')
+output = Embedding(100, 40, trainable=True, mask_zero=True)(inputs)
+output = Bidirectional(GRU(64, return_sequences=True))(output)
+output = Dense(9, activation=None)(output)
+crf = CRF(dtype='float32')
+output = crf(output)
+model = Model(inputs, output)
+model.compile(loss=crf.loss, optimizer='adam', metrics=[crf.accuracy])
+
+x = [[5, 2, 3] * 3] * 10
+y = [[1, 2, 3] * 3] * 10
+
+model.fit(x=x, y=y, epochs=2, batch_size=2)
+model.save('model')
+```

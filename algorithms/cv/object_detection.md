@@ -9,3 +9,7 @@
 3. RCNN 相关
  - 说一下faster-rcnn的流程
  - 具体说说roi pooling
+
+4. [目标检测比赛中的tricks](https://zhuanlan.zhihu.com/p/102817180)
+
+主要结合mmdetection讲一些目标检测相关的技巧和优化

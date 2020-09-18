@@ -5,4 +5,4 @@ Redis, MongoDB, ElasticSearch, HBase
 3. 如果你需要构造一个**搜索引擎**或者你想搞一个看着高大上的数据可视化平台，并且你的数据有一定的分析价值，选**ElasticSearch**
 4. 如果你需要存储**海量数据**，连你自己都不知道你的数据规模将来会增长多么大，那么选**HBase**
 
-<img src="../assets/no-sql.jpeg">
+<img src="https://raw.githubusercontent.com/Wanke15/wanke15.github.io/master/engineering/assets/nosql-db.jpeg">

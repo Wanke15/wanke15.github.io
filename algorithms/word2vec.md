@@ -50,3 +50,7 @@
  - (4) 学习参考资料：
    - 贪心学院李文哲老师视频课程
    - [动手学深度学习](http://zh.gluon.ai/chapter_natural-language-processing/index.html)
+
+ - (5) 如何确定Embedding的大小？
+  - 最小熵原理（六）：词向量的维度应该怎么选择？(https://kexue.fm/archives/7695)
+  - 根据下游任务实验效果确定

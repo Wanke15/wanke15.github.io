@@ -1,4 +1,4 @@
-#### 1. 多线程更新(用于用户画像数据更新)
+##### 1. 多线程更新(用于用户画像数据更新)
 ```python
 import time
 from concurrent.futures.thread import ThreadPoolExecutor
@@ -26,4 +26,9 @@ def multi_thread_update(records):
     end_time = time.time()
     print("Done, time consumed: {:.3f} seconds".format(end_time - start_time))
 
+```
+##### 2. 根据数组长度查询
+```json
+{ "$where": "this.favorite_feed_types.length > 1"}
+{ "$where": "this.favorite_feed_types.length == 2"}
 ```

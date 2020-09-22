@@ -32,3 +32,13 @@ def multi_thread_update(records):
 { "$where": "this.favorite_feed_types.length > 1"}
 { "$where": "this.favorite_feed_types.length == 2"}
 ```
+##### 3. 指定查询需要的字段
+```python
+# 只要 gender
+db.my_collection.find({"uid": "jeff"}, {"gender": 1})
+# [{'_id': ObjectId('5f64785cbf36db7ba15b1129'), 'gender': 'male'}]
+
+# 除了 gender 
+db.my_collection.find({"uid": "jeff"}, {"gender": 0})
+# [{'_id': ObjectId('5f64785cbf36db7ba15b1129'), 'uid': 'jeff', 'age': 25}]
+```

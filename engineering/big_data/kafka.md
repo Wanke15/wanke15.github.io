@@ -158,3 +158,69 @@ object SparkStreamingKafka {
 }
 
 ```
+5. Spark streaming 整合 kafka 手动提交offset
+
+**offset**：指的是kafka的topic中的每个**消费组**消费的下标。
+
+offset下标自动提交在很多场景都不适用，因为自动提交是在kafka拉取到数据之后就直接提交，这样很容易丢失数据，尤其是在需要事务控制的时候。
+很多情况下我们需要从kafka成功拉取数据之后，对数据进行相应的处理之后再进行提交。如拉取数据之后进行写入mysql这种 ， 所以这时我们就需要进行手动提交kafka的offset下标。
+```scala
+package com.streaming
+
+import org.apache.kafka.clients.consumer.ConsumerConfig
+import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.spark.TaskContext
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.streaming.kafka010.{CanCommitOffsets, ConsumerStrategies, HasOffsetRanges, KafkaUtils, LocationStrategies, OffsetRange}
+import org.apache.spark.streaming.{Seconds, StreamingContext}
+
+object Demo {
+  def main(args: Array[String]): Unit = {
+    val spark = SparkSession
+      .builder()
+      .appName("KafkaStreaming")
+      .master("local[8]")
+      .getOrCreate()
+
+//    val topics = Set("feed_recommend_topic")
+    val topics = Set("note")
+    val params: Map[String, Object] = Map(
+      ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG -> "localhost:9092",
+      ConsumerConfig.GROUP_ID_CONFIG -> "feed_recommend",
+//      ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG -> 20000,
+      "key.deserializer" -> classOf[StringDeserializer],
+      "value.deserializer" -> classOf[StringDeserializer],
+      "enable.auto.commit" -> (false: java.lang.Boolean)
+    )
+
+    val duration = 2
+    val ssc = new StreamingContext(spark.sparkContext, Seconds(duration))
+
+    val stream = KafkaUtils.createDirectStream[String, String](
+      ssc,
+      LocationStrategies.PreferConsistent,
+      ConsumerStrategies.Subscribe[String, String](topics, params)
+    )
+
+    stream.foreachRDD(rdds => {
+      val offsetRanges = rdds.asInstanceOf[HasOffsetRanges].offsetRanges
+        rdds.foreachPartition(p => {
+          val o: OffsetRange = offsetRanges(TaskContext.get.partitionId)
+          println(s"${o.topic} ${o.partition} ${o.fromOffset} ${o.untilOffset}")
+          p.foreach(str => {
+            println("*******" + str.value())
+          })
+        })
+
+        // 确保中间操作都完成了，再提交偏移量到kafka， 避免中间某个stage环节卡住仍自动消费提交
+        stream.asInstanceOf[CanCommitOffsets].commitAsync(offsetRanges)
+      })
+
+    ssc.start()
+    ssc.awaitTermination()
+
+  }
+
+}
+
+```

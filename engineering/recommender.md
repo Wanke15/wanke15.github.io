@@ -88,3 +88,10 @@ Nvidia官方博文[Accelerating Wide & Deep Recommender Inference on GPUs](https
 <img src="https://static001.infoq.cn/resource/image/2d/aa/2d3f840ecf63fd2aaf450b92cf5327aa.png">
 
 #### 12. [爱奇艺个性化推荐排序实践](http://www.woshipm.com/pd/847004.html)
+
+#### 13. 形成推荐系统数据闭环的思考
+ - 服务端。生成每次请求request_id，日志记录推荐结果。最终在服务端的日志格式类似<user_id:request_id:recommend_list>
+
+ - 户端。埋点上报用户的曝光、点击、收藏等行为，格式类似<user_id:request_id:action_type:item_id:timestamp:location>
+
+ - 聚合与补充。user_id关联用户侧特征，item_id关联物品侧特征。上下文侧特征如当前点击、当前浏览可以通过客户端埋点数据的timestamp做进一步的补充，如以user_id聚合并以timestamp排序及可得到该条行为当前的浏览及点击序列，当然也可以跟据timestamp做一些过滤等

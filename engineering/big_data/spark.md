@@ -147,3 +147,11 @@ object Demo {
 }
 
 ```
+4. spark streaming 程序的几点优化
+ - 合理的批处理时间，即 **batchDuration** 参数。一方面，如果时间过短，会造成数据的堆积，即未完成的batch数据越来越多；另一方面，如果时间过长，会造成数据延迟较大同时，也会影像整个系统的吞吐量。
+   那么该如何合理的设置该参数呢？需要根据应用的实时性要求、集群的资源情况，以及通过观察spark streaming 的运行情况，尤其是Total Delay来合理的设置该参数，如下所示，最开始我在自己电脑上离线开发尝试的batchDurationw为两秒，基本满足本地开发的时延，提交到集群后，因为网络和计算资源比本地开发好很多，此时观察的Total Delay的平均值为71ms，因此可以把之前的batchDuration设置的再小一点
+   <img src=assets/total-delay.png>
+   
+ - 合理的kafka拉取量，即 **maxRatePerPartition** 参数。当我们的数据源是kafaka时，默认的maxRatePerPartition是无上限的，即Kafka有多少数据，spark streaming 就会一次性全拉出来，如果Kafka数据更新频率很高，但是spark streaming 的批处理时间是一定的，不可能动态变化，因此此时就会造成数据堆积，阻塞的情况。所以需要结合batchDuration的值，来调整maxRatePerPartition，注意一点是数据总量是 partitionNum * maxRatePerPartition, 可以通过观察 inputRate和Processing Time来合理的设置这两个参数，使得数据的拉取和处理能够平衡
+ <img src=assets/input-rate.png>
+ <img src=assets/processing-time.png>

@@ -18,6 +18,7 @@ def load_patterns(entity_file_dir):
                 ent_info = ent_record.strip().split(',')
                 single_pattern = {"label": entity_type,
                                   "pattern": [{"LOWER": t.lower()} for t in ent_info[0].strip().split()]}
+                # it means the current entity has parrent entity
                 if len(ent_info) > 1:
                     single_pattern.update({"id": "::".join(ent_info[1:])})
                 patts.append(single_pattern)
@@ -37,18 +38,27 @@ def recognize_ents(text):
     for ent in doc1.ents:
         if "::" in ent.ent_id_:
             potential_parent = ent.ent_id_.split("::")
+            
             parrent_ent_type = 'none'
+            # determine parrent entity type based on current entity type 
             if ent.label_ == 'car_model':
                 parrent_ent_type = "car_brand"
             if ent.label_ == 'city':
                 parrent_ent_type = "region"
+            # append current entity
             ent_res.append({"entity": ent.text, "type": ent.label_, "id": potential_parent[0]})
+            
+            # parrent entity has no id
             if len(potential_parent) == 2:
                 ent_res.append({"entity": ent.text, "type": parrent_ent_type})
+            
+            # parrent entity has id 
             if len(potential_parent) == 3:
                 ent_res.append({"entity": potential_parent[1], "type": parrent_ent_type, "id": potential_parent[2]})
+        # current entity has id
         elif ent.ent_id_:
             ent_res.append({"entity": ent.text, "type": ent.label_, "id": ent.ent_id_})
+        # current entity has no id
         else:
             ent_res.append({"entity": ent.text, "type": ent.label_})
     # print(ent_res)

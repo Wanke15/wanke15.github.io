@@ -1,9 +1,11 @@
 import os
 
-from spacy.lang.en import English
+import spacy
+# from spacy.lang.en import English
 from spacy.pipeline import EntityRuler
 
-nlp = English()
+# nlp = English()
+nlp = spacy.blank("en")
 ruler = EntityRuler(nlp, validate=True)
 
 
@@ -24,6 +26,7 @@ def load_patterns(entity_file_dir):
 
 
 patterns = load_patterns('./entity_files')
+
 ruler.add_patterns(patterns)
 nlp.add_pipe(ruler)
 
@@ -48,13 +51,18 @@ def recognize_ents(text):
             ent_res.append({"entity": ent.text, "type": ent.label_, "id": ent.ent_id_})
         else:
             ent_res.append({"entity": ent.text, "type": ent.label_})
-    print(ent_res)
+    # print(ent_res)
     return ent_res
 
 
 test_texts = ["rent car in Los Angeles",
               "rent a Mercedes Benz in Los Angeles",
               "rent Benz in Los Angeles",
-              "rent bmw m3 in New York"]
+              "rent bmw m3 in New York",
+              "tickets to the great wall"]
 for t in test_texts:
     recognize_ents(t)
+
+# %timeit recognize_ents(test_texts[0])
+# 51 µs ± 1.25 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+

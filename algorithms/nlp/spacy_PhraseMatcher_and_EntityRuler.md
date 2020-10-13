@@ -8,6 +8,11 @@ terms = ["Great Wall Hover", "GAC Trumpchi", "Baic motor"]
 nlp = spacy.load('en_core_web_sm', disable=['ner', 'tagger', 'parser'])
 matcher = PhraseMatcher(nlp1.vocab, attr="LOWER")
 
+# patterns1 = [nlp1(text) for text in terms]
+# patterns1 = [nlp1.make_doc(text) for text in terms]
+patterns1 = list(nlp1.tokenizer.pipe(terms))
+matcher1.add("TerminologyList", None, *patterns1)
+
 doc = nlp("I want to rent a Great wall Hover or GAC Trumpchi")
 matches = matcher(doc)
 macthed_phrases = [doc[start:end] for match_id, start, end in matches]

@@ -12,3 +12,5 @@
  - flink 消费 kafka 数据。具体包括：时间窗口计算；watermark机制处理乱序(迟到)数据；sink结果数据到Redis
  - 前端实时可视化 Redis 数据
  
+### 实时热门商品统计
+1. [利用天池电商行为数据集的实践](https://blog.csdn.net/yw1441776254/article/details/99702949)

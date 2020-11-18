@@ -7,3 +7,6 @@
 4. 基于知识表示的 textRank 模型
 
 5. [TextRank4ZH](https://github.com/letiantian/TextRank4ZH)
+
+6. [query term weight计算](https://www.geek-share.com/detail/2678906914.html)
+

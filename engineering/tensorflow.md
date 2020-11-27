@@ -2,7 +2,10 @@
 
    [Tensorflow之dataset介绍](https://zhuanlan.zhihu.com/p/138099468)
 
-2. tensorflow serving 第一次请求较慢的优化
+2. tensorflow serving 模型热更新毛刺问题优化
+（1）配置模型Warmup文件来预热模型
+（2）使用Jemalloc做内存分配优化
+（3）TF模型参数分配和RPC请求内存分配分离
 
 用tensorflow serving 做模型服务的时候，接口的第一次请求会较慢，20ms，接下来的请求就会稳定在 5ms 左右，原因在于 tensorflow 第一次计算时才会去做计算图初始化。
 这个问题之前在自己用flask做接口时就遇到过，当时的解决方法就是加载模型后，给模型喂一两条数据，跑完之后才算模型初始化正式完成。在用tensorflow serving的时候，看日志有这么一条信息：

@@ -3,8 +3,13 @@
    [Tensorflow之dataset介绍](https://zhuanlan.zhihu.com/p/138099468)
 
 2. tensorflow serving 模型热更新毛刺问题优化
+
+参考： [爱奇艺文章](https://mp.weixin.qq.com/s/DkCGusznH8F8p39oRLuNBQ)
+
 （1）配置模型Warmup文件来预热模型
+
 （2）使用Jemalloc做内存分配优化
+
 （3）TF模型参数分配和RPC请求内存分配分离
 
 用tensorflow serving 做模型服务的时候，接口的第一次请求会较慢，20ms，接下来的请求就会稳定在 5ms 左右，原因在于 tensorflow 第一次计算时才会去做计算图初始化。

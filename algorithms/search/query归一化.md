@@ -6,7 +6,10 @@
  ## 代码
   - 1. 训练语言模型
   ```bash
+  # 训练
   bin/lmplz -o 3 -S 80% --text data/query_char.txt --arpa result/pupu_query.arpa
+  # 模型转二进制
+  bin/build_binary result/pupu_query.arpa result/pupu_query.klm
   ```
    - 2. 丢字逻辑
    ```python

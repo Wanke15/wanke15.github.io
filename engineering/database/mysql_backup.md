@@ -22,4 +22,4 @@ mysqldump -uroot -proot --databases main > /data/mysql_backup/data/main-`date "+
 ```
 
 ### 3. crontab -e
-根据实际需求将类似上述命令写入crontab定时任务
+根据实际需求将类似2中的命令写入crontab定时任务

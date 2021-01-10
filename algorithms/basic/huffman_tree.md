@@ -95,8 +95,11 @@ def pre_order(_tree: TreeNode, res: list):
 
 
 if __name__ == '__main__':
-    huffman_tree = HuffmanTree()
+    # 测试文本
     texts = "I love China and I love living in China".split()
+    
+    # 霍夫曼树
+    huffman_tree = HuffmanTree()
     tree = huffman_tree.build(texts)
 
     # 可视化

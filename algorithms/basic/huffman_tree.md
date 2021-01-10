@@ -86,7 +86,7 @@ class HuffmanTree(object):
 def visit(_node, _res):
     _res.append(_node)
 
-# 前序遍历
+
 def pre_order(_tree: TreeNode, res: list):
     if _tree is not None:
         visit(_tree, res)
@@ -98,15 +98,16 @@ if __name__ == '__main__':
     huffman_tree = HuffmanTree()
     texts = [_ for _ in "I love China and I love living in China".split()]
     tree = huffman_tree.build(texts)
-    
+
     # 可视化
     def plot(node: WeightedTreeNode, graph: Digraph):
+        graph.node(node.val, "{}:{}".format(node.val, node.weight))
         if node.left is not None:
-            graph.node(node.left.val, node.left.val)
+            graph.node(node.left.val, "{}:{}".format(node.left.val, node.left.weight))
             graph.edge(node.val, node.left.val)
             plot(node.left, graph)
         if node.right is not None:
-            graph.node(node.right.val, node.right.val)
+            graph.node(node.right.val, "{}:{}".format(node.right.val, node.right.weight))
             graph.edge(node.val, node.right.val)
             plot(node.right, graph)
 

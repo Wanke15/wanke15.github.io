@@ -86,7 +86,7 @@ class HuffmanTree(object):
 def visit(_node, _res):
     _res.append(_node)
 
-
+# 前序遍历
 def pre_order(_tree: TreeNode, res: list):
     if _tree is not None:
         visit(_tree, res)

@@ -14,6 +14,8 @@ word2vec 是一个单隐层的神经网络，有两种具体的结构实现：
  ## 3. Hierarchy softmax
  理解 Hierarchy softmax 的第一步是理解霍夫曼树。这里实现了构建霍夫曼树和树的前序遍历算法：
  ```python
+from graphviz import Digraph
+
 from collections import Counter
 from operator import itemgetter
 
@@ -43,7 +45,7 @@ class WeightedTreeNode(TreeNode):
         self.weight = weight
 
 
-class HuffmanTreeBuilder(object):
+class HuffmanTree(object):
     def __init__(self):
         pass
 
@@ -64,7 +66,7 @@ class HuffmanTreeBuilder(object):
                                     weight=minimal_node.weight + second_minimal_node.weight)
         nodes.append(new_node)
         # 依节点权重排序
-        nodes.sort(key=lambda e: e.weight, reverse=True)
+        nodes.sort(key=lambda e: (e.weight, e.val), reverse=True)
         # 递归结束条件：只剩根节点
         if len(nodes) == 1:
             return
@@ -84,8 +86,7 @@ class HuffmanTreeBuilder(object):
 def visit(_node, _res):
     _res.append(_node)
 
-
-# 树的先序遍历
+# 前序遍历
 def pre_order(_tree: TreeNode, res: list):
     if _tree is not None:
         visit(_tree, res)
@@ -94,13 +95,24 @@ def pre_order(_tree: TreeNode, res: list):
 
 
 if __name__ == '__main__':
-    huffman_tree_builder = HuffmanTreeBuilder()
-    texts = ["我", "我", "我", "爱", "你"]
-    tree = huffman_tree_builder.build(texts)
+    huffman_tree = HuffmanTree()
+    texts = [_ for _ in "I love China and I love living in China".split()]
+    tree = huffman_tree.build(texts)
+    
+    # 可视化
+    def plot(node: WeightedTreeNode, graph: Digraph):
+        if node.left is not None:
+            graph.node(node.left.val, node.left.val)
+            graph.edge(node.val, node.left.val)
+            plot(node.left, graph)
+        if node.right is not None:
+            graph.node(node.right.val, node.right.val)
+            graph.edge(node.val, node.right.val)
+            plot(node.right, graph)
 
-    print("pre_order: ")
-    pre_order_res = []
-    pre_order(tree, pre_order_res)
-    [print(_node) for _node in pre_order_res]
+    dot = Digraph(comment='HuffmanTree')
+    plot(tree, dot)
+    dot.view()
 
  ```
+ <img src="./assets/huffman_tree.png">

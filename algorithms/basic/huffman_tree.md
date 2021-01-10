@@ -116,4 +116,4 @@ if __name__ == '__main__':
     dot.view()
 
  ```
- <img src="./assets/huffman_tree.png">
+ <img src="./assets/huffman_tree_with_weight.png">

@@ -43,7 +43,7 @@ class WeightedTreeNode(TreeNode):
         self.weight = weight
 
 
-class HuffmanTree(object):
+class HuffmanTreeBuilder(object):
     def __init__(self):
         pass
 
@@ -94,9 +94,9 @@ def pre_order(_tree: TreeNode, res: list):
 
 
 if __name__ == '__main__':
-    huffman_tree = HuffmanTree()
+    huffman_tree_builder = HuffmanTreeBuilder()
     texts = ["我", "我", "我", "爱", "你"]
-    tree = huffman_tree.build(texts)
+    tree = huffman_tree_builder.build(texts)
 
     print("pre_order: ")
     pre_order_res = []

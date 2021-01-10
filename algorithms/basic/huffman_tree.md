@@ -114,6 +114,5 @@ if __name__ == '__main__':
     dot = Digraph(comment='HuffmanTree')
     plot(tree, dot)
     dot.view()
-
  ```
  <img src="./assets/huffman_tree_with_weight.png">

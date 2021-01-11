@@ -48,6 +48,6 @@ class AiFlask(Flask):
 
 ```
 
-## 设置 grafna metrcis： rate(flask_request_count_total[15s]) * 100
+## 设置 grafna metrcis 展示 QPS
 
 <img src="assets/prometheus_qps.png">

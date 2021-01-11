@@ -48,6 +48,6 @@ class AiFlask(Flask):
 
 ```
 
-## 设置 grafna metrcis 展示 QPS
+## 设置 grafna metrics 展示 QPS
 
 <img src="assets/prometheus_qps.png">

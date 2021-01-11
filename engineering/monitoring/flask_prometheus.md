@@ -1,4 +1,4 @@
-扩展Flask类，添加普米监控
+## 扩展Flask类，添加普米监控
 ```python
 import time
 
@@ -47,3 +47,7 @@ class AiFlask(Flask):
         self.register_blueprint(metrics_blueprint)
 
 ```
+
+## 设置 grafna metrcis： rate(flask_request_count_total[15s]) * 100
+
+<img src="assets/prometheus_qps.png">

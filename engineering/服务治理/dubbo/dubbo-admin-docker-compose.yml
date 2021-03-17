@@ -2,11 +2,11 @@ version: '3'
 
 services:
   zookeeper:
-    image: zookeeper
+    image: zookeeper:3.4.13
     ports:
       - 2181:2181
   admin:
-    image: chenchuxin/dubbo-admin
+    image: jeffdocker2017/dubbo-admin
     depends_on:
       - zookeeper
     ports:

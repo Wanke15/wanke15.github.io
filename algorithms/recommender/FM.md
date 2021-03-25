@@ -16,7 +16,10 @@
 
 5. FM keras 实现
 ```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import tensorflow as tf
+# assert tf.__version__ == "1.15.0"
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 
@@ -27,6 +30,7 @@ class FMLayer(tf.keras.layers.Layer):
     def __init__(self, input_dim, embedding_dim, **kwargs):
         self.input_dim = input_dim
         self.embedding_dim = embedding_dim
+        self.output_dim = 1
         super(FMLayer, self).__init__(**kwargs)
 
     def get_config(self):
@@ -64,7 +68,7 @@ def build_model(feature_dim, embedding_dim=8):
     predictions = tf.keras.layers.Activation('sigmoid')(add)
     model = tf.keras.Model(inputs=inputs, outputs=predictions)
     model.compile(loss='binary_crossentropy',
-                  optimizer=tf.optimizers.Adam(0.001),
+                  optimizer=tf.keras.optimizers.Adam(0.001),
                   metrics=['binary_accuracy'])
     return model
 
@@ -76,14 +80,11 @@ if __name__ == '__main__':
                                                         random_state=27, stratify=data.target)
     fm.fit(X_train, y_train, epochs=10, batch_size=16, validation_data=(X_test, y_test))
 
-    tf.keras.models.save_model(
-        fm,
+    tf.saved_model.simple_save(
+        tf.keras.backend.get_session(),
         './fm_keras_saved_model/1',
-        overwrite=True,
-        include_optimizer=True,
-        save_format=None,
-        signatures=None,
-        options=None
+        inputs={t.name: t for t in fm.inputs},
+        outputs={t.name: t for t in fm.outputs}
     )
 ```
 

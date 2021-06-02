@@ -141,6 +141,8 @@ model.fit(train_dataset, epochs=12, callbacks=callbacks)
 
 5. keras模型转为单一的pb文件
 ```python
+from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2
+
 def h5_to_pb(h5_save_path):
     model = tf.keras.models.load_model(h5_save_path, compile=False)
     model.summary()

@@ -258,3 +258,39 @@ class KerasFM(BaseEstimator):
         y_preds = predict_batch(self.model,X,batch_size=batch_size)
         return y_preds
 ```
+
+7. Java客户端加载Tensorflow模型
+```java
+public class DeepModel {
+
+    private Graph graph;
+    private Session sess;
+
+    public DeepModel(String pbFile) {
+        try {
+            graph = new Graph();
+            // 这个graphBytes也可以从redis中读取
+            // byte[] graphBytes = jedis.get((TfModelKey).getBytes());
+            byte[] graphBytes = IOUtils.toByteArray(new FileInputStream(pbFile));
+            graph.importGraphDef(graphBytes);
+            sess = new Session(graph);
+        } catch (java.io.IOException e) {
+            System.out.println("DeepModel initial fail!!!");
+        }
+    }
+
+    public boolean isNull() {
+        return (sess == null) || (graph == null);
+    }
+
+    public float[][] predict(int[][] index, float[][] value) {
+        Tensor indexTensor = Tensor.create(index);
+        Tensor valueTensor = Tensor.create(value);
+
+        Tensor rlt = sess.runner().feed("index", indexTensor).feed("value", valueTensor).fetch("output_node").run().get(0);
+        float[][] finalRlt = new float[index.length][1];
+        rlt.copyTo(finalRlt);
+        return finalRlt;
+    }
+}
+```

@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-07-16T06:44:29.658Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" etag="NSO2jKcY24-q4om2Q_nH" version="14.6.13" type="github">
+<mxfile host="app.diagrams.net" modified="2021-07-16T06:54:54.493Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" etag="WvVhObJUd2KmUbQKMJAo" version="14.6.13" type="github">
   <diagram id="SZdEBqZsAKPvEcrVzDSO" name="Page-1">
     <mxGraphModel dx="2066" dy="1163" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
@@ -47,64 +47,19 @@
           <mxGeometry x="700" y="30" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-28" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFCCCC;" vertex="1" parent="1">
-          <mxGeometry x="410" y="490" width="410" height="420" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-29" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
-          <mxGeometry x="455" y="690" width="160" height="190" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-30" value="Feature Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="455" y="690" width="90" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-31" value="Function" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="465" y="750" width="140" height="104" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-32" value="Query feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-31">
-          <mxGeometry y="26" width="140" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-33" value="Product feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-31">
-          <mxGeometry y="52" width="140" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-34" value="Context feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-31">
-          <mxGeometry y="78" width="140" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-35" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
-          <mxGeometry x="615" y="690" width="160" height="190" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-36" value="Model Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="615" y="690" width="80" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-37" value="Function" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="625" y="750" width="140" height="104" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-38" value="XGBoost" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-37">
-          <mxGeometry y="26" width="140" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-39" value="LR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-37">
-          <mxGeometry y="52" width="140" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-40" value="TF" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-37">
-          <mxGeometry y="78" width="140" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-41" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FF99;" vertex="1" parent="1">
-          <mxGeometry x="455" y="570" width="320" height="120" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-42" value="Service Manager" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="450" y="570" width="110" height="20" as="geometry" />
+          <mxGeometry x="318.75" y="520" width="431.25" height="510" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-43" value="&lt;font style=&quot;font-size: 18px&quot;&gt;Rank Service&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="365" y="490" width="220" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="BSlM-SRvdAZNcuz4wWOg-59" value="&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Feature monitor and update&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Model monitor and update&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Consistency&amp;nbsp;assurance&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="495" y="590" width="240" height="90" as="geometry" />
+          <mxGeometry x="270" y="520" width="220" height="40" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-60" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
-          <mxGeometry x="35" y="180" width="160" height="190" as="geometry" />
+          <mxGeometry x="55" y="290" width="160" height="190" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-61" value="Feature Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="35" y="180" width="90" height="20" as="geometry" />
+          <mxGeometry x="55" y="290" width="90" height="20" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-62" value="Function" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="45" y="240" width="140" height="104" as="geometry" />
+          <mxGeometry x="65" y="350" width="140" height="104" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-63" value="Query feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-62">
           <mxGeometry y="26" width="140" height="26" as="geometry" />
@@ -116,13 +71,13 @@
           <mxGeometry y="78" width="140" height="26" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-66" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
-          <mxGeometry x="195" y="180" width="160" height="190" as="geometry" />
+          <mxGeometry x="215" y="290" width="160" height="190" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-67" value="Model Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="195" y="180" width="80" height="20" as="geometry" />
+          <mxGeometry x="215" y="290" width="80" height="20" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-68" value="Function" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-          <mxGeometry x="205" y="240" width="140" height="104" as="geometry" />
+          <mxGeometry x="225" y="350" width="140" height="104" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-69" value="XGBoost" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-68">
           <mxGeometry y="26" width="140" height="26" as="geometry" />
@@ -134,13 +89,88 @@
           <mxGeometry y="78" width="140" height="26" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-72" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FF99;" vertex="1" parent="1">
-          <mxGeometry x="35" y="60" width="320" height="120" as="geometry" />
+          <mxGeometry x="55" y="170" width="320" height="120" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-73" value="Service Manager" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="30" y="60" width="110" height="20" as="geometry" />
+          <mxGeometry x="50" y="170" width="110" height="20" as="geometry" />
         </mxCell>
         <mxCell id="BSlM-SRvdAZNcuz4wWOg-74" value="&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Feature monitor and update&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Model monitor and update&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Consistency&amp;nbsp;assurance&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="75" y="80" width="240" height="90" as="geometry" />
+          <mxGeometry x="95" y="190" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-76" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="55" y="50" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-77" value="rank API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="65" y="60" width="55" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-78" value="getFeature" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="65" y="110" width="75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-79" value="createModelData" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="160" y="110" width="97.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-80" value="modelScore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="280" y="110" width="85" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-81" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CCE5FF;" vertex="1" parent="1">
+          <mxGeometry x="370" y="820" width="160" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-82" value="Feature Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="820" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-83" value="Function" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="870" width="140" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-84" value="Query feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-83">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-85" value="Product feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-83">
+          <mxGeometry y="52" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-86" value="Context feature" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-83">
+          <mxGeometry y="78" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-87" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E5CCFF;" vertex="1" parent="1">
+          <mxGeometry x="530" y="820" width="160" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-88" value="Model Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="530" y="820" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-89" value="Function" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="540" y="870" width="140" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-90" value="XGBoost" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-89">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-91" value="LR" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-89">
+          <mxGeometry y="52" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-92" value="TF" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="BSlM-SRvdAZNcuz4wWOg-89">
+          <mxGeometry y="78" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-93" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#99FF99;" vertex="1" parent="1">
+          <mxGeometry x="370" y="700" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-94" value="Service Manager" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="365" y="700" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-95" value="&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Feature monitor and update&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Model monitor and update&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 14px&quot;&gt;Consistency&amp;nbsp;assurance&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="410" y="720" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-96" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="370" y="580" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-97" value="rank API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="590" width="55" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-98" value="getFeature" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="380" y="640" width="75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-99" value="createModelData" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="475" y="640" width="97.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BSlM-SRvdAZNcuz4wWOg-100" value="modelScore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCE9F;" vertex="1" parent="1">
+          <mxGeometry x="595" y="640" width="85" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

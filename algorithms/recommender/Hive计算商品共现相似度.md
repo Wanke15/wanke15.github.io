@@ -32,6 +32,8 @@ select base_id, base_name, rec_id, rec_name, similarity, rank from i2i_tbl where
 
 ### 2. Spark性能改进版
 ```scala
+case class I2iEntity(base_id: String, base_name: String, rec_id: String, rec_name: String, similarity: Double)
+
 val product_query_df = spark.sql("""select product_id, product_name, collect_set(query) as queries from query_log
 where product_id is not null and query != '' and query is not null
 and add_cart = 1 and log_type = 2

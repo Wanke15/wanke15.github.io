@@ -1,22 +1,22 @@
-<mxfile host="app.diagrams.net" modified="2021-08-19T08:06:03.442Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36" etag="YTdoq70gVOwUBDdLJU7E" version="14.8.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-08-19T08:09:51.401Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36" etag="AOWu9RjWq2DXnBAyKmBU" version="14.8.6" type="github">
   <diagram id="0o0fNlaMNB56jFeCoBVo" name="Page-1">
     <mxGraphModel dx="946" dy="568" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-1" value="流量分发" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-1" value="流量分发" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="140" y="260" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-8" value="排序服务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-8" value="排序服务" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="140" y="330" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="280" y="260" width="440" height="70" as="geometry" />
         </mxCell>
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-16" value="Maxwell" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="450" y="270" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="280" y="330" width="440" height="70" as="geometry" />
         </mxCell>
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-18" value="特征服务" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -28,10 +28,10 @@
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-20" value="模型和特征管理" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="585" y="340" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-21" value="模型" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-21" value="模型" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="140" y="400" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-22" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="280" y="400" width="440" height="70" as="geometry" />
         </mxCell>
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-23" value="XGBoost" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -46,10 +46,10 @@
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-28" value="DL" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="615" y="415" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-29" value="特征" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-29" value="特征" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="140" y="470" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-30" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-30" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
           <mxGeometry x="280" y="470" width="440" height="70" as="geometry" />
         </mxCell>
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-31" value="Query特征" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -61,10 +61,10 @@
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-33" value="上下文特征" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="585" y="480" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-34" value="基础数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-34" value="基础数据" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="140" y="540" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-35" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-35" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="280" y="540" width="440" height="70" as="geometry" />
         </mxCell>
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-36" value="行为日志" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -73,10 +73,10 @@
         <mxCell id="Kj8OIUPHK9y5Ar2EBf14-37" value="商品基础数据" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="530" y="550" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-39" value="线上服务&lt;br&gt;Dubbo" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-39" value="线上服务&lt;br&gt;Dubbo" style="rounded=0;whiteSpace=wrap;html=1;gradientColor=#ea6b66;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="720" y="260" width="140" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-40" value="离线计算&lt;br&gt;Airflow&lt;br&gt;Spark&lt;br&gt;Hive&lt;br&gt;Tensorflow" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="Kj8OIUPHK9y5Ar2EBf14-40" value="离线计算&lt;br&gt;Airflow&lt;br&gt;Spark&lt;br&gt;Hive&lt;br&gt;Tensorflow" style="rounded=0;whiteSpace=wrap;html=1;gradientColor=#7ea6e0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="720" y="400" width="140" height="210" as="geometry" />
         </mxCell>
       </root>

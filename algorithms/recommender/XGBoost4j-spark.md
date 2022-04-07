@@ -69,6 +69,14 @@ object PairWiseGroupRank {
       .config("spark.default.parallelism", numWorkers) // rdd默认并行度
       .config("spark.sql.shuffle.partitions", numWorkers) // dataframe默认分区数
       .getOrCreate()
+      
+    // EMR集群
+//    val spark = SparkSession.builder()
+//      .config("spark.sql.session.timeZone", "Asia/Shanghai")
+//      .config("spark.port.maxRetries", 100)
+//      .config("spark.hadoop.hive.metastore.disallow.incompatible.col.type.changes", "false")
+//      .enableHiveSupport()
+//      .getOrCreate()
 
     val rawData: DataFrame = spark.read.option("inferSchema", value = true)
       .option("header", value = true)

@@ -54,11 +54,21 @@ object PairWiseGroupRank {
   }
 
   def main(args: Array[String]): Unit = {
-    val spark: SparkSession = SparkSession.builder.appName("xgb").master("local[*]").getOrCreate()
+    // 默认并行度和分区数设置为workers数量，避免fit时重分区，打乱了groupData的顺序
+    val numWorkers = 4
+
+    val spark = SparkSession.builder()
+      .appName("xgb")
+      .master("local[*]")
+      .config("spark.sql.session.timeZone", "Asia/Shanghai")
+      .config("spark.default.parallelism", numWorkers) // rdd默认并行度
+      .config("spark.sql.shuffle.partitions", numWorkers) // dataframe默认分区数
+      .getOrCreate()
 
     val rawData: DataFrame = spark.read.option("inferSchema", value = true)
       .option("header", value = true)
       .csv("src/main/resources/data/iris-two-group.csv")
+      .repartition(numWorkers)
 
     val groupCol = "query_id"
 
@@ -67,7 +77,7 @@ object PairWiseGroupRank {
 
     data.show(false)
     data.printSchema()
-    //
+    
     val vectorAssembler: VectorAssembler = new VectorAssembler().setInputCols(Array("x1", "x2", "x3", "x4")).setOutputCol("features")
     val train: DataFrame = vectorAssembler.transform(data)
 
@@ -87,25 +97,28 @@ object PairWiseGroupRank {
 
     groupQueryID.foreach(println)
 
-
-
     val paramsMap = Map(
       ("eta" -> 0.1f),
       ("max_depth" -> 3),
       ("objective" -> "rank:pairwise"),
       ("num_round" -> 3),
-      ("num_workers" -> 4),
+      ("num_workers" -> numWorkers),
       ("eval_metric" -> "logloss"),
       ("groupData", groupQueryID)
     )
+
+    println("fit前的分区数：" + trainWithGroupID.rdd.getNumPartitions)
 
     val xgb = new XGBoostClassifier(xgboostParams = paramsMap)
     xgb.setFeaturesCol("features")
     xgb.setLabelCol("label")
 
-    val clf: XGBoostClassificationModel = xgb.fit(train)
+    val clf: XGBoostClassificationModel = xgb.fit(trainWithGroupID)
 
-    val trainPrediction: DataFrame = clf.transform(train)
+    println("fit后的分区数：" + trainWithGroupID.rdd.getNumPartitions)
+
+
+    val trainPrediction: DataFrame = clf.transform(trainWithGroupID)
     trainPrediction.show(100, false)
 
 

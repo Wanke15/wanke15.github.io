@@ -2,6 +2,10 @@
 1. foldLeft和foldRight操作
 2. xgboost4j-spark训练时如果数据分区数和设置的num_workers数量不一致，则会先对训练数据进行重分区，因此对训练样本顺序敏感或有要求的要避免此操作
 3. spark针对rdd和dataframe设置默认并行度、分区数的方法(配置)
+4. 参考资料：
+  - 分区：https://github.com/David082/learning-to-rank/blob/e9f3f805ebf793afbf38c9bc11d1ffa882ac1cd0/src/main/scala/hotelrank/XGBPairwise.scala
+  - groupData: https://github.com/kdhingra307/ncm/blob/07557138897d4266ce413c9f4fe033c24c6df065/mjolnir/training/xgboost.py#L25
+
 
 ## 1. Pairwise rank training with `groupData`
 

@@ -97,12 +97,11 @@ object PairWiseGroupRank {
     val vectorAssembler: VectorAssembler = new VectorAssembler().setInputCols(Array("x1", "x2", "x3", "x4")).setOutputCol("features")
     val train: DataFrame = vectorAssembler.transform(data)
 
-    // ------ get group id :
+    // 根据groupCol聚合计数；同时保证同一个group的数据在同一个分区（后续都不要再有重分区的任何操作，否则groupData会乱 ！！！）
     val queryCount = train.groupBy(groupCol).count().select(groupCol, "count")
       .withColumnRenamed(groupCol, s"${groupCol}_new")
 
     queryCount.show(false)
-
 
     val trainWithGroupID = train.join(queryCount, col(groupCol) === col(s"${groupCol}_new"), "left_outer")
 

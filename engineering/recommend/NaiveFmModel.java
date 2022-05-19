@@ -25,7 +25,7 @@ public class NaiveFmModel {
 
     float fmInferRaw(float[] feature) {
 
-        // 线性部分
+        // linear part
         float rawPrediction = intercept;
         for (int i=0; i < featureLen; i++) {
             float val = feature[i];
@@ -34,7 +34,7 @@ public class NaiveFmModel {
             }
         }
 
-        // 特征交叉部分
+        // feature cross part
         for (int j=0; j < factorSize; j++) {
             float sumSquare = 0.0f;
             float sum = 0.0f;

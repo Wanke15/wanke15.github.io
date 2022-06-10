@@ -30,6 +30,7 @@ test = np.array([[5.1, 3.8, 1.5, 0.3], [5.7, 2.9, 4.2, 1.3]])
 
 explainer = shap.Explainer(model, feature_names=["x1", "x2", "x3", "x4"])
 
+# single example explanation
 for i in range(test.shape[0]):
     shap_values = explainer(np.array([test[i]]))
     shap.plots.waterfall(shap_values[0])

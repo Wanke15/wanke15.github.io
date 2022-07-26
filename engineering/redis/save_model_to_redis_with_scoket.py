@@ -172,7 +172,7 @@ class NaiveRedisSentinelClient(object):
 if __name__ == '__main__':
     # model
     model_path = '/Users/jeff/Documents/tensorflow-inference/src/main/resources/fm/model.pb'
-    model_key = "fm_v3"
+    model_key = "recommend:rank:fm-202207261529"
     expire_secs = 120
 
     with open(model_path, 'rb') as f:

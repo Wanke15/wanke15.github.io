@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-12-25T03:52:32.569Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" etag="LUhCP_qKv4WIk8LXGbGo" version="20.7.4" type="github">
+<mxfile host="app.diagrams.net" modified="2022-12-25T03:53:22.896Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36" etag="duS-bHkNYquT-Un-KoA2" version="20.7.4" type="github">
   <diagram id="Dy85fIIUZw7R63bFB0vh" name="第 1 页">
     <mxGraphModel dx="793" dy="594" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -84,10 +84,10 @@
         <mxCell id="r2-8bOUn8BSJcao-kXzf-33" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="52" y="420" width="748" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="r2-8bOUn8BSJcao-kXzf-34" value="Realtime" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="52" y="110" width="60" height="30" as="geometry" />
+        <mxCell id="r2-8bOUn8BSJcao-kXzf-34" value="Flink" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="42" y="110" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="r2-8bOUn8BSJcao-kXzf-35" value="Offline" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="r2-8bOUn8BSJcao-kXzf-35" value="Spark" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="42" y="270" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="r2-8bOUn8BSJcao-kXzf-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="r2-8bOUn8BSJcao-kXzf-36" target="r2-8bOUn8BSJcao-kXzf-37">
@@ -132,8 +132,8 @@
         <mxCell id="r2-8bOUn8BSJcao-kXzf-50" value="false" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="462" y="551" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="r2-8bOUn8BSJcao-kXzf-51" value="Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="42" y="416" width="60" height="30" as="geometry" />
+        <mxCell id="r2-8bOUn8BSJcao-kXzf-51" value="Java Service" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="42" y="416" width="88" height="24" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

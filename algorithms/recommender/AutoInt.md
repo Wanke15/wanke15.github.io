@@ -1,10 +1,11 @@
 ## 1. 模型架构
-<img src=''>
+<img src='assets/28601681298008_.pic.jpg'>
 
 ## 2. 模型分析
-<img src=''>
+<img src='assets/28581681282306_.pic.jpg'>
+<img src='assets/28591681282381_.pic.jpg'>
 
-## 3. InteractionLayer 多头注意力机制分析
+## 3. InteractingLayer 多头注意力机制分析
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-

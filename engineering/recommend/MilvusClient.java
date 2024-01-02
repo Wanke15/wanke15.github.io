@@ -40,6 +40,7 @@ public class MilvusClient {
 
     public static void main(String[] args) {
         // Connect to Milvus server. Replace the "localhost" and port with your Milvus server address.
+        // 向量召回
         MilvusServiceClient milvusClient = new MilvusServiceClient(ConnectParam.newBuilder()
                 .withHost("127.0.0.1")
                 .withPort(19530)

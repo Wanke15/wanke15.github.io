@@ -11,6 +11,27 @@ import io.milvus.param.dml.SearchParam;
 
 import java.util.*;
 
+//<!-- milvus依赖 -->
+//<dependency>
+//<groupId>io.milvus</groupId>
+//<artifactId>milvus-sdk-java</artifactId>
+//<version>2.3.3</version>
+//</dependency>
+//
+//<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+//<dependency>
+//<groupId>com.google.guava</groupId>
+//<artifactId>guava</artifactId>
+//<version>32.1.2-jre</version>
+//</dependency>
+//
+//<!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+//<dependency>
+//<groupId>com.google.protobuf</groupId>
+//<artifactId>protobuf-java</artifactId>
+//<version>3.25.1</version>
+//</dependency>
+
 public class MilvusClient {
     private static final String COLLECTION_NAME = "gul_product_vec";
     private static final String VECTOR_FIELD = "dssm_vec";

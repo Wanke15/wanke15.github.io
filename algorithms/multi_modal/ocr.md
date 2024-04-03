@@ -30,10 +30,11 @@ def ocr_analyze(image_path):
   area_square_sum = 0
   image_square = image.shape[0] * image.shape[1]
   for idx, res in enumerate(result):
-    bbox = res[0]
-    pt1, pt2 = [int(b) for b in bbox[0], int(b) for b in bbox[2]]
+    bbox = res[0][0]
+    pt1, pt2 = [[int(b) for b in bbox[0]], [int(b) for b in bbox[2]]]
     area_square = (pt2[0] - pt1[0]) * (pt2[1] - pt1[1])
     area_square_sum += area_square
   print(image_path, '文字区块数量：', len(result[0]), '文字区域面积：', area_square_sum, '图片面积：', image_square, '文字区域比例：', area_square_sum / image_square * 1.0)
+
 
 ```

@@ -26,13 +26,14 @@ ocr = PaddleOCR(cpu_threads=12, gpu_id=1)
 
 def ocr_analyze(image_path):
   image = cv2.imread(image_path)
-  result = ocr.ocr(image)
-  if not result[0]:
+  detections = ocr.ocr(image)
+  result = detections[0]
+  if not result:
     print('完全非文字图片')
     return
   area_square_sum = 0
   image_square = image.shape[0] * image.shape[1]
-  for idx, res in enumerate(result[0]):
+  for idx, res in enumerate(result):
     bbox = res[0]
     pt1, pt2 = [[int(b) for b in bbox[0]], [int(b) for b in bbox[2]]]
     print(pt1, pt2)

@@ -26,3 +26,36 @@ test_small_df.to_sql(name = 'VOC_DEMO_TEST',
            index = False,
            )
 ```
+
+## 3. array 类型数据批量导入
+由于方法2并不兼容array类型数据导入，在尝试了一些方法后，最终采用如下的批量导入方式
+```
+# 导入数据
+import pymysql
+
+conn = pymysql.connect(host='xxx', port=9030, user='xxx', password='xxx', charset='utf8', db='xxx')
+cur = conn.cursor()
+
+columns = new_df.columns
+col_len = len(columns)
+record_num = len(new_df)
+
+table_name = 'xxx.xxx'
+batch_size = 20000
+
+base_sql = """INSERT INTO {} {}
+         values {};
+    """.format(table_name, "(" + ",".join(columns) + ")", "(" + ",".join(['%s' for _ in range(len(columns))]) + ")")
+print(base_sql)
+
+data_list = []
+for i, row in tqdm(new_df.iterrows(), total=record_num):
+    record = ["{}".format(row[c]) for c in columns]
+    data_list.append(record)
+
+    if i % batch_size == 0 and i > 1 or i == record_num:
+        print("批量提交： ", i)
+        cur.executemany(base_sql, data_list)
+        conn.commit()
+        data_list = []
+```

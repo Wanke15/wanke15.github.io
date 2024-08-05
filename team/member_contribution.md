@@ -16,6 +16,7 @@ players = list(improvements.keys())
 
 
 # leader配置
+# base随着团队成员数而变化(5, 4, 3, 2)：0.15, 0.25, 0.35, 0.45
 leader_base = 0.25
 leader_per_project_ratio = 0.2
 

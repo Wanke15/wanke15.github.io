@@ -1,4 +1,5 @@
-项目制贡献归因
+## 项目贡献归因
+我们可以使用一种称为“Shapley值”的方法。这种方法在博弈论中用于公平地分配合作收益。具体来说，Shapley值考虑了每个参与者在所有可能的合作顺序中的边际贡献，然后取平均值
 
 ```python
 from itertools import permutations

@@ -289,16 +289,16 @@
         <mxCell id="z--YVlIZiHg3xQQxid8s-51" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="270" y="1474" width="440" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-52" value="XGBoost" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-52" value="纠错" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="300" y="1489" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-53" value="DeepFM" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-53" value="品类意图" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="400" y="1489" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-54" value="DIN" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-54" value="实体识别" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="500" y="1489" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-55" value="MMoE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-55" value="相关性判别" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="605" y="1489" width="80" height="40" as="geometry" />
         </mxCell>
       </root>

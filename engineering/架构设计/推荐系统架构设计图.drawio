@@ -115,7 +115,7 @@
         <mxCell id="3CPOqqqod1TkRdYMCPuZ-37" value="模型和特征存储" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#36393d;gradientDirection=south;fillColor=#FDFFC4;" parent="1" vertex="1">
           <mxGeometry x="720" y="830" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="3CPOqqqod1TkRdYMCPuZ-38" value="线上服务&lt;br&gt;Spring Boot" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#ea6b66;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+        <mxCell id="3CPOqqqod1TkRdYMCPuZ-38" value="线上服务&lt;div&gt;运营工具&lt;br&gt;Spring Boot&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#ea6b66;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="720" y="540" width="140" height="280" as="geometry" />
         </mxCell>
         <mxCell id="im6hHC-ii4hR2nj4hYoc-1" value="场景应用" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;" parent="1" vertex="1">

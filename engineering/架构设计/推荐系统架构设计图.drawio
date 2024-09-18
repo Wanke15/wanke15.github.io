@@ -23,13 +23,13 @@
           <mxGeometry x="260" y="750" width="440" height="70" as="geometry" />
         </mxCell>
         <mxCell id="3CPOqqqod1TkRdYMCPuZ-7" value="特征服务" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="290" y="760" width="110" height="50" as="geometry" />
+          <mxGeometry x="290" y="760" width="70" height="50" as="geometry" />
         </mxCell>
         <mxCell id="3CPOqqqod1TkRdYMCPuZ-8" value="推理计算" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="430" y="760" width="110" height="50" as="geometry" />
+          <mxGeometry x="387" y="760" width="70" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="3CPOqqqod1TkRdYMCPuZ-9" value="模型和特征管理" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="565" y="760" width="110" height="50" as="geometry" />
+        <mxCell id="3CPOqqqod1TkRdYMCPuZ-9" value="算法管理" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="483" y="760" width="77" height="50" as="geometry" />
         </mxCell>
         <mxCell id="3CPOqqqod1TkRdYMCPuZ-10" value="召回服务" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" parent="1" vertex="1">
           <mxGeometry x="120" y="680" width="140" height="70" as="geometry" />
@@ -256,7 +256,7 @@
         <mxCell id="z--YVlIZiHg3xQQxid8s-37" value="模型和特征存储" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#36393d;gradientDirection=south;fillColor=#FDFFC4;" vertex="1" parent="1">
           <mxGeometry x="730" y="1694" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-38" value="线上服务&lt;br&gt;Spring Boot" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#ea6b66;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-38" value="线上服务&lt;br&gt;运营工具&lt;br&gt;Spring Boot" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#ea6b66;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="730" y="1330" width="140" height="354" as="geometry" />
         </mxCell>
         <mxCell id="z--YVlIZiHg3xQQxid8s-39" value="场景应用" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="1">
@@ -283,7 +283,7 @@
         <mxCell id="z--YVlIZiHg3xQQxid8s-49" value="流量中控" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="558" y="1414" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-50" value="QueryProcess" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-50" value="语义理解" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="130" y="1474" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="z--YVlIZiHg3xQQxid8s-51" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
@@ -298,11 +298,14 @@
         <mxCell id="z--YVlIZiHg3xQQxid8s-54" value="实体识别" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="500" y="1489" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="z--YVlIZiHg3xQQxid8s-55" value="相关性判别" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="z--YVlIZiHg3xQQxid8s-55" value="相关性" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="605" y="1489" width="80" height="40" as="geometry" />
         </mxCell>
         <mxCell id="z--YVlIZiHg3xQQxid8s-56" value="策略重排" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="602" y="1625" width="85" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="z--YVlIZiHg3xQQxid8s-58" value="策略重排" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="588" y="760" width="85" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

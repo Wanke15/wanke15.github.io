@@ -257,7 +257,7 @@
           <mxGeometry x="803" y="539" width="117" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-81" value="结束" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="824" y="753" width="81" height="42" as="geometry" />
+          <mxGeometry x="814" y="749" width="95" height="50" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-85" value="否" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="926" y="569" width="60" height="30" as="geometry" />
@@ -275,7 +275,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-98" value="输出判别结果" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="672" y="674" width="99" height="47" as="geometry" />
+          <mxGeometry x="672" y="691" width="99" height="47" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

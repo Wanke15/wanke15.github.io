@@ -239,39 +239,43 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-78" value="候选集语言模型得分计算" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="813" y="442" width="97" height="52" as="geometry" />
+          <mxGeometry x="813" y="449" width="97" height="52" as="geometry" />
         </mxCell>
-        <mxCell id="DB2N2tVpHqEbX4s-BZQU-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-79" target="DB2N2tVpHqEbX4s-BZQU-81">
+        <mxCell id="DB2N2tVpHqEbX4s-BZQU-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-79" target="DB2N2tVpHqEbX4s-BZQU-98">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-79" value="SVM判别模型" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="672" y="627" width="99" height="47" as="geometry" />
+          <mxGeometry x="672" y="603" width="99" height="47" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-80" target="DB2N2tVpHqEbX4s-BZQU-79">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="DB2N2tVpHqEbX4s-BZQU-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-80" target="DB2N2tVpHqEbX4s-BZQU-81">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1001" y="560" />
-              <mxPoint x="1001" y="745" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="DB2N2tVpHqEbX4s-BZQU-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-80" target="DB2N2tVpHqEbX4s-BZQU-95">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-80" value="得分最高候选词超过阈值" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="802" y="522" width="121" height="76" as="geometry" />
+          <mxGeometry x="803" y="539" width="117" height="60" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-81" value="结束" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="828" y="724" width="81" height="42" as="geometry" />
-        </mxCell>
-        <mxCell id="DB2N2tVpHqEbX4s-BZQU-83" value="无错误" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="941" y="635.5" width="60" height="30" as="geometry" />
+          <mxGeometry x="824" y="753" width="81" height="42" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-85" value="否" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="923" y="565" width="60" height="30" as="geometry" />
+          <mxGeometry x="926" y="569" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="DB2N2tVpHqEbX4s-BZQU-87" value="是" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="742" y="560" width="60" height="30" as="geometry" />
+          <mxGeometry x="742" y="569" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DB2N2tVpHqEbX4s-BZQU-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-95" target="DB2N2tVpHqEbX4s-BZQU-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DB2N2tVpHqEbX4s-BZQU-95" value="无错误&lt;br&gt;输出原始词" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="953" y="633" width="99" height="47" as="geometry" />
+        </mxCell>
+        <mxCell id="DB2N2tVpHqEbX4s-BZQU-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DB2N2tVpHqEbX4s-BZQU-98" target="DB2N2tVpHqEbX4s-BZQU-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DB2N2tVpHqEbX4s-BZQU-98" value="输出判别结果" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="672" y="674" width="99" height="47" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

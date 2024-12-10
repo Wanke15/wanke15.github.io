@@ -50,7 +50,8 @@ def generate_query_combinations(query):
         res.append("".join(py))
         res.append(" ".join(py))
 
-        res.append("".join([py[0][0], py[1][0]]))
+        # 拼音首字母
+        res.append("".join([i[0] for i in py]))
     
         first = py[0]
         second = py[1]

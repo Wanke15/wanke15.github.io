@@ -35,8 +35,8 @@ from pypinyin import pinyin, lazy_pinyin, Style
 def generate_query_combinations(query):
     res = []
 
-    # 去除特殊符号
-    query = "".join(re.findall('[\u4e00-\u9fa5]+', query, re.S))
+    # 去中英文标点符号和除特殊符号
+    query = re.sub(r'[，。！？、；：“”‘’（）《》【】{}——……￥·~！@#￥%……&*（）——+{}|:"<>?`~\[\]\\;\',./]', '', query).replace(" ", "")
 
     if not query:
         return []
@@ -95,6 +95,8 @@ for word in tqdm(df['query']):
 ```python
 # 定义一个函数来获取前缀匹配的建议词
 def get_suggestions(prefix, top_k=10):
+    prefix = re.sub(r'[，。！？、；：“”‘’（）《》【】{}——……￥·~！@#￥%……&*（）——+{}|:"<>?`~\[\]\\;\',./]', '', prefix).replace(" ", "")
+
     if not prefix:
         return []
     try:

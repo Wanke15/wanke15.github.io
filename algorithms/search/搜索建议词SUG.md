@@ -27,15 +27,29 @@ query2cnt = dict(zip(df['query'], df['cnt']))
 
 ### 2. 拼音组合生成
 ```python
+import jieba
+import re
 from pypinyin import pinyin, lazy_pinyin, Style
 
-def generate_pinyin_combinations(query):
+def generate_query_combinations(query):
+    res = []
+
+    # 去除特殊符号
+    query = "".join(re.findall('[\u4e00-\u9fa5]+', query, re.S))
+
+    if not query:
+        return []
+
+    query_terms = jieba.lcut_for_search(query)
+    res.extend(query_terms)
+
     py = lazy_pinyin(query, v_to_u=True)
 
-    res = []
     if len(py) > 1:
         res.append("".join(py))
         res.append(" ".join(py))
+
+        res.append("".join([py[0][0], py[1][0]]))
     
         first = py[0]
         second = py[1]
@@ -46,14 +60,13 @@ def generate_pinyin_combinations(query):
         [res.append(query[0] + second[0:i+1]) for i in range(len(first))]
 
         res.append(first + query[1])
-
     else:
         first = py[0]
         [res.append(first[0:i]) for i in range(len(first))]
         
     return res
 
-generate_pinyin_combinations("钙片")
+generate_query_combinations("钙片")
 
 ```
 
@@ -69,7 +82,7 @@ for word in tqdm(df['query']):
     freq = query2cnt[word]
     trie[word] = (word, freq)
 
-    for g in generate_pinyin_combinations(word):
+    for g in generate_query_combinations(word):
         trie[g] = (word, freq)
 ```
 

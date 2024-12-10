@@ -14,10 +14,11 @@ def query_impala(sql):
 df = query_impala("""
 select query, count(1) as cnt 
 from search_algo.search_log 
-where biz_date >= '2024-11-01'
+where biz_date >= '2024-09-01'
 and log_type = 'click'
+and query_frequency in ('高频词', '中频词')
 group by query 
-having count(1) > 3
+having count(distinct user_id) > 10
 order by cnt desc 
 """)
 

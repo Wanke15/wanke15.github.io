@@ -122,7 +122,7 @@ get_suggestions("gaipian")
 ### 5. Jupyter Notebook 交互可视化demo
 （1）conda install -n base -c conda-forge jupyterlab_widgets
 
-（2）conda install -n pyenv -c conda-forge ipywidgets
+（2）conda install -n base -c conda-forge ipywidgets
 
 （3）Restart kernel
 

@@ -95,7 +95,7 @@ for word in tqdm(df['query']):
 ```python
 # 定义一个函数来获取前缀匹配的建议词
 def get_suggestions(prefix, top_k=10):
-    prefix = re.sub(r'[，。！？、；：“”‘’（）《》【】{}——……￥·~！@#￥%……&*（）——+{}|:"<>?`~\[\]\\;\',./]', '', prefix).replace(" ", "")
+    prefix = re.sub(r'[，。！？、；：“”‘’（）《》【】{}——……￥·~！@#￥%……&*（）——+{}|:"<>?`~\[\]\\;\',./]', '', prefix).replace(" ", "").lower()
 
     if not prefix:
         return []

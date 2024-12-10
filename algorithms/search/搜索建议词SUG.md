@@ -26,7 +26,7 @@ query2cnt = dict(zip(df['query'], df['cnt']))
 
 ```
 
-### 2. 拼音组合生成
+### 2. Term组合生成(分词+拼音)
 ```python
 import jieba
 import re

@@ -1,3 +1,4 @@
+import random
 import time
 import pandas as pd
 import gradio as gr
@@ -84,7 +85,8 @@ def submit_score(note_id, diff):
     next_note_ids = df[df["state"] == 0]["note_id"].tolist()
 
     if next_note_ids:
-        next_note_id = next_note_ids[0]
+        # next_note_id = next_note_ids[0]
+        next_note_id = random.choice(next_note_ids)
         print("len", len(next_note_ids))
         return display(next_note_id) + (next_note_id, "")
     else:
@@ -94,13 +96,12 @@ def submit_score(note_id, diff):
 def plot_stats_bar():
     df1 = df['score'].value_counts().sort_values(ascending=False)
     df1 = pd.DataFrame({"score": df1.index, "count": df1.values})
-    print(time.localtime(), df1)
+    # print(time.localtime(), df1)
     return df1
 
 
 with gr.Blocks() as demo:
     df, note_ids = read_df()
-    error_message = gr.Error()
     with gr.Row():
         with gr.Column():
             note_id = gr.Dropdown(elem_id="note_id_select", label="请选择帖子ID", choices=note_ids)
@@ -134,4 +135,4 @@ with gr.Blocks() as demo:
 
     # stats_plot.click(plot_stats_bar, [], bar_plot)
 
-demo.launch()
+demo.launch(server_name="0.0.0.0", server_port=8501)

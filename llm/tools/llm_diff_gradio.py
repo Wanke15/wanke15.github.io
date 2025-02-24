@@ -94,6 +94,7 @@ def submit_score(note_id, diff):
 def plot_stats_bar():
     df1 = df['score'].value_counts().sort_values(ascending=False)
     df1 = pd.DataFrame({"score": df1.index, "count": df1.values})
+    print(time.localtime(), df1)
     return df1
 
 
@@ -102,7 +103,7 @@ with gr.Blocks() as demo:
     error_message = gr.Error()
     with gr.Row():
         with gr.Column():
-            note_id = gr.Dropdown(label="请选择帖子ID", choices=note_ids)
+            note_id = gr.Dropdown(elem_id="note_id_select", label="请选择帖子ID", choices=note_ids)
             note_url = gr.Markdown()
             note_text = gr.Markdown()
             score_status = gr.Textbox(label="当前帖子打分状态及分数")
@@ -111,8 +112,10 @@ with gr.Blocks() as demo:
             diff = gr.Dropdown(value="", label="GPT4o vs. DeepSeek", choices=["", "打平", "4o更好", "DS更好", "都不行"])
             remaining = gr.Textbox(label="当前剩余未打分文档数量")
 
-            stats_plot = gr.Button("更新显示汇总统计")
-            bar_plot = gr.BarPlot(value=pd.DataFrame({"score": [], "count": []}), x="score", y="count")
+            # stats_plot = gr.Button("更新汇总统计图")
+            # bar_plot = gr.BarPlot(value=pd.DataFrame({"score": [], "count": []}), x="score", y="count")
+            bar_plot = gr.BarPlot(value=plot_stats_bar, x="score", y="count", every=5)
+
 
         with gr.Column():
             gr.Markdown("### GPT-4O")
@@ -120,9 +123,6 @@ with gr.Blocks() as demo:
         with gr.Column():
             gr.Markdown("### DeepSeek-V3")
             deepseek_render = gr.JSON()
-
-    # with gr.Row():
-    #     bar_plot = gr.BarPlot(value=pd.DataFrame({"score": [], "count": []}), x="score", y="count")
 
     note_id.change(display, inputs=[note_id],
                    outputs=[note_url, note_text, score_status, score, gpt4o_render, deepseek_render, remaining])
@@ -132,6 +132,6 @@ with gr.Blocks() as demo:
     diff.change(submit_score, inputs=[note_id, diff],
                  outputs=[note_url, note_text, score_status, score, gpt4o_render, deepseek_render, remaining, note_id, diff])
 
-    stats_plot.click(plot_stats_bar, [], bar_plot)
+    # stats_plot.click(plot_stats_bar, [], bar_plot)
 
 demo.launch()

@@ -137,4 +137,4 @@ with gr.Blocks() as demo:
 
     # stats_plot.click(plot_stats_bar, [], bar_plot)
 
-demo.launch(server_name="0.0.0.0", server_port=8501)
+demo.launch(server_name="0.0.0.0", server_port=8501, show_api=False)

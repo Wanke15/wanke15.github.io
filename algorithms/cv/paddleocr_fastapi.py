@@ -1,3 +1,6 @@
+# paddleocr                     2.7.2
+# paddlepaddle                  2.5.2
+
 import hashlib
 
 from fastapi import FastAPI, HTTPException
@@ -52,6 +55,8 @@ async def ocr_endpoint(request: ImageBase64Request):
             all_text = ''
             img = base64_to_image(image_base64)
             result = ocr.ocr(img, cls=True)
+            if result[0] is None:
+                result = [[]]
             for idx, res in enumerate(result[0]):
                 all_text += res[-1][0] + '\n'
             texts.append(all_text)

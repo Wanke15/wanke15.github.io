@@ -114,7 +114,7 @@ def llm_analyze(frames):
      - 输出格式为JSON
      - 重点关注该场景下5W相关内容分析（where、who、what、why、when）
      - 标签之间的语义不要太相似，如TED演讲-演讲、服装-裤子等
-     - 输出例子如下：[{"name": "亲子", "score": 0.8, "reason": "第二个和第三个场景综合看是爸爸和儿子的互动"}, {"name": "公园", "score": 0.5, "reason":"明显看到‘朝阳公园’"}, ...]
+     - 输出例子如下：[{"tag": "亲子", "score": 0.8, "reason": "第二个和第三个场景综合看是爸爸和儿子的互动"}, {"tag": "公园", "score": 0.5, "reason":"明显看到‘朝阳公园’"}, ...]
     """
     base64_frames = frames_to_base64(frames)
     image_content_list = []

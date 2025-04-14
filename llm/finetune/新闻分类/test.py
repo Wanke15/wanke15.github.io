@@ -15,7 +15,7 @@ def predict(messages, model, tokenizer):
 
     return response
 
-model_dir = '/data/llm/modelscope/Qwen/Qwen2___5-0___5B'
+model_dir = '/data/llm/modelscope/Qwen/Qwen2___5-0___5B-Instruct'
 sft_model_save_dir = "output/model/Qwen25_05b_fudan_news/checkpoint-12/"
 
 # 加载原下载路径的tokenizer和model

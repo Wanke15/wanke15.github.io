@@ -64,9 +64,9 @@ tokenizer = AutoTokenizer.from_pretrained(model_dir, use_fast=False, trust_remot
 model = AutoModelForCausalLM.from_pretrained(model_dir, device_map="auto", torch_dtype=torch.bfloat16)
 model.enable_input_require_grads()  # 开启梯度检查点时，要执行该方法
 
-train_df = pd.read_json(train_jsonl_new_path, lines=True).head(100)
+train_df = pd.read_json(train_jsonl_new_path, lines=True)
 train_ds = Dataset.from_pandas(train_df)
-train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names)
+train_dataset = train_ds.map(process_func, remove_columns=train_ds.column_names, num_proc=64)
 print(train_dataset)
 
 config = LoraConfig(

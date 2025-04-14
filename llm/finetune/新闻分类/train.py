@@ -51,8 +51,8 @@ def predict(messages, model, tokenizer):
 
 
 # 在modelscope上下载Qwen模型到本地目录下
-# model_dir = snapshot_download("Qwen/Qwen2.5-0.5B", cache_dir="/data/llm/modelscope", revision="master")
-model_dir = '/data/llm/modelscope/Qwen/Qwen2___5-0___5B'
+# model_dir = snapshot_download("Qwen/Qwen2.5-0.5B-Instruct", cache_dir="/data/llm/modelscope", revision="master")
+model_dir = '/data/llm/modelscope/Qwen/Qwen2___5-0___5B-Instruct'
 
 # 数据和模型路径
 train_jsonl_new_path = "output/data/train.jsonl"

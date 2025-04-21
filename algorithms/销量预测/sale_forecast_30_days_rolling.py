@@ -2,6 +2,10 @@ import pandas as pd
 import numpy as np
 from xgboost import XGBRegressor
 
+# （1）构建特征
+# （2）预测。并把预测值添加到特征表，基于最新的预测值更新特征，如lag特征
+# （3）循环步骤2，直到最大预测日期
+
 class Sales30DayForecaster:
     def __init__(self, max_lag=30):
         self.model = None

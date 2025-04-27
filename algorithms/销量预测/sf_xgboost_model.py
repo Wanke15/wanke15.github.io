@@ -247,8 +247,7 @@ print(f"\n测试集指标：" + "#" * 50)
 evaluate(X_test, y_test, "test")
 
 # X_predict_df = X_test[X_test["date"] == X_test["date"].max()]
-
-X_predict_df = future_df
+X_predict_df = future_df # 为了预测更多日期。真实场景应该用上边一行即可
 X_predict_df["pred"] = np.round(model.predict(xgb.DMatrix(X_predict_df[features_cols].drop(['date'], axis=1), enable_categorical=True)))
 
 # # 保存预测结果

@@ -23,12 +23,11 @@ from tqdm import tqdm
 tqdm.pandas()
 
 print('开始读取数据...', datetime.datetime.now())
-df = pd.read_csv(r"../data/sf_order_df.csv")
+df = pd.read_csv(r"../data/sf_order_df_20240101_20250430.csv")
 '''
 # 字段名称
 biz_date,prod_id,prod_name,branch_id,branch_name,sum_real_price,mean_real_price,sum_sale_price,mean_sale_price,sum_sku_cnt,sum_order_cnt,mean_sku_real_price,mean_sku_sale_price,mean_sku_price_discount
 '''
-
 print('数据读取完毕！', datetime.datetime.now())
 
 df["date"] = pd.to_datetime(df["biz_date"])
@@ -40,7 +39,7 @@ top_n = 5000
 df = df[df['item_id'].isin(df['item_id'].value_counts().index.tolist()[0:top_n])]
 print(df['item_id'].value_counts().head(top_n))
 print(df['branch_name'].value_counts().head(top_n))
-# df = df[df['prod_id'] == 442477]
+# df = df[df['prod_id'] == xxxx]
 
 train_end_date = '2025-03-01'
 
@@ -191,8 +190,6 @@ def evaluate(x, y, flag):
     print("拟合优度 (R-squared):", r2)
     biz_acc = result_score(y_pred, y)
     print("业务准确率：", biz_acc)
-
-score_list = []
 
 cur_prod_df = df
 

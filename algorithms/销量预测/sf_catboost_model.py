@@ -224,13 +224,8 @@ evaluate(X_test, y_test, "test")
 
 
 # X_predict_df = X_test[X_test["date"] == X_test["date"].max()]
-# X_predict_df = X_test
-# X_predict = Pool(X_predict_df.drop(['date'], axis=1), cat_features=cat_features)
-# X_predict_df["pred"] = np.round(model.predict(X_predict))
-# X_predict_df["label"] = y_test.values[:X_predict_df.shape[0]]
-
-X_predict_df = future_df
-X_predict = Pool(X_predict_df[features_cols], cat_features=cat_features)
+X_predict_df = future_df # 为了观察预测更多日期。真实场景应该用上边一行即可
+X_predict = Pool(X_predict_df[features_cols].drop(['date'], axis=1), cat_features=cat_features)
 X_predict_df["pred"] = np.round(model.predict(X_predict))
 
 # # 保存预测结果

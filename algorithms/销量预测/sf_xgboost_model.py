@@ -24,7 +24,7 @@ from tqdm import tqdm
 tqdm.pandas()
 
 print('开始读取数据...', datetime.datetime.now())
-df = pd.read_csv(r"../data/sf_order_df.csv")
+df = pd.read_csv(r"../data/sf_order_df_20240101_20250430.csv")
 '''
 # 字段名称
 biz_date,prod_id,prod_name,branch_id,branch_name,sum_real_price,mean_real_price,sum_sale_price,mean_sale_price,sum_sku_cnt,sum_order_cnt,mean_sku_real_price,mean_sku_sale_price,mean_sku_price_discount
@@ -40,7 +40,7 @@ top_n = 5000
 df = df[df['item_id'].isin(df['item_id'].value_counts().index.tolist()[0:top_n])]
 print(df['item_id'].value_counts().head(top_n))
 print(df['branch_name'].value_counts().head(top_n))
-# df = df[df['prod_id'] == 442477]
+# df = df[df['prod_id'] == xxxx]
 
 train_end_date = '2025-03-01'
 

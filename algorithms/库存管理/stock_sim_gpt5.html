@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>库存管理可视化仿真</title>
+  <!-- TailwindCSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    html, body { height: 100%; }
+    .stat { @apply p-4 bg-white rounded-2xl shadow; }
+    .card { @apply p-4 bg-white rounded-2xl shadow; }
+    .label { @apply text-sm text-gray-600; }
+    .input { @apply w-full border border-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400; }
+    .section-title { @apply text-lg font-semibold text-gray-800; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+  <div class="max-w-7xl mx-auto p-6">
+    <header class="mb-6">
+      <h1 class="text-2xl md:text-3xl font-bold">📦 库存管理可视化仿真</h1>
+      <p class="text-gray-600 mt-1">支持 (s, S) 连续补货、(s, Q) 固定订货量、周期复盘 (R, S) 三种策略；可配置需求分布、提前期、成本参数等。</p>
+    </header>
+
+    <!-- 控制台 -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div class="lg:col-span-1 space-y-4">
+        <div class="card space-y-3">
+          <div class="section-title">基础参数</div>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="label col-span-1">模拟天数
+              <input id="days" type="number" class="input" value="180" min="1" />
+            </label>
+            <label class="label col-span-1">初始库存
+              <input id="initInv" type="number" class="input" value="200" min="0" />
+            </label>
+            <label class="label col-span-1">随机种子
+              <input id="seed" type="number" class="input" value="42" />
+            </label>
+            <label class="label col-span-1">单位
+              <input id="uom" type="text" class="input" value="件" />
+            </label>
+          </div>
+        </div>
+
+        <div class="card space-y-3">
+          <div class="section-title">需求分布</div>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="label col-span-2">
+              分布类型
+              <select id="demandDist" class="input">
+                <option value="poisson">泊松 (整数)</option>
+                <option value="normal">正态 (截断到≥0)</option>
+              </select>
+            </label>
+            <label class="label col-span-1">均值 μ/λ
+              <input id="demandMean" type="number" class="input" value="50" step="0.1" />
+            </label>
+            <label class="label col-span-1">标准差 σ
+              <input id="demandStd" type="number" class="input" value="15" step="0.1" />
+            </label>
+          </div>
+          <p class="text-xs text-gray-500">泊松分布仅使用均值；正态分布使用均值与标准差，并截断为非负整数。</p>
+        </div>
+
+        <div class="card space-y-3">
+          <div class="section-title">提前期（Lead Time）</div>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="label col-span-1">均值（天）
+              <input id="ltMean" type="number" class="input" value="5" step="0.1" />
+            </label>
+            <label class="label col-span-1">标准差（天）
+              <input id="ltStd" type="number" class="input" value="1" step="0.1" />
+            </label>
+            <label class="label col-span-2">最小提前期（天）
+              <input id="ltMin" type="number" class="input" value="1" min="0" />
+            </label>
+          </div>
+          <p class="text-xs text-gray-500">使用截断正态分布取整，且 ≥ 最小提前期。</p>
+        </div>
+
+        <div class="card space-y-3">
+          <div class="section-title">策略与参数</div>
+          <label class="label">策略选择
+            <select id="policy" class="input">
+              <option value="sS">(s, S) 连续补货</option>
+              <option value="sQ">(s, Q) 固定订货量</option>
+              <option value="RS">(R, S) 周期复盘</option>
+            </select>
+          </label>
+
+          <!-- s,S -->
+          <div id="panel-sS" class="grid grid-cols-2 gap-3 policy-panel">
+            <label class="label">s（再订货点）
+              <input id="s_val" type="number" class="input" value="120" />
+            </label>
+            <label class="label">S（订货至）
+              <input id="S_val" type="number" class="input" value="300" />
+            </label>
+          </div>
+
+          <!-- s,Q -->
+          <div id="panel-sQ" class="grid grid-cols-2 gap-3 policy-panel hidden">
+            <label class="label">s（再订货点）
+              <input id="s_val_Q" type="number" class="input" value="120" />
+            </label>
+            <label class="label">Q（每次订货量）
+              <input id="Q_val" type="number" class="input" value="180" />
+            </label>
+          </div>
+
+          <!-- R,S -->
+          <div id="panel-RS" class="grid grid-cols-2 gap-3 policy-panel hidden">
+            <label class="label">R（复盘周期，天）
+              <input id="R_val" type="number" class="input" value="7" />
+            </label>
+            <label class="label">S（订货至）
+              <input id="S_val_RS" type="number" class="input" value="350" />
+            </label>
+          </div>
+        </div>
+
+        <div class="card space-y-3">
+          <div class="section-title">成本参数</div>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="label">单位持有成本/天
+              <input id="cHold" type="number" class="input" value="0.1" step="0.01" />
+            </label>
+            <label class="label">每次下单固定成本
+              <input id="cOrderFix" type="number" class="input" value="50" step="0.01" />
+            </label>
+            <label class="label">下单单位成本
+              <input id="cOrderUnit" type="number" class="input" value="0" step="0.01" />
+            </label>
+            <label class="label">缺货惩罚/单位
+              <input id="cShort" type="number" class="input" value="5" step="0.01" />
+            </label>
+          </div>
+        </div>
+
+        <div class="card flex flex-wrap gap-3">
+          <button id="btnExample" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-xl">示例参数</button>
+          <button id="btnRun" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl">开始仿真</button>
+          <button id="btnReset" class="px-4 py-2 bg-white border rounded-xl">重置</button>
+          <button id="btnExport" class="ml-auto px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-xl">导出CSV</button>
+        </div>
+      </div>
+
+      <!-- 右侧可视化 -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="stat">
+            <div class="text-gray-500 text-sm">总需求</div>
+            <div id="stat-demand" class="text-2xl font-semibold">—</div>
+          </div>
+          <div class="stat">
+            <div class="text-gray-500 text-sm">发货量 / 缺货量</div>
+            <div class="text-2xl font-semibold"><span id="stat-ship">—</span> / <span id="stat-short">—</span></div>
+          </div>
+          <div class="stat">
+            <div class="text-gray-500 text-sm">填充率（Fill Rate）</div>
+            <div id="stat-fill" class="text-2xl font-semibold">—</div>
+          </div>
+          <div class="stat">
+            <div class="text-gray-500 text-sm">平均库存 / 订单数</div>
+            <div class="text-2xl font-semibold"><span id="stat-avgInv">—</span> / <span id="stat-orders">—</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="section-title">库存轨迹</div>
+            <span class="text-xs text-gray-500">纵轴：期末在手库存；点标记：下单与到货</span>
+          </div>
+          <canvas id="invChart" height="140"></canvas>
+        </div>
+
+        <div class="card">
+          <div class="section-title mb-2">成本分解</div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="stat">
+              <div class="text-gray-500 text-sm">持有成本</div>
+              <div id="cost-hold" class="text-xl font-semibold">—</div>
+            </div>
+            <div class="stat">
+              <div class="text-gray-500 text-sm">下单固定成本</div>
+              <div id="cost-orderfix" class="text-xl font-semibold">—</div>
+            </div>
+            <div class="stat">
+              <div class="text-gray-500 text-sm">下单单位成本</div>
+              <div id="cost-orderunit" class="text-xl font-semibold">—</div>
+            </div>
+            <div class="stat">
+              <div class="text-gray-500 text-sm">缺货惩罚</div>
+              <div id="cost-short" class="text-xl font-semibold">—</div>
+            </div>
+          </div>
+          <div class="mt-3 text-right text-lg font-bold">总成本：<span id="cost-total">—</span></div>
+        </div>
+
+        <div class="card overflow-auto">
+          <div class="section-title mb-2">事件日志（最近 200 条）</div>
+          <table class="min-w-full text-sm">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="p-2 text-left">天</th>
+                <th class="p-2 text-left">需求</th>
+                <th class="p-2 text-left">发货</th>
+                <th class="p-2 text-left">缺货</th>
+                <th class="p-2 text-left">到货</th>
+                <th class="p-2 text-left">下单</th>
+                <th class="p-2 text-left">期末库存</th>
+              </tr>
+            </thead>
+            <tbody id="logBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-xs text-gray-500 mt-8 text-center">© 仿真仅用于教学/方案评估。建议结合历史数据做参数校准与情景分析。</footer>
+  </div>
+
+  <script>
+    // ------------------- 工具函数（随机数、分布等） -------------------
+    function mulberry32(a) {
+      return function () {
+        var t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      }
+    }
+
+    function randn_bm(u) {
+      // Box-Muller transform: returns standard normal
+      let u1 = 0, u2 = 0;
+      // Convert [0,1) to (0,1)
+      u1 = Math.max(u(), Number.EPSILON);
+      u2 = Math.max(u(), Number.EPSILON);
+      const R = Math.sqrt(-2.0 * Math.log(u1));
+      const theta = 2.0 * Math.PI * u2;
+      return R * Math.cos(theta);
+    }
+
+    function poisson(lambda, u) {
+      // Knuth algorithm — OK for small/medium lambda in daily demand
+      const L = Math.exp(-lambda);
+      let p = 1.0, k = 0;
+      do {
+        k++;
+        p *= u();
+      } while (p > L);
+      return k - 1;
+    }
+
+    function truncNormalInt(mean, std, u) {
+      if (std <= 0) return Math.max(0, Math.round(mean));
+      const z = randn_bm(u);
+      const val = mean + std * z;
+      return Math.max(0, Math.round(val));
+    }
+
+    function truncNormalIntMin(mean, std, minVal, u) {
+      // for lead time (>= minVal)
+      if (std <= 0) return Math.max(minVal, Math.round(mean));
+      const z = randn_bm(u);
+      const val = mean + std * z;
+      return Math.max(minVal, Math.round(val));
+    }
+
+    // ------------------- 仿真主体 -------------------
+    function simulate(params) {
+      const {
+        days, initInv, seed,
+        demandDist, demandMean, demandStd,
+        ltMean, ltStd, ltMin,
+        policy,
+        s, S, s_Q, Q, R, S_RS,
+        cHold, cOrderFix, cOrderUnit, cShort
+      } = params;
+
+      const rng = mulberry32(seed >>> 0);
+
+      // pipeline: {arriveDay, qty}
+      const pipeline = [];
+      const logs = [];
+
+      let onHand = Math.max(0, initInv | 0);
+      let totalDemand = 0;
+      let totalShip = 0;
+      let totalShort = 0;
+      let totalHoldCost = 0;
+      let totalOrderFixCost = 0;
+      let totalOrderUnitCost = 0;
+      let totalShortCost = 0;
+      let orderCount = 0;
+      let orderUnits = 0;
+
+      const daysArr = [];
+      const invSeries = [];
+      const orderPlaceX = [], orderPlaceY = [];
+      const receiptX = [], receiptY = [];
+
+      function position() {
+        const pipeQty = pipeline.reduce((acc, o) => acc + o.qty, 0);
+        return onHand + pipeQty;
+      }
+
+      function placeOrder(qty, day) {
+        const lt = truncNormalIntMin(ltMean, ltStd, ltMin, rng);
+        const arrive = day + Math.max(0, lt);
+        pipeline.push({ arriveDay: arrive, qty: qty });
+        orderCount += 1;
+        orderUnits += qty;
+        totalOrderFixCost += cOrderFix;
+        totalOrderUnitCost += cOrderUnit * qty;
+        orderPlaceX.push(day);
+        orderPlaceY.push(onHand);
+      }
+
+      for (let day = 1; day <= days; day++) {
+        // 1) 到货
+        let receiveQty = 0;
+        for (let i = pipeline.length - 1; i >= 0; i--) {
+          const o = pipeline[i];
+          if (o.arriveDay === day) {
+            onHand += o.qty;
+            receiveQty += o.qty;
+            receiptX.push(day);
+            receiptY.push(onHand);
+            pipeline.splice(i, 1);
+          }
+        }
+
+        // 2) 需求发生
+        let demand = 0;
+        if (demandDist === 'poisson') {
+          demand = poisson(Math.max(0, demandMean), rng);
+        } else {
+          demand = truncNormalInt(Math.max(0, demandMean), Math.max(0, demandStd), rng);
+        }
+        const ship = Math.min(onHand, demand);
+        const short = Math.max(0, demand - ship);
+        onHand -= ship;
+
+        totalDemand += demand;
+        totalShip += ship;
+        totalShort += short;
+        totalShortCost += short * cShort;
+
+        // 3) 决策下单（按策略）
+        const pos = position();
+        if (policy === 'sS') {
+          if (pos <= s) {
+            const qty = Math.max(0, S - pos);
+            if (qty > 0) placeOrder(qty, day);
+          }
+        } else if (policy === 'sQ') {
+          if (pos <= s_Q) {
+            const qty = Math.max(0, Q);
+            if (qty > 0) placeOrder(qty, day);
+          }
+        } else if (policy === 'RS') {
+          if (R > 0 && day % R === 0) {
+            const qty = Math.max(0, S_RS - pos);
+            if (qty > 0) placeOrder(qty, day);
+          }
+        }
+
+        // 4) 期末持有成本
+        totalHoldCost += onHand * cHold;
+
+        // 5) 记录
+        daysArr.push(day);
+        invSeries.push(onHand);
+        logs.push({ day, demand, ship, short, receive: receiveQty, order: (orderPlaceX.at(-1) === day ? orderPlaceY.at(-1) : 0), invEnd: onHand });
+      }
+
+      const avgInv = invSeries.reduce((a, b) => a + b, 0) / (invSeries.length || 1);
+      const fillRate = totalDemand > 0 ? totalShip / totalDemand : 1;
+
+      return {
+        daysArr, invSeries,
+        orderPlaceX, orderPlaceY,
+        receiptX, receiptY,
+        totalDemand, totalShip, totalShort,
+        avgInv, orderCount, orderUnits,
+        totalHoldCost, totalOrderFixCost, totalOrderUnitCost, totalShortCost,
+        totalCost: totalHoldCost + totalOrderFixCost + totalOrderUnitCost + totalShortCost,
+        logs
+      };
+    }
+
+    // ------------------- UI/交互 -------------------
+    const el = id => document.getElementById(id);
+
+    const panels = {
+      sS: el('panel-sS'),
+      sQ: el('panel-sQ'),
+      RS: el('panel-RS'),
+    };
+
+    el('policy').addEventListener('change', () => {
+      const v = el('policy').value;
+      Object.keys(panels).forEach(k => panels[k].classList.add('hidden'));
+      panels[v]?.classList.remove('hidden');
+    });
+
+    el('btnReset').addEventListener('click', () => {
+      el('days').value = 180;
+      el('initInv').value = 200;
+      el('seed').value = 42;
+      el('uom').value = '件';
+      el('demandDist').value = 'poisson';
+      el('demandMean').value = 50;
+      el('demandStd').value = 15;
+      el('ltMean').value = 5;
+      el('ltStd').value = 1;
+      el('ltMin').value = 1;
+      el('policy').value = 'sS';
+      el('s_val').value = 120;
+      el('S_val').value = 300;
+      el('s_val_Q').value = 120;
+      el('Q_val').value = 180;
+      el('R_val').value = 7;
+      el('S_val_RS').value = 350;
+      Object.keys(panels).forEach(k => panels[k].classList.add('hidden'));
+      panels['sS'].classList.remove('hidden');
+      clearOutputs();
+    });
+
+    el('btnExample').addEventListener('click', () => {
+      // 示例一键填充：较高不确定性 & 周期复盘策略
+      el('demandDist').value = 'normal';
+      el('demandMean').value = 60;
+      el('demandStd').value = 20;
+      el('ltMean').value = 6;
+      el('ltStd').value = 2;
+      el('ltMin').value = 1;
+      el('policy').value = 'RS';
+      Object.keys(panels).forEach(k => panels[k].classList.add('hidden'));
+      panels['RS'].classList.remove('hidden');
+      el('R_val').value = 7;
+      el('S_val_RS').value = 420;
+    });
+
+    let chart;
+    function renderChart(data, uom) {
+      const ctx = el('invChart').getContext('2d');
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.daysArr,
+          datasets: [
+            {
+              label: `在手库存（${uom}）`,
+              data: data.invSeries,
+              borderWidth: 2,
+              tension: 0.2,
+              pointRadius: 0,
+            },
+            {
+              type: 'scatter',
+              label: '下单事件',
+              data: data.orderPlaceX.map((x,i) => ({x, y: data.orderPlaceY[i]})),
+              pointRadius: 4,
+            },
+            {
+              type: 'scatter',
+              label: '到货事件',
+              data: data.receiptX.map((x,i) => ({x, y: data.receiptY[i]})),
+              pointRadius: 4,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: 'top' },
+            tooltip: { mode: 'nearest', intersect: false }
+          },
+          scales: {
+            x: { title: { display: true, text: '天数' } },
+            y: { title: { display: true, text: `库存（${uom}）` }, beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    function fmt(n) { return Number(n).toLocaleString(undefined, { maximumFractionDigits: 2 }); }
+
+    function clearOutputs() {
+      el('stat-demand').textContent = '—';
+      el('stat-ship').textContent = '—';
+      el('stat-short').textContent = '—';
+      el('stat-fill').textContent = '—';
+      el('stat-avgInv').textContent = '—';
+      el('stat-orders').textContent = '—';
+      el('cost-hold').textContent = '—';
+      el('cost-orderfix').textContent = '—';
+      el('cost-orderunit').textContent = '—';
+      el('cost-short').textContent = '—';
+      el('cost-total').textContent = '—';
+      el('logBody').innerHTML = '';
+      if (chart) chart.destroy();
+    }
+
+    function readParams() {
+      return {
+        days: +el('days').value,
+        initInv: +el('initInv').value,
+        seed: +el('seed').value,
+        demandDist: el('demandDist').value,
+        demandMean: +el('demandMean').value,
+        demandStd: +el('demandStd').value,
+        ltMean: +el('ltMean').value,
+        ltStd: +el('ltStd').value,
+        ltMin: +el('ltMin').value,
+        policy: el('policy').value,
+        s: +el('s_val').value,
+        S: +el('S_val').value,
+        s_Q: +el('s_val_Q').value,
+        Q: +el('Q_val').value,
+        R: +el('R_val').value,
+        S_RS: +el('S_val_RS').value,
+        cHold: +el('cHold').value,
+        cOrderFix: +el('cOrderFix').value,
+        cOrderUnit: +el('cOrderUnit').value,
+        cShort: +el('cShort').value,
+        uom: el('uom').value || '件'
+      };
+    }
+
+    el('btnRun').addEventListener('click', () => {
+      const p = readParams();
+      // 基本校验
+      if (p.days <= 0) return alert('模拟天数必须 > 0');
+      if (p.policy === 'sS' && p.S < p.s) return alert('S 应 ≥ s');
+      if (p.policy === 'RS' && p.R <= 0) return alert('R 周期必须 > 0');
+
+      const result = simulate(p);
+
+      // KPI 输出
+      el('stat-demand').textContent = fmt(result.totalDemand) + ' ' + p.uom;
+      el('stat-ship').textContent = fmt(result.totalShip);
+      el('stat-short').textContent = fmt(result.totalShort);
+      el('stat-fill').textContent = (result.fillRate * 100).toFixed(1) + '%';
+      el('stat-avgInv').textContent = fmt(result.avgInv);
+      el('stat-orders').textContent = fmt(result.orderCount);
+
+      el('cost-hold').textContent = fmt(result.totalHoldCost);
+      el('cost-orderfix').textContent = fmt(result.totalOrderFixCost);
+      el('cost-orderunit').textContent = fmt(result.totalOrderUnitCost);
+      el('cost-short').textContent = fmt(result.totalShortCost);
+      el('cost-total').textContent = fmt(result.totalCost);
+
+      // 图表
+      renderChart(result, p.uom);
+
+      // 日志（展示最近 200 条）
+      const tbody = el('logBody');
+      tbody.innerHTML = '';
+      const start = Math.max(0, result.logs.length - 200);
+      for (let i = start; i < result.logs.length; i++) {
+        const r = result.logs[i];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="p-2">${r.day}</td>
+          <td class="p-2">${r.demand}</td>
+          <td class="p-2">${r.ship}</td>
+          <td class="p-2">${r.short}</td>
+          <td class="p-2">${r.receive}</td>
+          <td class="p-2">${(r.order && r.order > 0) ? '下单' : ''}</td>
+          <td class="p-2">${r.invEnd}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      // 缓存结果以便导出
+      window.__lastSim__ = { p, result };
+    });
+
+    el('btnExport').addEventListener('click', () => {
+      const cache = window.__lastSim__;
+      if (!cache) return alert('请先运行一次仿真');
+      const { p, result } = cache;
+      const rows = [
+        ['day','demand','ship','short','receive','orderPlaced','invEnd']
+      ];
+      result.logs.forEach(r => {
+        rows.push([r.day, r.demand, r.ship, r.short, r.receive, (r.order && r.order>0)?1:0, r.invEnd]);
+      });
+      const csv = rows.map(r => r.join(',')).join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'inventory_simulation.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // 初始清空
+    clearOutputs();
+  </script>
+</body>
+</html>

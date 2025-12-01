@@ -59,16 +59,16 @@
           <mxGeometry height="70" width="650" x="504" y="140" as="geometry" />
         </mxCell>
         <mxCell id="im6hHC-ii4hR2nj4hYoc-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="小程序" vertex="1">
-          <mxGeometry height="40" width="80" x="574" y="154.37" as="geometry" />
+          <mxGeometry height="50" width="110" x="553" y="149.37" as="geometry" />
         </mxCell>
         <mxCell id="im6hHC-ii4hR2nj4hYoc-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="外部电商平台" vertex="1">
-          <mxGeometry height="40" width="80" x="711" y="154.37" as="geometry" />
+          <mxGeometry height="50" width="110" x="697" y="149.37" as="geometry" />
         </mxCell>
         <mxCell id="im6hHC-ii4hR2nj4hYoc-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="线下智能屏" vertex="1">
-          <mxGeometry height="40" width="80" x="1019" y="155.62" as="geometry" />
+          <mxGeometry height="50" width="110" x="998" y="150.62" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="企业微信" vertex="1">
-          <mxGeometry height="40" width="80" x="866" y="155.62" as="geometry" />
+          <mxGeometry height="50" width="110" x="849" y="150.62" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#7ea6e0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;技术支撑&lt;/font&gt;" vertex="1">
           <mxGeometry height="245" width="140" x="1172" y="815" as="geometry" />

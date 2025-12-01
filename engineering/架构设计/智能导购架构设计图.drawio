@@ -149,7 +149,7 @@
           <mxGeometry height="230" width="158" x="743" y="574" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;短期记忆&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="130" x="755" y="613" as="geometry" />
+          <mxGeometry height="30" width="130" x="757" y="613" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-33" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;对话管理&lt;/b&gt;&lt;/span&gt;" vertex="1">
           <mxGeometry height="30" width="80" x="783" y="582" as="geometry" />
@@ -170,10 +170,10 @@
           <mxGeometry height="30" width="130" x="546" y="746" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-40" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;长期记忆&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="130" x="755" y="656" as="geometry" />
+          <mxGeometry height="30" width="130" x="757" y="656" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;对话状态跟踪&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="130" x="754" y="699" as="geometry" />
+          <mxGeometry height="30" width="130" x="756" y="699" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-43" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;RAG工具&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="130" x="977" y="651" as="geometry" />
@@ -188,7 +188,7 @@
           <mxGeometry height="30" width="130" x="977" y="730" as="geometry" />
         </mxCell>
         <mxCell id="tF6N9iT45McdshoSeAhs-47" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;多轮引导与澄清&lt;/font&gt;" vertex="1">
-          <mxGeometry height="30" width="134" x="753" y="746" as="geometry" />
+          <mxGeometry height="30" width="130" x="755" y="746" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

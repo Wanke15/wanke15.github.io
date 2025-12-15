@@ -158,6 +158,39 @@
             border-bottom-left-radius: 4px;
         }
         
+        /* 思考中状态 */
+        .thinking-indicator {
+            color: #8e8e93;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .thinking-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #8e8e93;
+            animation: thinkingPulse 1.5s infinite ease-in-out;
+        }
+        
+        .thinking-dot:nth-child(1) { animation-delay: -0.32s; }
+        .thinking-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes thinkingPulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        /* 停止生成提示 */
+        .stop-hint {
+            color: #8e8e93;
+            font-style: italic;
+            border-left: 3px solid #34c759;
+            padding-left: 10px;
+        }
+        
         /* 商品推荐区域样式 */
         .product-recommendations {
             margin-top: 15px;
@@ -686,13 +719,12 @@
 <body>
     <div class="header">
         <h1>电商导购AI助手 - 交互原型</h1>
-        <p>商品推荐+问题推荐功能演示 | 完整交互体验</p>
     </div>
     
     <div class="container">
         <div class="demo-area">
             <div class="chat-header">
-                <div class="chat-title">智能导购助手</div>
+                <div class="chat-title">三福智能导购助手</div>
                 <div>
                     <span class="status idle" id="statusIndicator">准备就绪</span>
                     <button class="new-chat-btn" id="newChatBtn">新对话</button>
@@ -704,7 +736,7 @@
                 <div class="message assistant">
                     <div class="avatar">AI</div>
                     <div class="message-content">
-                        <div class="message-text">您好！我是智能导购助手，可以为您推荐商品、解答购物问题。有什么可以帮您的吗？</div>
+                        <div class="message-text">你好呀，我是您的三福导购小帮手，专注于帮助您快速找到心仪的商品，同时提供个性化的推荐和轻松愉快的交流。无论您是在寻找特定产品，还是需要一些闲逛购物的建议，我都会努力提供最相关和实用的信息。不论您有什么要求或问题，都欢迎随时提问！</div>
                         <div class="feedback-buttons">
                             <button class="feedback-btn" data-rating="like">👍</button>
                             <button class="feedback-btn dislike" data-rating="dislike">👎</button>
@@ -720,13 +752,13 @@
             </div>
             
             <div class="input-area">
-                <button class="stop-btn" id="stopBtn">停止回复</button>
+                <button class="stop-btn" id="stopBtn">停止生成</button>
                 
                 <div class="suggested-questions" id="suggestedQuestions">
                     <div class="suggest-title">试试问我：</div>
                     <div class="question-chips">
-                        <div class="question-chip">推荐运动耳机</div>
                         <div class="question-chip">夏季连衣裙推荐</div>
+						<div class="question-chip">推荐运动耳机</div>
                         <div class="question-chip">适合送男友的礼物</div>
                         <div class="question-chip">性价比高的笔记本电脑</div>
                     </div>
@@ -786,7 +818,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             </div>
             
             <div class="api-section">
-                <h3>2. 商品推荐数据格式</h3>
+                <h3>2. 商品推荐</h3>
                 <p><span class="endpoint post">扩展</span> 在AI回复后返回商品推荐数据</p>
                 
                 <div class="code-block">
@@ -812,8 +844,8 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             </div>
             
             <div class="api-section">
-                <h3>3. 新增功能说明</h3>
-                <p><span class="endpoint post">新增</span> 问题推荐功能</p>
+                <h3>3. 问题推荐</h3>
+                <p><span class="endpoint post">扩展</span> 在AI回复后展示还可以的推荐问题</p>
                 
                 <div class="code-block">
 // 功能说明：
@@ -826,15 +858,37 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
 1. AI回复 → 2. 商品推荐 → 3. 问题推荐 → 4. 用户点击问题 → 5. 继续对话
                 </div>
             </div>
+			
+			<div class="api-section">
+                <h3>4. 停止回复</h3>
+                <p><span class="endpoint post">扩展</span> 在AI回复时停止生成</p>
+                
+                <div class="code-block">
+// 功能说明：
+1. 对话框展示固定文本："好的，那先不解答了，你可以继续向我提问哦"
+                </div>
+            </div>
+			
+			
+			<div class="api-section">
+                <h3>5. 新对话</h3>
+                <p><span class="endpoint post">扩展</span> 创建新的对话session</p>
+                
+                <div class="code-block">
+// 功能说明：
+1. conversion_id重置。Dify接口实现为conversion_id设置为空字符串
+                </div>
+            </div>
             
             <div class="api-note">
                 <strong>接口说明：</strong>所有API请求都需要在Header中添加Authorization: Bearer {api_key}进行身份验证。
             </div>
         </div>
     </div>
+				
     
     <div class="footer">
-        <p>电商导购交互原型 v1.2 | 商品推荐+问题推荐完整交互 | 实际实现请参考API文档</p>
+        <p>电商导购交互原型 v1.4 | 实际实现请参考API文档</p>
     </div>
     
     <script>
@@ -989,7 +1043,12 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             currentTaskId: null,
             conversationId: '',
             messages: [],
-            streamingInterval: null
+            streamingInterval: null,
+            currentStreamingMessageId: null,
+            hasReceivedContent: false,
+            isStopped: false,
+            // 存储所有定时器，便于统一清理
+            activeTimers: []
         };
         
         // DOM元素
@@ -1062,6 +1121,32 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
                 }
             });
         });
+        
+        // 添加定时器到状态管理
+        function addTimer(timer) {
+            state.activeTimers.push(timer);
+            return timer;
+        }
+        
+        // 清除所有定时器
+        function clearAllTimers() {
+            // 清除流式响应定时器
+            if (state.streamingInterval) {
+                clearInterval(state.streamingInterval);
+                state.streamingInterval = null;
+            }
+            
+            // 清除所有存储在activeTimers中的定时器
+            state.activeTimers.forEach(timer => {
+                if (timer) {
+                    clearInterval(timer);
+                    clearTimeout(timer);
+                }
+            });
+            
+            // 清空定时器数组
+            state.activeTimers = [];
+        }
         
         // 创建商品卡片
         function createProductCard(product) {
@@ -1243,6 +1328,9 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             const query = chatInput.value.trim();
             if (!query || state.isTyping) return;
             
+            // 重置停止标志
+            state.isStopped = false;
+            
             // 添加用户消息到界面
             addMessage(query, 'user');
             
@@ -1253,9 +1341,11 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             // 显示AI思考状态
             state.isTyping = true;
             state.currentTaskId = 'task-' + Date.now();
+            state.hasReceivedContent = false;
             
-            // 添加AI消息占位
+            // 添加AI消息占位 - 显示"我正在思考..."
             const aiMessageId = addMessage('', 'assistant', true);
+            state.currentStreamingMessageId = aiMessageId;
             
             // 更新UI状态
             updateUIState();
@@ -1271,73 +1361,97 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
         
         // 模拟API调用和流式响应
         function simulateAPICall(query, aiMessageId) {
-            // 模拟网络延迟
-            setTimeout(() => {
-                // 检测查询类型，确定是否显示商品推荐
-                let queryType = "default";
-                let showProducts = false;
-                let productCategory = "";
-                
-                if (query.includes("耳机") || query.includes("耳麦") || query.includes("运动耳机")) {
-                    queryType = "运动耳机";
-                    showProducts = true;
-                    productCategory = "运动耳机";
-                } else if (query.includes("连衣裙") || query.includes("裙子") || query.includes("夏季")) {
-                    queryType = "夏季连衣裙";
-                    showProducts = true;
-                    productCategory = "夏季连衣裙";
-                } else if (query.includes("礼物") || query.includes("送礼") || query.includes("男友")) {
-                    queryType = "男友礼物";
-                    showProducts = true;
-                    productCategory = "男友礼物";
-                } else if (query.includes("笔记本") || query.includes("电脑") || query.includes("性价比")) {
-                    queryType = "笔记本电脑";
-                    showProducts = true;
-                    productCategory = "笔记本电脑";
-                }
-                
-                // 模拟流式响应内容
-                const responses = {
-                    "运动耳机": [
-                        "为您推荐几款适合运动时佩戴的无线耳机，它们具有防水防汗、佩戴稳固的特点："
-                    ],
-                    "夏季连衣裙": [
-                        "为您推荐几款适合夏季穿着的连衣裙，材质透气，设计时尚："
-                    ],
-                    "男友礼物": [
-                        "为您推荐几款适合送给男友的礼物，既实用又有面子："
-                    ],
-                    "笔记本电脑": [
-                        "为您推荐几款性价比高的笔记本电脑，满足不同需求："
-                    ],
-                    "default": [
-                        "根据您的需求，我为您整理了以下信息："
-                    ]
-                };
-                
-                // 根据问题选择响应内容
-                let responseParts = responses[queryType] || responses["default"];
+            // 检测查询类型，确定是否显示商品推荐
+            let queryType = "default";
+            let showProducts = false;
+            let productCategory = "";
+            
+            if (query.includes("耳机") || query.includes("耳麦") || query.includes("运动耳机")) {
+                queryType = "运动耳机";
+                showProducts = true;
+                productCategory = "运动耳机";
+            } else if (query.includes("连衣裙") || query.includes("裙子") || query.includes("夏季")) {
+                queryType = "夏季连衣裙";
+                showProducts = true;
+                productCategory = "夏季连衣裙";
+            } else if (query.includes("礼物") || query.includes("送礼") || query.includes("男友")) {
+                queryType = "男友礼物";
+                showProducts = true;
+                productCategory = "男友礼物";
+            } else if (query.includes("笔记本") || query.includes("电脑") || query.includes("性价比")) {
+                queryType = "笔记本电脑";
+                showProducts = true;
+                productCategory = "笔记本电脑";
+            }
+            
+            // 模拟流式响应内容
+            const responses = {
+                "运动耳机": [
+                    "为您推荐几款适合运动时佩戴的无线耳机，它们具有防水防汗、佩戴稳固的特点："
+                ],
+                "夏季连衣裙": [
+                    "为您推荐几款适合夏季穿着的连衣裙，材质透气，设计时尚："
+                ],
+                "男友礼物": [
+                    "为您推荐几款适合送给男友的礼物，既实用又有面子："
+                ],
+                "笔记本电脑": [
+                    "为您推荐几款性价比高的笔记本电脑，满足不同需求："
+                ],
+                "default": [
+                    "根据您的需求，我为您整理了以下信息："
+                ]
+            };
+            
+            // 根据问题选择响应内容
+            let responseParts = responses[queryType] || responses["default"];
+            
+            // 模拟网络延迟，让用户看到"我正在思考..."
+            const initialDelayTimer = setTimeout(() => {
+                // 检查是否已停止
+                if (state.isStopped) return;
                 
                 // 开始流式显示
                 let currentPartIndex = 0;
                 let currentCharIndex = 0;
                 const aiMessageElement = document.getElementById(aiMessageId);
                 
+                // 设置流式响应定时器
                 state.streamingInterval = setInterval(() => {
+                    // 检查是否已停止
+                    if (state.isStopped) {
+                        clearInterval(state.streamingInterval);
+                        state.streamingInterval = null;
+                        return;
+                    }
+                    
                     if (currentPartIndex >= responseParts.length) {
                         // 流式响应完成
                         clearInterval(state.streamingInterval);
+                        state.streamingInterval = null;
+                        
+                        // 更新状态：已收到内容
+                        state.hasReceivedContent = true;
+                        
+                        // 检查是否已停止
+                        if (state.isStopped) return;
                         
                         // 如果需要显示商品推荐，添加到消息中
                         if (showProducts && productCategory) {
-                            setTimeout(() => {
+                            const productTimer = setTimeout(() => {
+                                // 检查是否已停止
+                                if (state.isStopped) return;
                                 addProductRecommendations(aiMessageId, productCategory);
                             }, 300);
+                            addTimer(productTimer);
                         } else {
                             // 如果没有商品推荐，直接显示问题推荐
-                            setTimeout(() => {
+                            const questionTimer = setTimeout(() => {
+                                // 检查是否已停止
+                                if (state.isStopped) return;
                                 addQuestionRecommendations(aiMessageId, productCategory || "default");
                             }, 300);
+                            addTimer(questionTimer);
                         }
                         
                         return;
@@ -1346,6 +1460,17 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
                     const currentPart = responseParts[currentPartIndex];
                     
                     if (currentCharIndex < currentPart.length) {
+                        // 如果是第一个字符，清除"我正在思考..."提示
+                        if (!state.hasReceivedContent && currentCharIndex === 0) {
+                            state.hasReceivedContent = true;
+                            // 清除思考提示
+                            const thinkingIndicator = aiMessageElement.querySelector('.thinking-indicator');
+                            if (thinkingIndicator) {
+                                thinkingIndicator.remove();
+                            }
+                            aiMessageElement.innerHTML = '';
+                        }
+                        
                         // 逐字添加
                         aiMessageElement.textContent += currentPart[currentCharIndex];
                         currentCharIndex++;
@@ -1358,11 +1483,18 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
                         currentCharIndex = 0;
                     }
                 }, 30);
-            }, 500);
+                
+                addTimer(state.streamingInterval);
+            }, 1500); // 模拟1.5秒网络延迟
+            
+            addTimer(initialDelayTimer);
         }
         
         // 添加商品推荐到消息
         function addProductRecommendations(messageId, category) {
+            // 检查是否已停止
+            if (state.isStopped) return;
+            
             const messageElement = document.getElementById(`message-${messageId}`);
             const messageContent = messageElement.querySelector('.message-content');
             
@@ -1419,24 +1551,34 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             }
             
             // 初始化滑动功能
-            setTimeout(() => {
+            const carouselTimer = setTimeout(() => {
+                // 检查是否已停止
+                if (state.isStopped) return;
                 initProductCarousel(productCardsTrack, products.length);
             }, 100);
+            addTimer(carouselTimer);
             
             // 更新消息内容，移除流式状态
             const aiMessageElement = document.getElementById(messageId);
             if (aiMessageElement) {
                 aiMessageElement.style.fontStyle = 'normal';
+                aiMessageElement.style.color = '#1d1d1f';
             }
             
             // 在商品推荐之后添加问题推荐
-            setTimeout(() => {
+            const questionTimer = setTimeout(() => {
+                // 检查是否已停止
+                if (state.isStopped) return;
                 addQuestionRecommendations(messageId, category);
             }, 500);
+            addTimer(questionTimer);
         }
         
         // 添加问题推荐到消息
         function addQuestionRecommendations(messageId, category) {
+            // 检查是否已停止
+            if (state.isStopped) return;
+            
             const messageElement = document.getElementById(`message-${messageId}`);
             if (!messageElement) return;
             
@@ -1479,24 +1621,54 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             // 更新状态
             state.isTyping = false;
             state.currentTaskId = null;
+            state.currentStreamingMessageId = null;
             updateUIState();
             
             // 滚动到底部
-            setTimeout(() => {
+            const scrollTimer = setTimeout(() => {
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }, 200);
+            addTimer(scrollTimer);
         }
         
         // 停止回复
         function stopResponse() {
-            if (state.streamingInterval) {
-                clearInterval(state.streamingInterval);
+            // 设置停止标志
+            state.isStopped = true;
+            
+            // 清除所有定时器
+            clearAllTimers();
+            
+            // 如果有正在流式响应的消息，显示停止提示
+            if (state.currentStreamingMessageId) {
+                const aiMessageElement = document.getElementById(state.currentStreamingMessageId);
+                if (aiMessageElement) {
+                    // 清除所有内容
+                    aiMessageElement.innerHTML = '';
+                    
+                    // 添加停止提示
+                    const stopHint = document.createElement('div');
+                    stopHint.className = 'stop-hint';
+                    stopHint.textContent = '好的，那先不解答了，你可以继续向我提问哦';
+                    
+                    aiMessageElement.appendChild(stopHint);
+                    
+                    // 更新消息样式
+                    aiMessageElement.style.fontStyle = 'normal';
+                    aiMessageElement.style.color = '#1d1d1f';
+                }
             }
             
+            // 显示初始推荐问题，引导用户继续提问
+            suggestedQuestions.style.display = 'block';
+            
+            // 更新状态
             state.isTyping = false;
             state.currentTaskId = null;
+            state.currentStreamingMessageId = null;
+            state.hasReceivedContent = false;
             
-            showNotification('已停止AI回复');
+            showNotification('已停止AI生成');
             updateUIState();
         }
         
@@ -1518,6 +1690,12 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             // 重置状态
             state.conversationId = '';
             state.messages = [];
+            state.currentStreamingMessageId = null;
+            state.hasReceivedContent = false;
+            state.isStopped = false;
+            
+            // 清除所有定时器
+            clearAllTimers();
             
             // 显示初始推荐问题
             suggestedQuestions.style.display = 'block';
@@ -1527,7 +1705,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             
             // 添加欢迎消息（如果已删除）
             if (messages.length === 0) {
-                addMessage('您好！我是智能导购助手，可以为您推荐商品、解答购物问题。有什么可以帮您的吗？', 'assistant');
+                addMessage('你好呀，我是您的三福导购小帮手，专注于帮助您快速找到心仪的商品，同时提供个性化的推荐和轻松愉快的交流。无论您是在寻找特定产品，还是需要一些闲逛购物的建议，我都会努力提供最相关和实用的信息。不论您有什么要求或问题，都欢迎随时提问！', 'assistant');
             }
         }
         
@@ -1553,6 +1731,14 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             if (!isStreaming) {
                 textDiv.textContent = content;
             } else {
+                // 流式消息添加思考提示
+                const thinkingDiv = document.createElement('div');
+                thinkingDiv.className = 'thinking-indicator';
+                thinkingDiv.innerHTML = `
+                    我正在思考<span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span>
+                `;
+                textDiv.appendChild(thinkingDiv);
+                
                 textDiv.style.fontStyle = 'italic';
                 textDiv.style.color = '#666';
             }
@@ -1637,11 +1823,13 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             document.body.appendChild(notification);
             
             // 3秒后移除
-            setTimeout(() => {
+            const removeTimer = setTimeout(() => {
                 if (notification.parentNode) {
                     notification.parentNode.removeChild(notification);
                 }
             }, 3000);
+            
+            addTimer(removeTimer);
             
             // 添加动画样式
             if (!document.querySelector('#notification-styles')) {

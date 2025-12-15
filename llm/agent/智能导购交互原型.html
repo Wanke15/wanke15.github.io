@@ -861,7 +861,8 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
 			
 			<div class="api-section">
                 <h3>4. 停止回复</h3>
-                <p><span class="endpoint post">扩展</span> 在AI回复时停止生成</p>
+                <p><span class="endpoint post">POST</span> /chat-messages/:task_id/stop</p>
+				<p>在AI回复时停止生成</p>
                 
                 <div class="code-block">
 // 功能说明：
@@ -872,7 +873,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
 			
 			<div class="api-section">
                 <h3>5. 新对话</h3>
-                <p><span class="endpoint post">扩展</span> 创建新的对话session</p>
+                <p><span class="endpoint post">扩展</span> 创建新的对话标识conversion_id</p>
                 
                 <div class="code-block">
 // 功能说明：

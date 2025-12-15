@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商导购AI助手 - 交互原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.5;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #1d1d1f;
+        }
+        
+        .header p {
+            color: #86868b;
+            font-size: 16px;
+        }
+        
+        .container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .demo-area {
+            flex: 1;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            background-color: #fbfbfd;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .chat-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .new-chat-btn {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .new-chat-btn:hover {
+            background-color: #0056cc;
+        }
+        
+        .messages-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .user .avatar {
+            background-color: #007aff;
+            color: white;
+        }
+        
+        .assistant .avatar {
+            background-color: #34c759;
+            color: white;
+        }
+        
+        .message-content {
+            max-width: 70%;
+        }
+        
+        .user .message-content {
+            align-items: flex-end;
+        }
+        
+        .message-text {
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        
+        .user .message-text {
+            background-color: #007aff;
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .assistant .message-text {
+            background-color: #f2f2f7;
+            color: #1d1d1f;
+            border-bottom-left-radius: 4px;
+        }
+        
+        /* 商品推荐区域样式 */
+        .product-recommendations {
+            margin-top: 15px;
+            width: 100%;
+        }
+        
+        .recommendation-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .recommendation-title::before {
+            content: "🎁";
+            font-size: 16px;
+        }
+        
+        .product-cards-container {
+            position: relative;
+            width: 100%;
+            overflow-x: hidden;
+            border-radius: 12px;
+            min-height: 220px;
+        }
+        
+        .product-cards-track {
+            display: flex;
+            gap: 15px;
+            transition: transform 0.3s ease;
+            padding: 5px 0;
+            min-height: 220px;
+        }
+        
+        .product-card {
+            flex: 0 0 auto;
+            width: 200px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e5e5e7;
+            transition: transform 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: cardAppear 0.5s ease forwards;
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .product-image::after {
+            content: "商品图片";
+            position: absolute;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            height: 42px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .product-reason {
+            font-size: 13px;
+            color: #515154;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            height: 36px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff3b30;
+        }
+        
+        .price::before {
+            content: "¥";
+            font-size: 14px;
+            margin-right: 2px;
+        }
+        
+        .buy-btn {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .buy-btn:hover {
+            background-color: #0056cc;
+        }
+        
+        /* 问题推荐区域样式 */
+        .question-recommendations {
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .question-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .question-title::before {
+            content: "💡";
+            font-size: 16px;
+        }
+        
+        .question-chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .question-chip {
+            background-color: #f2f2f7;
+            border: 1px solid #e5e5e7;
+            border-radius: 18px;
+            padding: 10px 18px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #1d1d1f;
+            max-width: 100%;
+            word-break: break-word;
+        }
+        
+        .question-chip:hover {
+            background-color: #007aff;
+            color: white;
+            border-color: #007aff;
+            transform: translateY(-2px);
+        }
+        
+        /* 滑动按钮 */
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.2s;
+            opacity: 0;
+        }
+        
+        .product-cards-container:hover .scroll-btn {
+            opacity: 1;
+        }
+        
+        .scroll-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .scroll-btn.left {
+            left: 10px;
+        }
+        
+        .scroll-btn.right {
+            right: 10px;
+        }
+        
+        /* 滑动指示器 */
+        .scroll-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        
+        .indicator-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #d1d1d6;
+            transition: background-color 0.3s;
+        }
+        
+        .indicator-dot.active {
+            background-color: #007aff;
+            transform: scale(1.2);
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .feedback-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #d1d1d6;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .feedback-btn.active {
+            background-color: #34c759;
+            color: white;
+            border-color: #34c759;
+        }
+        
+        .feedback-btn.dislike.active {
+            background-color: #ff3b30;
+            border-color: #ff3b30;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 6px;
+            padding: 12px 0;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #8e8e93;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        .input-area {
+            padding: 20px;
+            border-top: 1px solid #e5e5e7;
+            background-color: #fbfbfd;
+        }
+        
+        .stop-btn {
+            width: 100%;
+            background-color: #ff3b30;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .stop-btn.show {
+            display: block;
+        }
+        
+        .suggested-questions {
+            margin-bottom: 15px;
+        }
+        
+        .suggest-title {
+            font-size: 14px;
+            color: #8e8e93;
+            margin-bottom: 10px;
+        }
+        
+        .question-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid #d1d1d6;
+            border-radius: 12px;
+            font-size: 15px;
+            resize: none;
+            min-height: 52px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+        
+        .send-btn {
+            background-color: #007aff;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0 24px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            align-self: flex-end;
+            height: 52px;
+        }
+        
+        .send-btn:hover {
+            background-color: #0056cc;
+        }
+        
+        .send-btn:disabled {
+            background-color: #c7c7cc;
+            cursor: not-allowed;
+        }
+        
+        .api-docs {
+            flex: 1;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 24px;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+        
+        .api-docs h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e5e7;
+        }
+        
+        .api-section {
+            margin-bottom: 24px;
+        }
+        
+        .api-section h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #007aff;
+        }
+        
+        .api-section p {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #515154;
+        }
+        
+        .code-block {
+            background-color: #f5f5f7;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+        
+        .endpoint {
+            display: inline-block;
+            background-color: #007aff;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .endpoint.get { background-color: #34c759; }
+        .endpoint.post { background-color: #007aff; }
+        
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+        
+        .params-table th, .params-table td {
+            border: 1px solid #e5e5e7;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .params-table th {
+            background-color: #f5f5f7;
+            font-weight: 600;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status.streaming {
+            background-color: #ffcc00;
+            color: #1d1d1f;
+        }
+        
+        .status.typing {
+            background-color: #007aff;
+            color: white;
+        }
+        
+        .status.idle {
+            background-color: #34c759;
+            color: white;
+        }
+        
+        .api-note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffcc00;
+            padding: 12px 16px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #e5e5e7;
+            color: #86868b;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .api-docs {
+                max-height: 400px;
+            }
+            
+            .product-card {
+                width: 180px;
+            }
+            
+            .message-content {
+                max-width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>电商导购AI助手 - 交互原型</h1>
+        <p>商品推荐+问题推荐功能演示 | 完整交互体验</p>
+    </div>
+    
+    <div class="container">
+        <div class="demo-area">
+            <div class="chat-header">
+                <div class="chat-title">智能导购助手</div>
+                <div>
+                    <span class="status idle" id="statusIndicator">准备就绪</span>
+                    <button class="new-chat-btn" id="newChatBtn">新对话</button>
+                </div>
+            </div>
+            
+            <div class="messages-container" id="messagesContainer">
+                <!-- 消息会动态添加到这里 -->
+                <div class="message assistant">
+                    <div class="avatar">AI</div>
+                    <div class="message-content">
+                        <div class="message-text">您好！我是智能导购助手，可以为您推荐商品、解答购物问题。有什么可以帮您的吗？</div>
+                        <div class="feedback-buttons">
+                            <button class="feedback-btn" data-rating="like">👍</button>
+                            <button class="feedback-btn dislike" data-rating="dislike">👎</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <button class="stop-btn" id="stopBtn">停止回复</button>
+                
+                <div class="suggested-questions" id="suggestedQuestions">
+                    <div class="suggest-title">试试问我：</div>
+                    <div class="question-chips">
+                        <div class="question-chip">推荐运动耳机</div>
+                        <div class="question-chip">夏季连衣裙推荐</div>
+                        <div class="question-chip">适合送男友的礼物</div>
+                        <div class="question-chip">性价比高的笔记本电脑</div>
+                    </div>
+                </div>
+                
+                <div class="input-container">
+                    <textarea class="chat-input" id="chatInput" placeholder="输入您的问题，如：推荐适合跑步的运动鞋..."></textarea>
+                    <button class="send-btn" id="sendBtn" disabled>发送</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="api-docs">
+            <h2>API接口说明</h2>
+            
+            <div class="api-section">
+                <h3>1. 发送对话消息（流式）</h3>
+                <p><span class="endpoint post">POST</span> /v1/chat-messages</p>
+                <p>发送用户消息并接收AI的流式响应</p>
+                
+                <div class="code-block">
+// 请求示例
+{
+  "inputs": {},
+  "query": "用户问题",
+  "response_mode": "streaming",
+  "conversation_id": "可选，为空表示新对话",
+  "user": "用户唯一标识"
+}
+
+// 流式响应示例
+data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "created_at": 1705398420}\n\n
+                </div>
+                
+                <table class="params-table">
+                    <tr>
+                        <th>参数</th>
+                        <th>类型</th>
+                        <th>说明</th>
+                    </tr>
+                    <tr>
+                        <td>response_mode</td>
+                        <td>string</td>
+                        <td>必须设置为"streaming"</td>
+                    </tr>
+                    <tr>
+                        <td>conversation_id</td>
+                        <td>string</td>
+                        <td>对话ID，空字符串表示新对话</td>
+                    </tr>
+                    <tr>
+                        <td>user</td>
+                        <td>string</td>
+                        <td>用户唯一标识</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="api-section">
+                <h3>2. 商品推荐数据格式</h3>
+                <p><span class="endpoint post">扩展</span> 在AI回复后返回商品推荐数据</p>
+                
+                <div class="code-block">
+// 商品推荐数据示例（API扩展返回）
+{
+  "recommendations": [
+    {
+      "id": "prod_001",
+      "title": "索尼WF-1000XM4无线降噪耳机",
+      "reason": "IPX4防水，降噪效果出色，适合运动时佩戴",
+      "price": 1599,
+      "image_url": "https://example.com/image1.jpg",
+      "product_url": "https://example.com/product/001"
+    }
+  ],
+  "related_questions": [
+    "这款耳机续航时间多久？",
+    "有哪几种颜色可以选择？",
+    "适合跑步时佩戴吗？"
+  ]
+}
+                </div>
+            </div>
+            
+            <div class="api-section">
+                <h3>3. 新增功能说明</h3>
+                <p><span class="endpoint post">新增</span> 问题推荐功能</p>
+                
+                <div class="code-block">
+// 功能说明：
+1. 在商品推荐之后展示"您还可以问我这些问题"
+2. 展示3-5个相关的问题推荐
+3. 点击问题推荐自动发送消息
+4. 增强用户交互体验，引导对话继续
+
+// 交互流程：
+1. AI回复 → 2. 商品推荐 → 3. 问题推荐 → 4. 用户点击问题 → 5. 继续对话
+                </div>
+            </div>
+            
+            <div class="api-note">
+                <strong>接口说明：</strong>所有API请求都需要在Header中添加Authorization: Bearer {api_key}进行身份验证。
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>电商导购交互原型 v1.2 | 商品推荐+问题推荐完整交互 | 实际实现请参考API文档</p>
+    </div>
+    
+    <script>
+        // 商品数据
+        const productData = {
+            "运动耳机": [
+                {
+                    id: "prod_001",
+                    title: "索尼WF-1000XM4无线降噪耳机",
+                    reason: "IPX4防水等级，降噪效果出色，适合运动时佩戴，电池续航长达24小时",
+                    price: 1599,
+                    image_color: "#3498db"
+                },
+                {
+                    id: "prod_002",
+                    title: "Beats Fit Pro真无线耳机",
+                    reason: "耳翼设计稳固不易脱落，音质出众，防水防汗，苹果H1芯片",
+                    price: 1399,
+                    image_color: "#e74c3c"
+                },
+                {
+                    id: "prod_003",
+                    title: "Jabra Elite 7 Active运动耳机",
+                    reason: "超轻设计仅5.4克，IP57防尘防水，4麦克风降噪，续航30小时",
+                    price: 1199,
+                    image_color: "#2ecc71"
+                }
+            ],
+            "夏季连衣裙": [
+                {
+                    id: "prod_101",
+                    title: "法式复古碎花连衣裙",
+                    reason: "100%棉质面料，透气舒适，收腰设计显瘦，适合多种场合",
+                    price: 299,
+                    image_color: "#ff9ff3"
+                },
+                {
+                    id: "prod_102",
+                    title: "简约纯色衬衫连衣裙",
+                    reason: "职场休闲两相宜，垂感面料，经典腰带设计，优雅大方",
+                    price: 359,
+                    image_color: "#54a0ff"
+                },
+                {
+                    id: "prod_103",
+                    title: "波西米亚长款沙滩裙",
+                    reason: "雪纺材质轻盈飘逸，V领设计，适合度假旅行拍照",
+                    price: 269,
+                    image_color: "#00d2d3"
+                }
+            ],
+            "男友礼物": [
+                {
+                    id: "prod_201",
+                    title: "Apple Watch Series 8",
+                    reason: "健康监测全面，运动功能丰富，科技感十足，实用又时尚",
+                    price: 2999,
+                    image_color: "#1d1d1f"
+                },
+                {
+                    id: "prod_202",
+                    title: "Bose QuietComfort 45耳机",
+                    reason: "顶级降噪效果，音质出色，适合通勤和旅行，提升生活品质",
+                    price: 2299,
+                    image_color: "#222f3e"
+                },
+                {
+                    id: "prod_203",
+                    title: "飞利浦9000系列剃须刀",
+                    reason: "SkinIQ技术，智能感应，干湿两用，送礼体面又实用",
+                    price: 1499,
+                    image_color: "#0066cc"
+                }
+            ],
+            "笔记本电脑": [
+                {
+                    id: "prod_301",
+                    title: "联想小新Pro14 2023",
+                    reason: "2.8K 120Hz高刷屏，RTX3050显卡，性价比极高的全能本",
+                    price: 6499,
+                    image_color: "#2e86de"
+                },
+                {
+                    id: "prod_302",
+                    title: "MacBook Air M2芯片",
+                    reason: "超薄设计，M2芯片性能强劲，续航长达18小时，适合办公创作",
+                    price: 8999,
+                    image_color: "#a4b0be"
+                },
+                {
+                    id: "prod_303",
+                    title: "戴尔灵越14 Plus",
+                    reason: "12代i7处理器，RTX3050Ti，设计轻薄性能强，适合学生党",
+                    price: 7299,
+                    image_color: "#70a1ff"
+                }
+            ]
+        };
+        
+        // 问题推荐数据（按商品类别）
+        const questionData = {
+            "运动耳机": [
+                "这款耳机的续航时间有多长？",
+                "防水等级IPX4是什么意思？",
+                "适合跑步时佩戴吗？",
+                "降噪效果怎么样？",
+                "有哪几种颜色可以选择？",
+                "充电需要多长时间？",
+                "支持无线充电吗？"
+            ],
+            "夏季连衣裙": [
+                "这款连衣裙的材质是什么？",
+                "适合什么场合穿着？",
+                "尺码标准吗？需要买大一码吗？",
+                "容易起皱吗？",
+                "适合身高160cm的人穿吗？",
+                "有没有其他颜色可选？",
+                "洗涤时需要注意什么？"
+            ],
+            "男友礼物": [
+                "这款礼物有礼盒包装吗？",
+                "适合送给30岁的男生吗？",
+                "保修期是多久？",
+                "有没有其他款式推荐？",
+                "送货需要多长时间？",
+                "支持刻字或定制吗？",
+                "价格近期会有优惠吗？"
+            ],
+            "笔记本电脑": [
+                "这款笔记本适合编程吗？",
+                "能流畅运行Photoshop吗？",
+                "电池续航实际使用多久？",
+                "支持扩展内存吗？",
+                "屏幕色彩显示准确吗？",
+                "散热效果怎么样？",
+                "有学生优惠吗？"
+            ],
+            "default": [
+                "还有其他推荐吗？",
+                "这些商品有优惠活动吗？",
+                "送货上门需要多长时间？",
+                "支持7天无理由退货吗？",
+                "怎么查看商品详情？",
+                "如何联系客服？",
+                "有用户评价可以参考吗？"
+            ]
+        };
+        
+        // 状态管理
+        const state = {
+            isTyping: false,
+            currentTaskId: null,
+            conversationId: '',
+            messages: [],
+            streamingInterval: null
+        };
+        
+        // DOM元素
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const newChatBtn = document.getElementById('newChatBtn');
+        const messagesContainer = document.getElementById('messagesContainer');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const suggestedQuestions = document.getElementById('suggestedQuestions');
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置初始状态
+            updateUIState();
+            
+            // 输入框事件
+            chatInput.addEventListener('input', function() {
+                sendBtn.disabled = !this.value.trim();
+            });
+            
+            // 发送按钮事件
+            sendBtn.addEventListener('click', sendMessage);
+            
+            // 回车发送（Ctrl+Enter 换行）
+            chatInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey && !e.ctrlKey) {
+                    e.preventDefault();
+                    if (!state.isTyping && this.value.trim()) {
+                        sendMessage();
+                    }
+                }
+            });
+            
+            // 停止按钮事件
+            stopBtn.addEventListener('click', stopResponse);
+            
+            // 新对话按钮事件
+            newChatBtn.addEventListener('click', startNewChat);
+            
+            // 初始推荐问题点击事件
+            document.querySelectorAll('.question-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    const question = this.textContent;
+                    chatInput.value = question;
+                    sendBtn.disabled = false;
+                    sendMessage();
+                });
+            });
+            
+            // 反馈按钮事件
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.feedback-btn')) {
+                    const feedbackBtn = e.target.closest('.feedback-btn');
+                    const rating = feedbackBtn.getAttribute('data-rating');
+                    const messageId = 'demo-message-123';
+                    
+                    // 切换选中状态
+                    const isActive = feedbackBtn.classList.contains('active');
+                    const allBtns = feedbackBtn.parentElement.querySelectorAll('.feedback-btn');
+                    allBtns.forEach(btn => btn.classList.remove('active'));
+                    
+                    if (!isActive) {
+                        feedbackBtn.classList.add('active');
+                        showNotification(`已${rating === 'like' ? '点赞' : '点踩'}该回复`);
+                    } else {
+                        showNotification('已取消反馈');
+                    }
+                }
+            });
+        });
+        
+        // 创建商品卡片
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image" style="background-color: ${product.image_color}">
+                    <!-- 实际开发中这里应该是商品图片 -->
+                </div>
+                <div class="product-info">
+                    <div class="product-title">${product.title}</div>
+                    <div class="product-reason">${product.reason}</div>
+                    <div class="product-price">
+                        <div class="price">${product.price}</div>
+                        <button class="buy-btn">立即购买</button>
+                    </div>
+                </div>
+            `;
+            
+            // 添加购买按钮点击事件
+            const buyBtn = card.querySelector('.buy-btn');
+            buyBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showNotification(`已跳转到商品 "${product.title}" 的购买页面`);
+            });
+            
+            return card;
+        }
+        
+        // 创建问题推荐芯片
+        function createQuestionChip(question) {
+            const chip = document.createElement('div');
+            chip.className = 'question-chip';
+            chip.textContent = question;
+            chip.addEventListener('click', function() {
+                // 点击问题芯片，自动发送消息
+                chatInput.value = question;
+                sendBtn.disabled = false;
+                sendMessage();
+            });
+            return chip;
+        }
+        
+        // 初始化商品轮播滑动功能
+        function initProductCarousel(track, productCount) {
+            const container = track.parentElement;
+            const leftBtn = container.querySelector('.scroll-btn.left');
+            const rightBtn = container.querySelector('.scroll-btn.right');
+            const indicatorDots = container.nextElementSibling.querySelectorAll('.indicator-dot');
+            
+            const cardWidth = 215;
+            const containerWidth = container.offsetWidth;
+            const maxVisibleCards = Math.floor(containerWidth / cardWidth);
+            let currentPosition = 0;
+            let currentIndex = 0;
+            const maxIndex = Math.max(0, productCount - maxVisibleCards);
+            
+            // 更新指示器
+            function updateIndicator() {
+                indicatorDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // 滑动到指定位置
+            function scrollToPosition(position) {
+                track.style.transform = `translateX(-${position}px)`;
+            }
+            
+            // 滑动到下一张
+            function scrollNext() {
+                if (currentIndex < maxIndex) {
+                    currentPosition += cardWidth;
+                    currentIndex++;
+                    scrollToPosition(currentPosition);
+                    updateIndicator();
+                }
+            }
+            
+            // 滑动到上一张
+            function scrollPrev() {
+                if (currentIndex > 0) {
+                    currentPosition -= cardWidth;
+                    currentIndex--;
+                    scrollToPosition(currentPosition);
+                    updateIndicator();
+                }
+            }
+            
+            // 左右按钮事件
+            leftBtn.addEventListener('click', scrollPrev);
+            rightBtn.addEventListener('click', scrollNext);
+            
+            // 触摸滑动支持
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+            
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                currentX = startX;
+                isDragging = true;
+            });
+            
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentX = e.touches[0].clientX;
+                const diff = startX - currentX;
+                
+                // 跟随手指移动
+                track.style.transform = `translateX(-${currentPosition + diff}px)`;
+            });
+            
+            track.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const diff = startX - currentX;
+                const threshold = 50;
+                
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        scrollNext();
+                    } else {
+                        scrollPrev();
+                    }
+                } else {
+                    scrollToPosition(currentPosition);
+                }
+            });
+            
+            // 鼠标拖动支持
+            track.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                currentX = startX;
+                isDragging = true;
+                track.style.cursor = 'grabbing';
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                currentX = e.clientX;
+                const diff = startX - currentX;
+                
+                track.style.transform = `translateX(-${currentPosition + diff}px)`;
+            });
+            
+            document.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.style.cursor = 'grab';
+                
+                const diff = startX - currentX;
+                const threshold = 50;
+                
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        scrollNext();
+                    } else {
+                        scrollPrev();
+                    }
+                } else {
+                    scrollToPosition(currentPosition);
+                }
+            });
+            
+            // 初始更新指示器
+            updateIndicator();
+            
+            // 如果商品数量小于等于可见数量，隐藏滑动按钮
+            if (productCount <= maxVisibleCards) {
+                leftBtn.style.display = 'none';
+                rightBtn.style.display = 'none';
+            }
+        }
+        
+        // 发送消息
+        function sendMessage() {
+            const query = chatInput.value.trim();
+            if (!query || state.isTyping) return;
+            
+            // 添加用户消息到界面
+            addMessage(query, 'user');
+            
+            // 清空输入框
+            chatInput.value = '';
+            sendBtn.disabled = true;
+            
+            // 显示AI思考状态
+            state.isTyping = true;
+            state.currentTaskId = 'task-' + Date.now();
+            
+            // 添加AI消息占位
+            const aiMessageId = addMessage('', 'assistant', true);
+            
+            // 更新UI状态
+            updateUIState();
+            
+            // 模拟API调用
+            simulateAPICall(query, aiMessageId);
+            
+            // 隐藏初始推荐问题（只在第一次对话后隐藏）
+            if (state.messages.length === 2) {
+                suggestedQuestions.style.display = 'none';
+            }
+        }
+        
+        // 模拟API调用和流式响应
+        function simulateAPICall(query, aiMessageId) {
+            // 模拟网络延迟
+            setTimeout(() => {
+                // 检测查询类型，确定是否显示商品推荐
+                let queryType = "default";
+                let showProducts = false;
+                let productCategory = "";
+                
+                if (query.includes("耳机") || query.includes("耳麦") || query.includes("运动耳机")) {
+                    queryType = "运动耳机";
+                    showProducts = true;
+                    productCategory = "运动耳机";
+                } else if (query.includes("连衣裙") || query.includes("裙子") || query.includes("夏季")) {
+                    queryType = "夏季连衣裙";
+                    showProducts = true;
+                    productCategory = "夏季连衣裙";
+                } else if (query.includes("礼物") || query.includes("送礼") || query.includes("男友")) {
+                    queryType = "男友礼物";
+                    showProducts = true;
+                    productCategory = "男友礼物";
+                } else if (query.includes("笔记本") || query.includes("电脑") || query.includes("性价比")) {
+                    queryType = "笔记本电脑";
+                    showProducts = true;
+                    productCategory = "笔记本电脑";
+                }
+                
+                // 模拟流式响应内容
+                const responses = {
+                    "运动耳机": [
+                        "为您推荐几款适合运动时佩戴的无线耳机，它们具有防水防汗、佩戴稳固的特点："
+                    ],
+                    "夏季连衣裙": [
+                        "为您推荐几款适合夏季穿着的连衣裙，材质透气，设计时尚："
+                    ],
+                    "男友礼物": [
+                        "为您推荐几款适合送给男友的礼物，既实用又有面子："
+                    ],
+                    "笔记本电脑": [
+                        "为您推荐几款性价比高的笔记本电脑，满足不同需求："
+                    ],
+                    "default": [
+                        "根据您的需求，我为您整理了以下信息："
+                    ]
+                };
+                
+                // 根据问题选择响应内容
+                let responseParts = responses[queryType] || responses["default"];
+                
+                // 开始流式显示
+                let currentPartIndex = 0;
+                let currentCharIndex = 0;
+                const aiMessageElement = document.getElementById(aiMessageId);
+                
+                state.streamingInterval = setInterval(() => {
+                    if (currentPartIndex >= responseParts.length) {
+                        // 流式响应完成
+                        clearInterval(state.streamingInterval);
+                        
+                        // 如果需要显示商品推荐，添加到消息中
+                        if (showProducts && productCategory) {
+                            setTimeout(() => {
+                                addProductRecommendations(aiMessageId, productCategory);
+                            }, 300);
+                        } else {
+                            // 如果没有商品推荐，直接显示问题推荐
+                            setTimeout(() => {
+                                addQuestionRecommendations(aiMessageId, productCategory || "default");
+                            }, 300);
+                        }
+                        
+                        return;
+                    }
+                    
+                    const currentPart = responseParts[currentPartIndex];
+                    
+                    if (currentCharIndex < currentPart.length) {
+                        // 逐字添加
+                        aiMessageElement.textContent += currentPart[currentCharIndex];
+                        currentCharIndex++;
+                        
+                        // 滚动到底部
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    } else {
+                        // 当前部分完成，转到下一部分
+                        currentPartIndex++;
+                        currentCharIndex = 0;
+                    }
+                }, 30);
+            }, 500);
+        }
+        
+        // 添加商品推荐到消息
+        function addProductRecommendations(messageId, category) {
+            const messageElement = document.getElementById(`message-${messageId}`);
+            const messageContent = messageElement.querySelector('.message-content');
+            
+            // 获取商品数据
+            const products = productData[category] || productData["运动耳机"];
+            
+            // 创建商品推荐区域
+            const recommendationsDiv = document.createElement('div');
+            recommendationsDiv.className = 'product-recommendations';
+            recommendationsDiv.innerHTML = `
+                <div class="recommendation-title">为您精选${category}推荐</div>
+                <div class="product-cards-container">
+                    <button class="scroll-btn left">‹</button>
+                    <button class="scroll-btn right">›</button>
+                    <div class="product-cards-track">
+                        <!-- 商品卡片会动态添加 -->
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <!-- 指示器点会根据商品数量动态添加 -->
+                </div>
+            `;
+            
+            const productCardsTrack = recommendationsDiv.querySelector('.product-cards-track');
+            const scrollIndicator = recommendationsDiv.querySelector('.scroll-indicator');
+            
+            // 添加商品卡片
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                productCardsTrack.appendChild(productCard);
+            });
+            
+            // 添加滑动指示器
+            const dotCount = Math.min(products.length, 5);
+            for (let i = 0; i < dotCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'indicator-dot' + (i === 0 ? ' active' : '');
+                scrollIndicator.appendChild(dot);
+            }
+            
+            // 将商品推荐区域添加到消息内容中
+            const feedbackButtons = messageContent.querySelector('.feedback-buttons');
+            if (!feedbackButtons) {
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback-buttons';
+                feedbackDiv.innerHTML = `
+                    <button class="feedback-btn" data-rating="like">👍</button>
+                    <button class="feedback-btn dislike" data-rating="dislike">👎</button>
+                `;
+                messageContent.appendChild(recommendationsDiv);
+                messageContent.appendChild(feedbackDiv);
+            } else {
+                messageContent.insertBefore(recommendationsDiv, feedbackButtons);
+            }
+            
+            // 初始化滑动功能
+            setTimeout(() => {
+                initProductCarousel(productCardsTrack, products.length);
+            }, 100);
+            
+            // 更新消息内容，移除流式状态
+            const aiMessageElement = document.getElementById(messageId);
+            if (aiMessageElement) {
+                aiMessageElement.style.fontStyle = 'normal';
+            }
+            
+            // 在商品推荐之后添加问题推荐
+            setTimeout(() => {
+                addQuestionRecommendations(messageId, category);
+            }, 500);
+        }
+        
+        // 添加问题推荐到消息
+        function addQuestionRecommendations(messageId, category) {
+            const messageElement = document.getElementById(`message-${messageId}`);
+            if (!messageElement) return;
+            
+            const messageContent = messageElement.querySelector('.message-content');
+            if (!messageContent) return;
+            
+            // 获取问题数据
+            const questions = questionData[category] || questionData["default"];
+            
+            // 随机选择3-5个问题
+            const shuffledQuestions = [...questions].sort(() => 0.5 - Math.random());
+            const selectedQuestions = shuffledQuestions.slice(0, Math.min(5, questions.length));
+            
+            // 创建问题推荐区域
+            const questionRecommendationsDiv = document.createElement('div');
+            questionRecommendationsDiv.className = 'question-recommendations';
+            questionRecommendationsDiv.innerHTML = `
+                <div class="question-title">您还可以问我这些问题：</div>
+                <div class="question-chips-container">
+                    <!-- 问题芯片会动态添加 -->
+                </div>
+            `;
+            
+            const questionChipsContainer = questionRecommendationsDiv.querySelector('.question-chips-container');
+            
+            // 添加问题芯片
+            selectedQuestions.forEach(question => {
+                const questionChip = createQuestionChip(question);
+                questionChipsContainer.appendChild(questionChip);
+            });
+            
+            // 将问题推荐区域添加到消息内容中（在反馈按钮之前）
+            const feedbackButtons = messageContent.querySelector('.feedback-buttons');
+            if (feedbackButtons) {
+                messageContent.insertBefore(questionRecommendationsDiv, feedbackButtons);
+            } else {
+                messageContent.appendChild(questionRecommendationsDiv);
+            }
+            
+            // 更新状态
+            state.isTyping = false;
+            state.currentTaskId = null;
+            updateUIState();
+            
+            // 滚动到底部
+            setTimeout(() => {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 200);
+        }
+        
+        // 停止回复
+        function stopResponse() {
+            if (state.streamingInterval) {
+                clearInterval(state.streamingInterval);
+            }
+            
+            state.isTyping = false;
+            state.currentTaskId = null;
+            
+            showNotification('已停止AI回复');
+            updateUIState();
+        }
+        
+        // 开始新对话
+        function startNewChat() {
+            if (state.isTyping) {
+                if (!confirm('AI正在思考中，确定要开始新对话吗？')) {
+                    return;
+                }
+                stopResponse();
+            }
+            
+            // 清空消息容器（保留第一条欢迎消息）
+            const messages = messagesContainer.querySelectorAll('.message');
+            for (let i = 1; i < messages.length; i++) {
+                messages[i].remove();
+            }
+            
+            // 重置状态
+            state.conversationId = '';
+            state.messages = [];
+            
+            // 显示初始推荐问题
+            suggestedQuestions.style.display = 'block';
+            
+            // 显示通知
+            showNotification('已开始新对话');
+            
+            // 添加欢迎消息（如果已删除）
+            if (messages.length === 0) {
+                addMessage('您好！我是智能导购助手，可以为您推荐商品、解答购物问题。有什么可以帮您的吗？', 'assistant');
+            }
+        }
+        
+        // 添加消息到界面
+        function addMessage(content, role, isStreaming = false) {
+            const messageId = 'msg-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            messageDiv.id = `message-${messageId}`;
+            
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'avatar';
+            avatarDiv.textContent = role === 'user' ? '您' : 'AI';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            
+            const textDiv = document.createElement('div');
+            textDiv.className = 'message-text';
+            textDiv.id = isStreaming ? messageId : undefined;
+            
+            if (!isStreaming) {
+                textDiv.textContent = content;
+            } else {
+                textDiv.style.fontStyle = 'italic';
+                textDiv.style.color = '#666';
+            }
+            
+            contentDiv.appendChild(textDiv);
+            
+            // 只有AI消息显示反馈按钮
+            if (role === 'assistant' && !isStreaming) {
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback-buttons';
+                feedbackDiv.innerHTML = `
+                    <button class="feedback-btn" data-rating="like">👍</button>
+                    <button class="feedback-btn dislike" data-rating="dislike">👎</button>
+                `;
+                contentDiv.appendChild(feedbackDiv);
+            }
+            
+            messageDiv.appendChild(avatarDiv);
+            messageDiv.appendChild(contentDiv);
+            
+            messagesContainer.appendChild(messageDiv);
+            
+            // 滚动到底部
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // 添加到状态
+            state.messages.push({
+                id: messageId,
+                role: role,
+                content: content,
+                isStreaming: isStreaming
+            });
+            
+            return messageId;
+        }
+        
+        // 更新UI状态
+        function updateUIState() {
+            // 更新状态指示器
+            if (state.isTyping) {
+                statusIndicator.textContent = 'AI思考中...';
+                statusIndicator.className = 'status typing';
+                typingIndicator.style.display = 'flex';
+            } else {
+                statusIndicator.textContent = '准备就绪';
+                statusIndicator.className = 'status idle';
+                typingIndicator.style.display = 'none';
+            }
+            
+            // 显示/隐藏停止按钮
+            if (state.isTyping) {
+                stopBtn.classList.add('show');
+            } else {
+                stopBtn.classList.remove('show');
+            }
+            
+            // 更新发送按钮状态
+            sendBtn.disabled = state.isTyping || !chatInput.value.trim();
+        }
+        
+        // 显示通知
+        function showNotification(message) {
+            // 创建通知元素
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #007aff;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+                animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+                animation-fill-mode: forwards;
+                font-size: 14px;
+                max-width: 300px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // 3秒后移除
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 3000);
+            
+            // 添加动画样式
+            if (!document.querySelector('#notification-styles')) {
+                const style = document.createElement('style');
+                style.id = 'notification-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+    </script>
+</body>
+</html>

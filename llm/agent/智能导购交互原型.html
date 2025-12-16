@@ -773,10 +773,35 @@
         
         <div class="api-docs">
             <h2>API接口说明</h2>
+			
+			
+			<div class="api-section">
+                <h3>1. 开场白</h3>
+                <p><span class="endpoint post">POST</span> /v1/opening_statement</p>
+				<p>用户进入对话界面开场白/欢迎语</p>
+                
+                <div class="code-block">
+// 功能说明：
+1. 对话框展示获取的开场白文本，如："你好呀，我是您的三福导购小帮手，专注于帮助您快速找到心仪的商品，同时提供个性化的推荐和轻松愉快的交流。无论您是在寻找特定产品，还是需要一些闲逛购物的建议，我都会努力提供最相关和实用的信息。不论您有什么要求或问题，都欢迎随时提问！"
+                </div>
+            </div>
+			
+			
+			<div class="api-section">
+                <h3>2. 试试问</h3>
+                <p><span class="endpoint post">POST</span> /v1/try_to_ask</p>
+				<p>用户进入对话界面提示“试试问我”</p>
+                
+                <div class="code-block">
+// 功能说明：
+1. 结合用户行为序列、个性化偏好等信息，推荐用户可能感兴趣的问题，展示“试试问我”，如：["海边度假", "牛仔裤", "圣诞礼物"]
+                </div>
+            </div>
+			
             
             <div class="api-section">
-                <h3>1. 发送对话消息（流式）</h3>
-                <p><span class="endpoint post">POST</span> /v1/chat-messages</p>
+                <h3>3. 发送对话消息（流式）</h3>
+                <p><span class="endpoint post">POST</span> /v1/chat_messages</p>
                 <p>发送用户消息并接收AI的流式响应</p>
                 
                 <div class="code-block">
@@ -818,7 +843,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             </div>
             
             <div class="api-section">
-                <h3>2. 商品推荐</h3>
+                <h3>4. 商品推荐</h3>
                 <p><span class="endpoint post">扩展</span> 在AI回复后返回商品推荐数据</p>
                 
                 <div class="code-block">
@@ -844,7 +869,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             </div>
             
             <div class="api-section">
-                <h3>3. 问题推荐</h3>
+                <h3>5. 下一轮问题推荐</h3>
                 <p><span class="endpoint post">扩展</span> 在AI回复后展示还可以的推荐问题</p>
                 
                 <div class="code-block">
@@ -860,7 +885,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
             </div>
 			
 			<div class="api-section">
-                <h3>4. 停止回复</h3>
+                <h3>6. 停止回复</h3>
                 <p><span class="endpoint post">POST</span> /chat-messages/:task_id/stop</p>
 				<p>在AI回复时停止生成</p>
                 
@@ -872,7 +897,7 @@ data: {"event": "message", "task_id": "xxx", "id": "yyy", "answer": "Hi", "creat
 			
 			
 			<div class="api-section">
-                <h3>5. 新对话</h3>
+                <h3>7. 新对话</h3>
                 <p><span class="endpoint post">扩展</span> 创建新的对话标识conversion_id</p>
                 
                 <div class="code-block">

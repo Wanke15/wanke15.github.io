@@ -166,7 +166,7 @@
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-85" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="对话历史" vertex="1">
           <mxGeometry height="50" width="110" x="960" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-86" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="商品查询" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-86" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="商品详情" vertex="1">
           <mxGeometry height="50" width="110" x="654" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-87" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="消息反馈" vertex="1">

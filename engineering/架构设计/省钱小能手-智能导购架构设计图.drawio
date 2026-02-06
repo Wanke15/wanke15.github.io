@@ -161,16 +161,16 @@
           <mxGeometry height="70" width="650" x="464" y="370" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-84" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="流式对话" vertex="1">
-          <mxGeometry height="50" width="110" x="504" y="380" as="geometry" />
+          <mxGeometry height="50" width="97" x="618" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-85" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="对话历史" vertex="1">
-          <mxGeometry height="50" width="110" x="960" y="380" as="geometry" />
+          <mxGeometry height="50" width="93" x="1010" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-86" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="商品详情" vertex="1">
-          <mxGeometry height="50" width="110" x="654" y="380" as="geometry" />
+          <mxGeometry height="50" width="97" x="746" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-87" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="消息反馈" vertex="1">
-          <mxGeometry height="50" width="110" x="805" y="380" as="geometry" />
+          <mxGeometry height="50" width="98" x="876" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-88" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#67E3E3;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;LangSmith / LangFuse&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;可观测性&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="40" width="283.5" x="496.5" y="780" as="geometry" />
@@ -183,6 +183,9 @@
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-91" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="评论数据" vertex="1">
           <mxGeometry height="50" width="81" x="1010" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-92" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="开场白" vertex="1">
+          <mxGeometry height="50" width="97" x="490" y="380" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

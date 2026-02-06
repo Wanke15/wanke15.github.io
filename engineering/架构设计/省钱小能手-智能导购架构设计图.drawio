@@ -163,13 +163,13 @@
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-84" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="流式对话" vertex="1">
           <mxGeometry height="50" width="110" x="504" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-85" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="猜你想问" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-85" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="对话历史" vertex="1">
           <mxGeometry height="50" width="110" x="960" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-86" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="优惠试算" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-86" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="商品查询" vertex="1">
           <mxGeometry height="50" width="110" x="654" y="380" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-87" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="凑单推荐" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-87" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="消息反馈" vertex="1">
           <mxGeometry height="50" width="110" x="805" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-88" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#67E3E3;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;LangSmith / LangFuse&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;可观测性&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">

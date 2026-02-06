@@ -161,7 +161,7 @@
           <mxGeometry height="70" width="650" x="464" y="370" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-84" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="流式对话" vertex="1">
-          <mxGeometry height="50" width="97" x="607.5" y="380" as="geometry" />
+          <mxGeometry height="50" width="97" x="611" y="380" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-85" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="对话历史" vertex="1">
           <mxGeometry height="50" width="93" x="998" y="380" as="geometry" />

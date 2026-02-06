@@ -37,7 +37,7 @@
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EDFFFF;strokeColor=#000000;dashed=1;" value="" vertex="1">
           <mxGeometry height="70" width="650" x="461.5" y="1012" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="Redis" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="大数据计算" vertex="1">
           <mxGeometry height="50" width="110" x="650.5" y="1022" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;应用层&lt;/font&gt;" vertex="1">
@@ -145,13 +145,13 @@
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-72" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=center;fillColor=#67E3E3;fontColor=#ffffff;strokeColor=#001DBC;" value="&lt;div style=&quot;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Dify / LangGraph&lt;br&gt;框架&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="40" width="580" x="499" y="470" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-73" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="大数据计算" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-73" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="作业调度" vertex="1">
           <mxGeometry height="50" width="110" x="802.5" y="1022" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-74" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="服务运维" vertex="1">
           <mxGeometry height="50" width="110" x="956.5" y="1022" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-75" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="Oracle" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-75" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="存储DB" vertex="1">
           <mxGeometry height="50" width="110" x="497.5" y="1022" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-82" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;服务层&lt;/font&gt;" vertex="1">

@@ -109,13 +109,13 @@
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-56" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;摘要与压缩&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="130" x="717" y="656" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-57" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font color=&quot;#000000&quot;&gt;向量检索&lt;/font&gt;" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-57" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font color=&quot;#000000&quot;&gt;商品向量检索&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="130" x="938" y="608" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-58" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font color=&quot;#000000&quot;&gt;推荐算法&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="130" x="938" y="647" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-59" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font color=&quot;#000000&quot;&gt;穿搭试衣&lt;/font&gt;" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-59" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;font color=&quot;#000000&quot;&gt;库存查询&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="130" x="938" y="724" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-60" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;fontColor=#ffffff;strokeColor=#006EAF;" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;评论总结&lt;/span&gt;" vertex="1">

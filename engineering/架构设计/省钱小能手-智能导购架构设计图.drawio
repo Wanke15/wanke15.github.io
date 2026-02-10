@@ -38,16 +38,16 @@
           <mxGeometry height="70" width="650" x="464" y="210" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="省钱小能手" vertex="1">
-          <mxGeometry height="50" width="110" x="507" y="219.37" as="geometry" />
+          <mxGeometry height="50" width="110" x="481" y="219.37" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="三方电商平台" vertex="1">
-          <mxGeometry height="50" width="110" x="657" y="219.37" as="geometry" />
+          <mxGeometry height="50" width="110" x="738" y="220" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="线下智能屏" vertex="1">
-          <mxGeometry height="50" width="110" x="958" y="220.62" as="geometry" />
+          <mxGeometry height="50" width="110" x="993.88" y="218.62" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="私域运营" vertex="1">
-          <mxGeometry height="50" width="110" x="809" y="220.62" as="geometry" />
+          <mxGeometry height="50" width="110" x="865" y="219.37" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#7ea6e0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;技术支撑&lt;/font&gt;" vertex="1">
           <mxGeometry height="220" width="140" x="1128.5" y="930" as="geometry" />
@@ -216,6 +216,9 @@
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-111" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8BF7F7;" value="DB存储" vertex="1">
           <mxGeometry height="50" width="110" x="862" y="1091.5" as="geometry" />
+        </mxCell>
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-112" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="AI万能搜" vertex="1">
+          <mxGeometry height="50" width="110" x="610" y="219.62" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

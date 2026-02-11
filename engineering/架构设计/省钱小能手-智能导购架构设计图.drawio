@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.7">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.8">
   <diagram name="第 1 页" id="U5AbQeVYN5jGDOMSLtP7">
-    <mxGraphModel dx="1678" dy="954" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+    <mxGraphModel dx="1426" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -38,16 +38,16 @@
           <mxGeometry height="70" width="650" x="464" y="210" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="省钱小能手" vertex="1">
-          <mxGeometry height="50" width="110" x="481" y="219.37" as="geometry" />
+          <mxGeometry height="50.63" width="79" x="479" y="222.44" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="三方电商平台" vertex="1">
-          <mxGeometry height="50" width="110" x="738" y="220" as="geometry" />
+          <mxGeometry height="51.38" width="80" x="796.19" y="221.69" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="线下智能屏" vertex="1">
-          <mxGeometry height="50" width="110" x="993.88" y="218.62" as="geometry" />
+          <mxGeometry height="51.38" width="93.88" x="1010" y="221.62" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="私域运营" vertex="1">
-          <mxGeometry height="50" width="110" x="865" y="219.37" as="geometry" />
+          <mxGeometry height="50.63" width="85" x="901.88" y="221.69" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;gradientColor=#7ea6e0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;技术支撑&lt;/font&gt;" vertex="1">
           <mxGeometry height="220" width="140" x="1128.5" y="930" as="geometry" />
@@ -218,7 +218,10 @@
           <mxGeometry height="50" width="110" x="862" y="1091.5" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-112" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="AI万能搜" vertex="1">
-          <mxGeometry height="50" width="110" x="610" y="219.62" as="geometry" />
+          <mxGeometry height="51.38" width="80" x="584.25" y="221.69" as="geometry" />
+        </mxCell>
+        <mxCell id="H9SDym32wUEqGa5gQlBl-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="AI客服" vertex="1">
+          <mxGeometry height="51.38" width="80" x="689" y="221.69" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

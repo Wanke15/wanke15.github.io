@@ -208,7 +208,7 @@
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-106" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="用户画像" vertex="1">
           <mxGeometry height="30" width="64.25" x="1103.88" y="1020" as="geometry" />
         </mxCell>
-        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-109" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="历史订单" vertex="1">
+        <mxCell id="fmJDlAGw6fVC1p9Nz6aM-109" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="行为数据" vertex="1">
           <mxGeometry height="30" width="64.25" x="697.25" y="980" as="geometry" />
         </mxCell>
         <mxCell id="fmJDlAGw6fVC1p9Nz6aM-110" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#98F5E1;" value="库存" vertex="1">

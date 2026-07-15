@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导购助手记忆架构 - 优化布局</title>
+    <style>
+        body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .container { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); max-width: 95vw; overflow: auto; }
+        svg { display: block; width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<div class="container">
+<svg viewBox="0 0 1100 1250" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6"/>
+        </marker>
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981"/>
+        </marker>
+        <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b5cf6"/>
+        </marker>
+        <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f97316"/>
+        </marker>
+        <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#ef4444"/>
+        </marker>
+        <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6"/>
+        </marker>
+        
+        <!-- 阴影滤镜 -->
+        <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+        </filter>
+        <filter id="shadow-group" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.04"/>
+        </filter>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="1100" height="1250" fill="#f8fafc" rx="12"/>
+
+    <!-- 标题 -->
+    <text x="550" y="50" font-size="28" font-weight="bold" fill="#0f172a" text-anchor="middle" dominant-baseline="middle">导购助手记忆架构</text>
+    <text x="550" y="85" font-size="15" fill="#475569" text-anchor="middle" dominant-baseline="middle">对话初始注入用户画像+近期行为，后续回复个性化且对用户行为有感知；场景搜索聚焦于搜索推荐路径</text>
+
+    <!-- ================= 层分组框 ================= -->
+    
+    <!-- 1. 写入侧边栏 -->
+    <rect x="25" y="120" width="250" height="155" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6,4" rx="12" filter="url(#shadow-group)"/>
+    <rect x="25" y="120" width="250" height="36" fill="#f1f5f9" rx="12"/>
+    <text x="150" y="138" font-size="14" font-weight="bold" fill="#475569" text-anchor="middle" dominant-baseline="middle">记忆写入与维护</text>
+    <text x="150" y="156" font-size="10" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">对话缓冲回写记忆库</text>
+
+    <!-- 2. 存储层 -->
+    <rect x="325" y="120" width="620" height="160" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6,4" rx="12" filter="url(#shadow-group)"/>
+    <rect x="325" y="120" width="620" height="32" fill="#f1f5f9" rx="12"/>
+    <text x="635" y="136" font-size="14" font-weight="bold" fill="#475569" text-anchor="middle" dominant-baseline="middle">存储层</text>
+
+    <!-- 3. 处理层 -->
+    <rect x="325" y="320" width="620" height="340" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6,4" rx="12" filter="url(#shadow-group)"/>
+    <rect x="325" y="320" width="620" height="32" fill="#f1f5f9" rx="12"/>
+    <text x="635" y="336" font-size="14" font-weight="bold" fill="#475569" text-anchor="middle" dominant-baseline="middle">在线推理与路由</text>
+
+    <!-- 4. 执行层 -->
+    <rect x="25" y="700" width="1050" height="510" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6,4" rx="12" filter="url(#shadow-group)"/>
+    <rect x="25" y="700" width="1050" height="32" fill="#f1f5f9" rx="12"/>
+    <text x="550" y="716" font-size="14" font-weight="bold" fill="#475569" text-anchor="middle" dominant-baseline="middle">执行与搜索路径</text>
+
+    <!-- ================= 节点 ================= -->
+
+    <!-- 写入节点 -->
+    <g filter="url(#shadow)">
+        <rect x="50" y="175" width="200" height="65" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="8"/>
+        <foreignObject x="50" y="175" width="200" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#1e40af;">对话缓冲更新</div>
+                <div style="font-size:11px;color:#3b82f6;margin-top:2px;">每轮 append → 满5轮/1h flush</div>
+            </div>
+        </foreignObject>
+    </g>
+
+    <!-- 存储节点 -->
+    <g filter="url(#shadow)">
+        <rect x="390" y="175" width="220" height="65" fill="#d1fae5" stroke="#10b981" stroke-width="2" rx="8"/>
+        <foreignObject x="390" y="175" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#065f46;">百炼记忆库</div>
+                <div style="font-size:11px;color:#10b981;margin-top:2px;">用户画像 + 记忆片段（写入/读出）</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="670" y="175" width="220" height="65" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2" rx="8"/>
+        <foreignObject x="670" y="175" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#4c1d95;">CRM 画像</div>
+                <div style="font-size:11px;color:#8b5cf6;margin-top:2px;">身份6字段（权威）</div>
+            </div>
+        </foreignObject>
+    </g>
+
+    <!-- 处理节点 -->
+    <g filter="url(#shadow)">
+        <rect x="430" y="365" width="220" height="65" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="8"/>
+        <foreignObject x="430" y="365" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#9a3412;">session 初始化</div>
+                <div style="font-size:11px;color:#f97316;margin-top:2px;">并发拉取 + per-field 融合 + 缓存</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="430" y="480" width="220" height="65" fill="#fff7ed" stroke="#f97316" stroke-width="2" rx="8"/>
+        <foreignObject x="430" y="480" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#9a3412;">context 注入</div>
+                <div style="font-size:11px;color:#f97316;margin-top:2px;">画像+近期行为 → 个性化 / 行为感知</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="430" y="590" width="220" height="65" fill="#fef2f2" stroke="#ef4444" stroke-width="2" rx="8"/>
+        <foreignObject x="430" y="590" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#991b1b;">router</div>
+                <div style="font-size:11px;color:#ef4444;margin-top:2px;">regex 意图粗筛，分多路</div>
+            </div>
+        </foreignObject>
+    </g>
+
+    <!-- 执行节点 -->
+    <g filter="url(#shadow)">
+        <rect x="330" y="750" width="220" height="65" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="8"/>
+        <foreignObject x="330" y="750" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#92400e;">product_highlight</div>
+                <div style="font-size:11px;color:#f59e0b;margin-top:2px;">商品详情 / 猜你想问</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="580" y="750" width="220" height="65" fill="#fce7f3" stroke="#ec4899" stroke-width="2" rx="8"/>
+        <foreignObject x="580" y="750" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#831843;">price_calc</div>
+                <div style="font-size:11px;color:#ec4899;margin-top:2px;">价格试算</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="830" y="750" width="220" height="65" fill="#e0e7ff" stroke="#6366f1" stroke-width="2" rx="8"/>
+        <foreignObject x="830" y="750" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#3730a3;">general</div>
+                <div style="font-size:11px;color:#6366f1;margin-top:2px;">通用咨询</div>
+            </div>
+        </foreignObject>
+    </g>
+
+    <!-- 搜索节点 -->
+    <g filter="url(#shadow)">
+        <rect x="80" y="750" width="220" height="65" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2" rx="8"/>
+        <foreignObject x="80" y="750" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#115e59;">search_rec ★</div>
+                <div style="font-size:11px;color:#14b8a6;margin-top:2px;">搜索推荐（记忆场景搜索）</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="25" y="930" width="160" height="65" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2" rx="8"/>
+        <foreignObject x="25" y="930" width="160" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#115e59;">product_search</div>
+                <div style="font-size:11px;color:#14b8a6;margin-top:2px;">召回（不做个性化）</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="195" y="930" width="160" height="65" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2" rx="8"/>
+        <foreignObject x="195" y="930" width="160" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#115e59;">search_memory</div>
+                <div style="font-size:11px;color:#14b8a6;margin-top:2px;">场景触发 top_k</div>
+            </div>
+        </foreignObject>
+    </g>
+    <g filter="url(#shadow)">
+        <rect x="80" y="1110" width="220" height="65" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2" rx="8"/>
+        <foreignObject x="80" y="1110" width="220" height="65">
+            <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+                <div style="font-size:13px;font-weight:bold;color:#115e59;">LLM 选 topK + 介绍</div>
+                <div style="font-size:11px;color:#14b8a6;margin-top:2px;">记忆驱动筛选排序</div>
+            </div>
+        </foreignObject>
+    </g>
+
+    <!-- ================= 连线 ================= -->
+    
+    <!-- 写入 -> 存储 -->
+    <path d="M 250 207 C 310 207, 350 207, 390 207" fill="none" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+    <text x="320" y="198" font-size="11" fill="#3b82f6" text-anchor="middle">update_chat_memory</text>
+
+    <!-- 存储 -> 处理 -->
+    <!-- 记忆库 -> 会话初始化 -->
+    <path d="M 500 240 L 500 280 L 540 280 L 540 365" fill="none" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <text x="540" y="320" font-size="11" fill="#10b981" text-anchor="middle">读取 + 融合</text>
+
+    <!-- CRM -> 会话初始化 -->
+    <path d="M 780 240 L 780 280 L 540 280 L 540 365" fill="none" stroke="#8b5cf6" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+    <text x="660" y="270" font-size="11" fill="#8b5cf6" text-anchor="middle">并发拉取</text>
+
+    <!-- 处理内部 -->
+    <path d="M 540 430 L 540 480" fill="none" stroke="#f97316" stroke-width="2.5" marker-end="url(#arrow-orange)"/>
+    <text x="550" y="460" font-size="11" fill="#f97316" text-anchor="start">注入</text>
+
+    <path d="M 540 545 L 540 590" fill="none" stroke="#f97316" stroke-width="2.5" marker-end="url(#arrow-orange)"/>
+    <text x="550" y="570" font-size="11" fill="#f97316" text-anchor="start">分发</text>
+
+    <!-- 路由 -> 执行（四个并行意图，同级） -->
+    <!-- 到 search_rec -->
+    <path d="M 430 655 L 190 655 L 190 750" fill="none" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+
+    <!-- 到 product_highlight -->
+    <path d="M 440 655 L 440 750" fill="none" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+
+    <!-- 到 price_calc -->
+    <path d="M 650 655 L 690 655 L 690 750" fill="none" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+
+    <!-- 到 general -->
+    <path d="M 650 655 L 940 655 L 940 750" fill="none" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+
+    <text x="540" y="700" font-size="12" fill="#ef4444" text-anchor="middle" font-weight="bold">分流：四个并行意图（同级）</text>
+
+    <!-- 搜索内部（search_rec 子流程：左右关于 x=190 对称，上下关于子节点中心镜像） -->
+    <path d="M 190 815 L 190 872 L 105 872 L 105 930" fill="none" stroke="#14b8a6" stroke-width="2.5" marker-end="url(#arrow-teal)"/>
+    <text x="147" y="863" font-size="11" fill="#14b8a6" text-anchor="middle">并发</text>
+
+    <path d="M 190 815 L 190 872 L 275 872 L 275 930" fill="none" stroke="#14b8a6" stroke-width="2.5" marker-end="url(#arrow-teal)"/>
+    <text x="232" y="863" font-size="11" fill="#14b8a6" text-anchor="middle">并发</text>
+
+    <path d="M 105 995 L 105 1053 L 190 1053 L 190 1110" fill="none" stroke="#14b8a6" stroke-width="2.5" marker-end="url(#arrow-teal)"/>
+    <path d="M 275 995 L 275 1053 L 190 1053 L 190 1110" fill="none" stroke="#14b8a6" stroke-width="2.5" marker-end="url(#arrow-teal)"/>
+
+</svg>
+</div>
+</body>
+</html>
